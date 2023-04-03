@@ -1,0 +1,58 @@
+label {
+    margin-bottom: 7px;
+    margin-left: 30px;
+}
+input {
+    margin-bottom: 10px;
+    width: 285px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.ticket-header h2 {
+    padding-top: 20px;
+}
+.buttons {
+    text-align: right;
+}
+.buttons button {
+    margin: 0px 10px;
+}
+.header {
+    background-color: rgb(16, 160, 208);
+    height: 120px;
+    position: relative;
+}
+
+
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 160px;
+    margin-right: 20px;
+    height: 600px;
+    margin-top: 20px;
+    background-color:white ;
+    width: 1200px;
+  
+}
+hr {
+   margin-top: 30px;
+}
+.view > * {
+    display: block;
+}
+table {
+    position: absolute;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+table tr td {
+    padding: 20px;
+    margin-right: 200px;
+}
+.buttons {
+    margin-top: 510px;
+    margin-left: 800px;
+}
+
+

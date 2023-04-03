@@ -1,0 +1,210 @@
+/* 
+.usercreateddiv{
+    width: 1420px;
+    margin-top: 100px;
+    margin-left: 550px;
+    background-color: rgb(250, 250, 252);
+    height: 500px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px 10px rgb(230, 238, 240);
+}
+.usercreateddiv {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+h2 {
+    text-align: center;
+    
+}
+input {
+    margin-bottom: 10px;
+    padding: 7px;
+    width: 300px;
+    
+}
+.user-form{
+   display: flex;
+   flex-direction: column;
+}
+.user-button {
+    padding: 8px;
+    background-color: rgb(38, 187, 237);
+    border: 1px solid rgb(38, 187, 237);
+    color: white;  
+    margin-top: 30px;
+}
+.login-image img {
+    width: 330px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+table, th, td {
+    border:1px solid black;
+    
+  }
+
+.adduserbutton{
+    margin-left: 1390px;
+    margin-top: 30px;
+}
+.tableDisplay{
+    margin-left: 10px;
+    margin-top: 25px;
+    margin-right: 10px;
+    
+}
+table {
+    width: 100%;
+}
+label {
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.form input {
+   width: 500px
+}
+.form1 input {
+    display: grid;
+    display: inline;
+    grid: span 1 span 1 span 1 span 1 ;
+}
+label { */
+ table, th, td {
+   border:1px solid black;
+   
+  }
+
+label {
+    margin-bottom: 7px;
+}
+input {
+    margin-bottom: 10px;
+}
+.usercreateddiv{
+    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 1480px;
+    height: 560px;
+    position: absolute;
+    top: 140px;
+    background-color:white ;
+
+}
+.user-header h4{
+    padding-top: 20px;
+    
+}
+.button {
+ text-align: right;
+}
+.button button {
+    margin: 0px 10px;
+}
+.header {
+    background-color: rgb(16, 160, 208);
+    height: 120px;
+    position: relative;
+}
+.ptable {
+    margin-top: 60px;
+}
+.addButton {
+    margin-left: 1300px;
+    margin-top: 20px;
+}
+.invalid {
+    color: red;
+}
+/* .eachColumn>* {
+    display: inline-block;
+    width: 90%;
+} */
+
+@media screen and (max-width: 374px) and (min-width: 319px) {
+    .usercreateddiv{
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 320px;
+        height: 780px;
+        position: absolute;
+        top: 140px;
+        background-color:white ;
+    
+    }
+   
+    .p-dialog {
+        width: 15vw !important;
+    }
+        
+
+}
+
+@media screen and (max-width: 424px) and (min-width: 374px) {
+    .usercreateddiv{
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 375px;
+        height: 780px;
+        position: absolute;
+        top: 140px;
+        background-color:white ;
+    
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 424px) {
+    .usercreateddiv{
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 420px;
+        height: 780px;
+        position: absolute;
+        top: 140px;
+        background-color:white ;
+    
+    }
+    .p-dialog {
+        width: 20vw !important;
+    }
+}
+@media screen and (max-width: 900px) and (min-width: 760px) {
+    .usercreateddiv{
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 767px;
+        height: 560px;
+        position: absolute;
+        top: 140px;
+        background-color:white ;
+    
+    }
+}
+@media screen and (max-width: 1025px) and (min-width: 901px ) {
+    .usercreateddiv{
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 1025px;
+        height: 560px;
+        position: absolute;
+        top: 140px;
+        background-color:white ;
+    
+    }
+    .p-dialog {
+        width: 25vw !important;
+    }
+}
+
+

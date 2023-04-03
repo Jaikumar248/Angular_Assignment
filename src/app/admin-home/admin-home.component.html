@@ -1,0 +1,172 @@
+
+
+<div class="ptable" *ngIf="showTicketTable">
+    <div class="search"><input type="text" [(ngModel)]="ticket" (keyup)="ViewTicketById()"><button>search</button></div>
+        <p-table  [value]="viewAllTickets" [paginator]=true [rows]="5"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+            <input type="text" placeholder="Search" [(ngModel)]="searchText">
+            <ng-template pTemplate="header" class="t-head thead-primary">
+                <tr>
+                    <th>User_Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
+                    <th>Ticket_Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
+                    <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th>
+                    <th>Catagory <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
+                    <th>Sub_Category <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
+                    <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
+                    <th>Priority <p-sortIcon field="priority"  pSortableColumn="priority"></p-sortIcon></th>
+                    <th>Status <p-sortIcon field="status"  pSortableColumn="status"></p-sortIcon></th>
+                    <th>Reporter_Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
+                    <th>Subject <p-sortIcon field="subject"  pSortableColumn="subject"></p-sortIcon></th>
+                    <th>Url Link <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
+                    <th>Create_Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
+                    <th>Last_Modified_Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item class="t-body tbody-dark">
+        
+        
+            <tr (dblclick)="TicketviewMode(item)">
+                <td>{{item.reporter_id}}</td>
+                <td>{{item.ticket_id}}</td>
+                <td>{{item.assignee}}</td>
+                <td>{{item.category_desc}}</td>
+                <td>{{item.sub_category_desc}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.priority}}</td>
+                <td>{{item.status}}</td>
+                <td>{{item.reporter_id}}</td>
+                <td>{{item.subject}}</td>
+                <td>{{item.url}}</td>
+                <td>{{item.create_datetime}}</td>
+                <td>{{item.last_modified_datetime}}</td>
+                <td>
+                    <!-- <button class="btn btn-info"><a routerLink="/home/admin-view" (click)="upDateTicket()">Edit</a></button> -->
+                    <button class="btn btn-warning" (click)="DeleteTicket(item.ticket_id)">Delete</button>
+                </td>
+            </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="14" style="text-align: center;">No data</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+
+
+<div class="conatainer" *ngIf="ticketView">
+    <h2>Ticket Details</h2>
+    <div class="buttons">
+    
+        <button (click)="ChangePriority()">ChangePriority</button>
+        <button (click)="ChangeStatus1()">ChangeStatus</button>
+        <button (click)="SetAssignee()">Set Assignee</button>
+    </div>
+    <table>
+        <tr>
+            <th>Ticket_Id :</th>
+            <td>{{ticketData.ticket_id}}</td>
+            <th>User_Id :</th>
+            <td>{{ticketData.user_id}}</td>
+        </tr>
+        <tr>
+            <th>Category :</th>
+            <td>{{ticketData.category_desc}}</td>
+            <th>Sub Category :</th>
+            <td>{{ticketData.sub_category_desc}}</td>
+        </tr>
+        <tr>
+            <th>Assignee :</th>
+            <td>{{ticketData.assignee}}</td>
+            <th>Subject</th>
+            <td>{{ticketData.subject}}</td>
+        </tr>
+        <tr>
+            <th>Description :</th>
+            <td>{{ticketData.description}}</td>
+            <th>Reporter</th>
+            <td>{{ticketData.reporter_id}}</td>
+        </tr>
+        <tr>
+            <th>Priority :</th>
+            <td>{{ticketData.priority}}</td>
+            <th>Url_Link :</th>
+            <td>{{ticketData.url}}</td>
+        </tr>
+        <tr>
+            <th>Status :</th>
+            <td>{{ticketData.status}}</td>
+            <th>Created Date :</th>
+            <td>{{ticketData.create_datetime}}</td>
+        </tr>
+        <tr>
+            <th>Created Source :</th>
+            <td>{{ticketData.createdSource}}</td>
+            <th>Created Source Type :</th>
+            <td>{{ticketData.createdSourceType}}</td>
+        </tr>
+        <tr>
+            <th>Modified Date :</th>
+            <td>{{ticketData.last_modified_datetime}}</td>
+            <th>ModifiedSource :</th>
+            <td>{{ticketData.modifiedSource}}</td>
+        </tr>
+        <tr>
+            <th>ModifiedSourceType :</th>
+            <td>{{ticketData.modifiedSourceType}}</td>
+          
+        </tr>
+          
+        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
+    </table>
+   
+
+    
+</div>
+
+<p-dialog header="ChangePriority"[(visible)]="displayPopPriority"  [style]="{width:'20vw', height:'20vw'}">
+    <form >
+        <label>Priority :</label>
+        <p-autoComplete [(ngModel)]="selectedPriorityValue" (onSelect)="displayPriorityValue($event)"   appendTo="body" [suggestions]="seletectPriorities" (completeMethod)="ChangePriority1($event)" [dropdown]="true" ></p-autoComplete>
+        <div class="statusButton">
+            <button class="btn btn-warning" (click)="closePriority()">Cancel</button>
+            <button class="btn btn-primary" (click)="savePriority()">Save</button>
+        </div>
+    </form>
+</p-dialog>
+
+<p-dialog header="ChangeStatus"[(visible)]="displayPopStatus" [style]="{width:'20vw', height:'20vw'}">
+    <form >
+        <label for="">Status :</label>
+
+        <p-autoComplete [(ngModel)]="selectedStatusValue" (onSelect)="displayStatusValue($event)"   appendTo="body" [suggestions]="selectedStatus" (completeMethod)="ChangeStatus($event)" [dropdown]="true" ></p-autoComplete>
+        
+        <div class="statusButton">
+            <button class="btn btn-warning" (click)="closeStatusPop()">Cancel</button>
+            <button class="btn btn-primary" (click)="saveStatus()">Save</button>
+        </div>
+    </form>
+</p-dialog>
+
+
+<p-dialog header="SetAssignee" [(visible)]="setAssignee" [style]="{width:'20vw', height:'20vw'}">
+    <form >
+        <label for="">SetAssignee :</label>
+
+        <p-autoComplete [(ngModel)]="getAdminValue" (onSelect)="displayAdminValue($event)"   appendTo="body" [suggestions]="adminValue" (completeMethod)="SetAssigneeSave($event)" [dropdown]="true" ></p-autoComplete>
+        
+        <div class="statusButton">
+            <button class="btn btn-warning" (click)="closeSetAssignee()">Cancel</button>
+            <button class="btn btn-primary" (click)="saveAssignee()">Save</button>
+        </div>
+    </form>
+</p-dialog>
+
+
+
+
+

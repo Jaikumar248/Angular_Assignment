@@ -1,0 +1,164 @@
+
+
+<div class="ptable" >
+    <div class="addUserButton" *ngIf="displayViewForm">
+        <button class="btn btn-primary" (click)="AddUsersPop()">AddUsers</button>
+    </div>
+
+
+    <div *ngIf="displayViewForm">
+    
+        <p-table [paginator]=true [rows]="6"  [value]="showUsers" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+            <ng-template pTemplate="header" >
+                <tr>
+                <th>User ID <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon> </th>
+                <th>User Name <p-sortIcon field="userName"  pSortableColumn="userName"></p-sortIcon></th>
+                <th>First Name<p-sortIcon field="firstName"  pSortableColumn="firstName"></p-sortIcon> </th>
+                <th>Last Name <p-sortIcon field="lastName"  pSortableColumn="lastName"></p-sortIcon></th>
+                <th>Email_id <p-sortIcon field="email_Id"  pSortableColumn="email_Id"></p-sortIcon></th>
+                <th>CreatedSource <p-sortIcon field="createdSource"  pSortableColumn="createdSource"></p-sortIcon></th>
+                <th>CreatedSourceType<p-sortIcon field="createdSourceType"  pSortableColumn="createdSourceType"></p-sortIcon> </th>
+                <th>ModifiedSource <p-sortIcon field="modifiedSource"  pSortableColumn="modifiedSource"></p-sortIcon></th>
+                <th>ModifiedSourceType <p-sortIcon field="modifiedSourceType"  pSortableColumn="modifiedSourceType"></p-sortIcon></th>
+                <th>Created Date <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
+                <th>Last Modified Date <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
+                <th>Action</th>
+            </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item  class="t-body tbody-dark">
+        
+        
+            <tr (dblclick)="UserViewMode(item)">
+                <td>{{item.user_id}}</td>
+                <td>{{item.userName}}</td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.email_Id}}</td>
+                <td>{{item.createdSource}}</td>
+                <td>{{item.createdSourceType}}</td>
+                <td>{{item.modifiedSource}}</td>
+                <td>{{item.modifiedSourceType}}</td>
+                <td>{{item.create_datetime}}</td>
+                <td>{{item.last_modified_datetime}}</td>
+                <td>
+                    <!-- <button class="btn btn-info"><a routerLink="/home/admin-view" (click)="upDateUser()">Edit</a></button> -->
+                    <button class="btn btn-warning" (click)="DeleteUser(item.user_id)">Delete</button>
+                </td>
+            </tr>
+            </ng-template>
+           
+        </p-table>
+        
+    </div>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div class="header"  *ngIf="displayViewMode">
+    
+</div>
+
+<div class="conatainer" *ngIf="displayViewMode">
+    <h2>User Details</h2>
+    <table>
+        <tr>
+            <th>User ID :</th>
+            <td>{{viewUser.user_id}}</td>
+            <th>User Name :</th>
+            <td>{{viewUser.userName}}</td>
+        </tr>
+        <tr>
+            <th>First Name :</th>
+            <td>{{viewUser.firstName}}</td>
+            <th>Last Name :</th>
+            <td>{{viewUser.lastName}}</td>
+        </tr>
+        <tr>
+            <th>Email_Id :</th>
+            <td>{{viewUser.email_Id}}</td>
+            <th>CreatedSource </th>
+            <td>{{viewUser.createdSource}}</td>
+        </tr>
+        <tr>
+            <th>CreatedSourceType :</th>
+            <td>{{viewUser.createdSourceType}}</td>
+            <th>ModifiedSource</th>
+            <td>{{viewUser.modifiedSource}}</td>
+        </tr>
+        <tr>
+            <th>ModifiedSourceType :</th>
+            <td>{{viewUser.modifiedSourceType}}</td>
+            <th>Created Date :</th>
+            <td>{{viewUser.create_datetime}}</td>
+        </tr>
+        <tr>
+            <th>Last Modified Date</th>
+            <td>{{viewUser.last_modified_datetime}}</td>
+        </tr>
+       
+        
+    </table>
+    <div class="buttons">
+            
+        <button (click)="EditUser()" class="btn btn-primary" >Edit</button>
+        <button class="btn btn-warning" (click)="closeUpdateForm()">Cancel</button>
+    </div>
+</div>
+
+<div class="header"  *ngIf="editUser">
+    <h2>Update User</h2>
+</div>
+
+<div class="container " *ngIf="editUser">
+    <div class="user-header">
+        <h4>Update User</h4>
+    </div>
+    <hr>
+
+    <div class="row">
+        <form class="user-form" #updateForm="ngForm" (ngSubmit)="UpdateUserForm(updateForm.value)">
+            <div class="row">
+               
+                <div class="form1 col">
+                    <label >User_Id</label>
+                    <input type="text" name="user_id" ngModel="{{viewUser.user_id}}" class="form-control" readonly  >
+                    <label>UserName</label>
+                    <input type="text" name="userName" ngModel="{{viewUser.userName}}"  class="form-control" required>
+                    <label>First Name</label>
+                    <input type="text" name="firstName" ngModel="{{viewUser.firstName}}" class="form-control" required>
+                    <label>Last Name</label>
+                    <input type="text" ngModel name="lastName" ngModel="{{viewUser.lastName}}" class="form-control" required>
+                    <label for="">email Id</label>
+                    <input type="email" ngModel name="email_Id" ngModel="{{viewUser.email_Id}}" class="form-control" readonly >
+                    <label>CreatedSource</label>
+                    <input type="text" ngModel name="createdSource" ngModel="{{viewUser.createdSource}}" class="form-control">
+                </div>
+
+                <div class="form2 col">
+
+              
+                    <label >CreatedSourceType</label>
+                    <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control">
+                    <label>ModifiedSource</label>
+                    <input type="text" ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control">
+                    <label>ModifiedSourceType</label>
+                    <input type="text" ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control">
+                    <label>Created Date</label>
+                    <input type="text" name="createdDate" ngModel ngModel="{{viewUser.create_datetime}}" class="form-control">
+                    <label >Last Modified Datetime</label>
+                    <input type="text" name="last_modified_datetime" ngModel="{{viewUser.last_modified_datetime}}" class="form-control">
+                    <div class="button">
+                        <button class="btn btn-warning" (click)="closeUpdateForm()" >Back</button>
+                        <button class="btn btn-primary" >Save</button>
+                     </div>
+                </div>
+            </div>
+            <hr>
+            
+        </form>
+    </div>    
+
+</div>
+
+
+

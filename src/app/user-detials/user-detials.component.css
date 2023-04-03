@@ -1,0 +1,102 @@
+.ptable{
+    margin-top: 20px;
+}
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 160px;
+    margin-right: 20px;
+    height: 540px;
+    margin-top: -10px;
+    background-color:white ;
+    width: 1200px;
+  
+}
+hr {
+   margin-top: 30px;
+}
+.view > * {
+    display: block;
+}
+table {
+    position: absolute;
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+table tr td {
+    padding: 20px;
+    margin-right: 200px;
+}
+
+.buttons{
+    margin-top: 400px;
+    margin-left: 800px
+}
+
+label {
+    margin-bottom: 7px;
+}
+input {
+    margin-bottom: 10px;
+}
+.container{
+    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+    margin-left: 100px;
+    margin-right: 20px;
+    width: 1480px;
+    height: 566px;
+    position: absolute;
+    top: 140px;
+    background-color:white ;
+
+}
+.user-header h4{
+    padding-top: 10px;
+    
+}
+.button {
+ text-align: right;
+}
+.button button {
+    margin: 0px 10px;
+}
+
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 1480px;
+    height: 560px;
+    position: absolute;
+    top: 140px;
+    background-color:white ; 
+}
+
+hr{
+    margin-top: 20px;
+}
+h4 {
+    margin: 10px;
+}
+.header {
+    margin-top: -8px;
+    background-color: rgb(16, 160, 208);
+    height: 120px;
+} 
+.addUserButton {
+    margin-top: 10px;
+    margin-left: 1300px;
+}
+
+@media screen and (max-width: 767px) and (min-width: 200px) {
+    .addUserButton {
+        padding: 10px;
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width: 1025px) and (min-width: 768px) {
+    .addUserButton {
+        padding: 10px;
+        margin-left: 650px;
+    }
+}

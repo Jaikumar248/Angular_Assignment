@@ -1,0 +1,106 @@
+<!-- <div class="addButton" *ngIf="!addUsers">
+    <button class="btn btn-primary" (click)="AddUsers()">Add Users</button>
+</div> -->
+<p-dialog header="AddUsers" [(visible)]="addUsers" autoWidth="false" >
+    <p-messages [(value)]="messages"></p-messages>
+    <form #adduser="ngForm" (ngSubmit)="saveUsers(adduser.value)">
+        <label>UserName</label>
+        <input type="text" ngModel name="userName" class="form-control" #userName required>
+        <div *ngIf="adduser.controls['userName']?.['touched'] && adduser.controls['userName']?.['errors']"
+            class="invalid">
+            <div *ngIf="adduser.controls['userName']?.['errors']?.['required']">
+                User Name is required
+            </div>
+        </div>
+        <label>Email_Id</label>
+        <input type="email" ngModel name="email_Id" class="form-control" #email_Id required email>
+        <div *ngIf="adduser.controls['email_Id']?.['touched'] && adduser.controls['email_Id']?.['errors']"
+            class="invalid">
+            <div *ngIf="adduser.controls['email_Id']?.['errors']?.['required']">
+                Email_Id Name is required
+            </div>
+            <div *ngIf="adduser.controls['email_Id']?.['errors']?.['required']">
+                Invalid Mail pattern
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="btn btn-warning" (click)="closeDialogPop()">Cancel</button>
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</p-dialog>
+
+
+
+<div class="header" *ngIf="savedValues1">
+    <h2>Add New User</h2>
+</div>
+
+
+<div class="usercreateddiv " *ngIf="savedValues1">
+    <div class="container ">
+        <div class="user-header">
+            <h4>Add New User</h4>
+        </div>
+        <hr>
+
+        <div class="row">
+            <form class="user-form" #createuser="ngForm" (ngSubmit)="CreateUser(createuser.value)">
+                <p-messages [(value)]="messages1"></p-messages>
+                <!-- <div class="row"> -->
+                    <label>UserName</label>
+                    <input type="text" name="userName" ngModel="{{this.username}}" class="form-control name" readonly>
+                    <!-- <div class="form1 col"> -->
+                        <div class="grid">
+                            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                                <label>First Name</label>
+                                <input type="text" ngModel name="firstName" class="form-control" required>
+
+                                <div *ngIf="createuser.controls['firstName']?.['touched'] && createuser.controls['firstName']?.['errors']"
+                                    class="invalid">
+                                    <div *ngIf="createuser.controls['firstName']?.['errors']?.['required']">
+                                        First Name is required
+                                    </div>
+                                </div>
+                                <label>Last Name</label>
+                                <input type="text" ngModel name="lastName" class="form-control" required>
+                                <div *ngIf="createuser.controls['lastName']?.['touched'] && createuser.controls['lastName']?.['errors']"
+                                    class="invalid">
+                                    <div *ngIf="createuser.controls['lastName']?.['errors']?.['required']">
+                                        Last Name is required
+                                    </div>
+                                </div>
+                                <label for="">email Id</label>
+                                <input type="email" ngModel="{{this.emailId}}" name="email_Id" class="form-control"
+                                    required email readonly>
+
+                                <label>ModifiedSourceType</label>
+                                <input type="text" ngModel name="modifiedSourceType" class="form-control">
+                            </div>
+
+                            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+
+                                <label>CreatedSource</label>
+                                <input type="text" ngModel name="createdSource" class="form-control">
+                                <label>CreatedSourceType</label>
+                                <input type="text" ngModel name="createdSourceType" class="form-control">
+                                <label>ModifiedSource</label>
+                                <input type="text" ngModel name="modifiedSource" class="form-control">
+
+                            </div>
+                        </div>
+                    <!-- </div> -->
+
+                <!-- </div> -->
+                <div class="button">
+                    <button class="btn btn-warning">Cancel</button>
+                    <button class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+
+    </div>
+</div>

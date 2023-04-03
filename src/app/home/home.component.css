@@ -12,6 +12,7 @@ body{
     list-style-type: none;
     font-size: larger;
     color: antiquewhite;
+    cursor: pointer;
     
 }
 .nav-items {
@@ -23,6 +24,7 @@ body{
 li {
     display: inline-block;
     padding-left: 20px;
+    color:azure;
 }
 #home {
     margin-left: 30px;
@@ -37,12 +39,6 @@ header img {
 .footer {
   height: 40px;
   background-color: rgba(15, 105, 135, 0.945);
-  
-  /* position: ;
-  bottom: 10px;
-  top: clamp(20vw, 39vw, 100vw);
-  color: aliceblue;
-  text-align: center; */
   position: absolute;
   bottom: 0;
   left: 0;
@@ -50,8 +46,13 @@ header img {
   color: aliceblue;
   text-align: center;
 }
-.active{
-    background-color: blue;
+
+a {
+    padding: 8px;
+    text-decoration: none;
+   
+    margin-left: 25px;
 }
-
-
+.active {
+    color: aqua;
+}

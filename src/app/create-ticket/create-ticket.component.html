@@ -1,0 +1,165 @@
+<div class="addTicketButton" *ngIf="displayTicketForm">
+    <button class="btn btn-primary" (click)="showDialog()" >Add Ticket</button>
+</div>
+<p-dialog header="Add" [(visible)]="displayDialog">
+    
+    <form > 
+        <label >User_Id:{{loggedInUser1}}</label> <br>      
+     
+        <label >Category : </label>
+        <p-autoComplete [(ngModel)]="selectedCategoryValues" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true" ></p-autoComplete>
+
+        <div class="buttons">
+            <button class="btn btn-warning ">Cancel</button> 
+            <button class="btn btn-primary" (click)="DisplayTicketForm()">Save</button>
+        </div>
+    </form>
+</p-dialog>
+
+<div class="header" *ngIf="displayForm">
+    <h2>Add New Ticket</h2>
+</div>
+<div class="conatainer" *ngIf="displayForm">
+
+    <div class="ticket-header">
+        <h4>Create New Ticket </h4>
+    </div>
+    <hr>
+    <div class="row">
+        <form #ticketvalues=ngForm (ngSubmit)="CreateTicket(ticketvalues.value)">
+            <div class="row">
+                <div class="col">
+                    <label>Category</label>
+                    <input type="text" name="category_id" ngModel="{{this.selectedCategoryValues}}" class="form-control" readonly>
+                    <label>Sub_Category</label>
+                    <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'93%', 'margin-left':'22px'}"></p-dropdown><br>
+                    <!-- <input type="text" name="sub_category_id" ngModel class="form-control" required> -->
+                    <!-- <label>Assignee_Id</label>
+                    <input type="text" name="assignee_Id" ngModel class="form-control" required> -->
+                    <label>Status </label>
+                    <input type="text" name="status_id" ngModel="{{1}}" class="form-control" required readonly>
+                    <label> Subject</label>
+                    <input type="text" name="subject" ngModel class="form-control" required>
+                </div>
+                <div class="col">
+                    
+                    <label>Description</label>
+                    <input type="text" name="description" ngModel class="form-control" required>
+                    <label >Created Source</label>
+                    <input type="text" name="createdSource" ngModel class="form-control" >
+                    <label >Created Source Type</label>
+                    <input type="text" name="createdSourceType" ngModel class="form-control">
+                </div>
+            </div>
+            <hr>
+            <div class="buttons">
+                <button class="btn btn-warning" (click)="closeTicketForm()">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+
+            </div>
+        </form>
+    </div>
+ 
+
+</div>
+
+
+
+
+
+<div class="ptable" *ngIf="displayTicketForm">
+
+    <p-table  [value]="allTickets"  [paginator]=true [rows]="6" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+        <ng-template pTemplate="header" class="t-head thead-primary">
+            <tr>
+                <th>User_Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
+                <th>Ticket_Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
+                <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th>
+                <th>Catagory_Id <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
+                <th>Sub_Category_Id <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
+                <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
+                <th>Priority_Id <p-sortIcon field="priority"  pSortableColumn="priority"></p-sortIcon></th>
+                <th>Status_Id <p-sortIcon field="status"  pSortableColumn="status"></p-sortIcon></th>
+                <th>Reporter_Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
+                <th>Subject <p-sortIcon field="subject"  pSortableColumn="subject"></p-sortIcon></th>
+                <th>Url Link <p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
+                <th>Create_Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
+                <th>Last_Modified_Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item class="t-body tbody-dark">
+    
+    
+        <tr (dblclick)="viewModel(item.ticket_id)">
+            <td>{{item.reporter_id}}</td>
+            <td>{{item.ticket_id}}</td>
+            <td>{{item.assignee}}</td>
+            <td>{{item.category_desc}}</td>
+            <td>{{item.sub_category_desc}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.priority}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.reporter_id}}</td>
+            <td>{{item.subject}}</td>
+            <td>{{item.url}}</td>
+            <td>{{item.create_datetime}}</td>
+            <td>{{item.last_modified_datetime}}</td>
+            <!-- <td><a routerLink="/home/user-view/{{item.ticket_id}}" type="button" class="user-view">View</a></td> -->
+        </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="14" style="text-align: center;">No data Found</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<div class="ptable" *ngIf="displayTicketTable">
+
+    <p-table  [value]="allTickets"  [paginator]=true [rows]="6" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+        <ng-template pTemplate="header" class="t-head thead-primary">
+            <tr>
+                <th>User_Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
+                <th>Ticket_Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
+                <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th>
+                <th>Catagory_Id <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
+                <th>Sub_Category_Id <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
+                <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
+                <th>Priority_Id <p-sortIcon field="priority"  pSortableColumn="priority"></p-sortIcon></th>
+                <th>Status_Id <p-sortIcon field="status"  pSortableColumn="status"></p-sortIcon></th>
+                <th>Reporter_Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
+                <th>Subject <p-sortIcon field="subject"  pSortableColumn="subject"></p-sortIcon></th>
+                <th>Url Link <p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
+                <th>Create_Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
+                <th>Last_Modified_Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item class="t-body tbody-dark">
+    
+    
+        <tr (dblclick)="viewModel(item.ticket_id)">
+            <td>{{item.reporter_id}}</td>
+            <td>{{item.ticket_id}}</td>
+            <td>{{item.assignee}}</td>
+            <td>{{item.category_desc}}</td>
+            <td>{{item.sub_category_desc}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.priority}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.reporter_id}}</td>
+            <td>{{item.subject}}</td>
+            <td>{{item.url}}</td>
+            <td>{{item.create_datetime}}</td>
+            <td>{{item.last_modified_datetime}}</td>
+            <!-- <td><a routerLink="/home/user-view/{{item.ticket_id}}" type="button" class="user-view">View</a></td> -->
+        </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="14" style="text-align: center;">No data Found</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

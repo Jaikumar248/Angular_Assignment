@@ -1,0 +1,115 @@
+<div class="header">
+    <h2></h2>
+</div>
+<div class="container " *ngIf="toggleUserForm">
+    <div class="user-header">
+        <h4>Update User</h4>
+    </div>
+    <hr>
+
+    <div class="row">
+        <form class="user-form" #createuser="ngForm">
+            <div class="row">
+               
+                <div class="form1 col">
+                    <label>UserName</label>
+                    <input type="text" name="userName" ngModel class="form-control">
+                    <label>First Name</label>
+                    <input type="text" ngModel name="firstName" class="form-control">
+                    <label>Last Name</label>
+                    <input type="text" ngModel name="lastName" class="form-control">
+                    <label for="">email Id</label>
+                    <input type="email" ngModel name="email_Id" class="form-control">
+                    <label>ModifiedSourceType</label>
+                    <input type="text" ngModel name="modifiedSourceType" class="form-control">
+                </div>
+
+                <div class="form2 col">
+
+                    <label>CreatedSource</label>
+                    <input type="text" ngModel name="createdSource" class="form-control">
+                    <label>CreatedSourceType</label>
+                    <input type="text" ngModel name="createdSourceType" class="form-control">
+                    <label>ModifiedSource</label>
+                    <input type="text" ngModel name="modifiedSource" class="form-control">
+                    <label>Created Date</label>
+                    <input type="text" name="createdDate" ngModel class="form-control">
+                    <label >Last Modified Datetime</label>
+                    <input type="text" name="last_modified_datetime" class="form-control">
+                </div>
+            </div>
+            <hr>
+            <div class="button">
+                <button class="btn btn-warning" >Cancel</button>
+                <button class="btn btn-primary" >Save</button>
+             </div>
+        </form>
+    </div>    
+
+</div>
+
+
+<div class="conatainer" *ngIf="toggleTicketForm">
+
+    <div class="ticket-header">
+        <h4>Update Ticket Details </h4>
+    </div>
+    <hr>
+    <div class="row">
+        <form #ticketvalues="ngForm">
+            <div class="row">
+                <div class="col">
+                    <label>Ticket_Id</label>
+                    <input type="text" ngModel name="ticket_id" class="form-control" >
+                    <label >User_Id</label>
+                    <input type="text" ngModel name="user_id" class="form-control">
+                    <label>Category</label>
+                    <p-autoComplete [(ngModel)]="selectedValues" [suggestions]="selectedCategories" (onSelect)="disp($event)" (completeMethod)="search($event)" [dropdown]="true" ></p-autoComplete>
+                    <label>Sub Category</label>
+                     <p-autoComplete [(ngModel)]="selectedValues" [suggestions]="selectedCategories" (completeMethod)="SearchSubCategaries()" [dropdown]="true" ></p-autoComplete> <br>
+                    <label>Assignee</label>
+                    <input type="text" name="assignee_Id" ngModel class="form-control">
+                
+                </div>
+                <div class="col">
+                    <label> Subject</label>
+                    <input type="text" name="subject" ngModel class="form-control" >
+                    <label>Description</label>
+                    <input type="text" name="description" ngModel class="form-control">
+                    <label>Reporter</label>
+                    <input type="text" name="reporter" ngModel class="form-control">
+                    <label>Priority</label>
+                    <input type="text" name="Priority" ngMOdel class="form-control" >
+                    <label>Url_Link</label>
+                    <input type="text" name="url" ngModel class="form-control" >
+                </div>
+                <div class="col">
+                    <label>status</label>
+                    <input type="text" name="status_id" ngModel class="form-control">
+                    <label>Created Date</label>
+                    <input type="text" name="createdDate" ngModel class="form-control" >
+                    <label>Created Source</label>
+                    <input type="text" name="createdsource" ngModel class="form-control">
+                    <label>Created Source Type</label>
+                    <input type="text" name="createdSourceType" ngModel class="form-control">
+                    <label>Modified Date</label>
+                    <input type="text" name="modifiedDate" ngModel class="form-control">
+                </div>
+                <div class="col">
+            
+                    <label>ModifiedSource</label>
+                    <input type="text" name="modifiedSource" ngModel class="form-control">
+                    <label>ModifiedSourceType</label>
+                    <input type="text" name="modifiedSourceType" ngModel class="form-control">
+                </div>
+            </div>
+            <hr>
+            <div class="buttons">
+                <button class="btn btn-warning" >Cancel</button>
+                <button class="btn btn-primary">Save</button>
+
+            </div>
+        </form>
+    </div>
+
+</div>
