@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-detials',
   templateUrl: './user-detials.component.html',
   styleUrls: ['./user-detials.component.css']
 })
-export class UserDetialsComponent implements OnInit, OnChanges{
+export class UserDetialsComponent implements OnInit{
   showUsers:any;
   viewUser:any;
   displayViewMode:boolean = false;
@@ -20,16 +20,13 @@ export class UserDetialsComponent implements OnInit, OnChanges{
   disbaleButton:boolean = false;
 
   constructor(private userService:UserServiceService, private ticketService:TicketServiceService, private router:Router,
-    private confirmationService: ConfirmationService, private messageService:MessageService, private activeRoute:ActivatedRoute){}
-  ngOnChanges(changes: SimpleChanges): void {
-  
-  }
+    private confirmationService: ConfirmationService, private messageService:MessageService, private activeRoute:ActivatedRoute,
+    private toastr:ToastrService){}
+ 
 
   ngOnInit(): void {
    this.DeleteUserMethod();
-     this.userService.GetAllUsers().subscribe((result)=>{
-       this.showUsers = result;
-      })
+   this.ShowAllUsers();
    let userId = this.activeRoute.snapshot.paramMap.get('ticket_id');
     
   }
@@ -38,6 +35,12 @@ export class UserDetialsComponent implements OnInit, OnChanges{
       this.showUsers = result;
     })
   }
+  ShowAllUsers(){
+    this.userService.GetAllUsers().subscribe((result)=>{
+      this.showUsers = result;
+     })
+  }
+
   DeleteUser(id:any){
 
     this.confirmationService.confirm({
@@ -45,7 +48,7 @@ export class UserDetialsComponent implements OnInit, OnChanges{
       accept: () => {
         this.userService.DeleteUser(id).subscribe((result)=>{  
           this.DeleteUserMethod();
-          this.messageService.add({severity: 'success', summary:'success', detail:'Deleted Successful'}) ;
+          this.toastr.success(' User Deleted  successfully');
         },
 
         error => {
@@ -84,7 +87,8 @@ export class UserDetialsComponent implements OnInit, OnChanges{
 
   UpdateUserForm(data:any){
     this.userService.UpdateUser(data).subscribe((result)=>{
-      console.log(result);
+      this. ShowAllUsers();
+      this.toastr.success(' User Updated  successfully');
     })
     this.editUser = false;
     this.displayViewForm = true;

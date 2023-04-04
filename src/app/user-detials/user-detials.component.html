@@ -55,12 +55,15 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
 <div class="header"  *ngIf="displayViewMode">
-    
+    <h2>User Details</h2>
 </div>
 
 <div class="conatainer" *ngIf="displayViewMode">
     <h2>User Details</h2>
-    <table>
+    <div>
+        
+    </div>
+    <!-- <table>
         <tr>
             <th>User ID :</th>
             <td>{{viewUser.user_id}}</td>
@@ -97,12 +100,8 @@
         </tr>
        
         
-    </table>
-    <div class="buttons">
-            
-        <button (click)="EditUser()" class="btn btn-primary" >Edit</button>
-        <button class="btn btn-warning" (click)="closeUpdateForm()">Cancel</button>
-    </div>
+    </table> -->
+   
 </div>
 
 <div class="header"  *ngIf="editUser">
@@ -116,10 +115,10 @@
     <hr>
 
     <div class="row">
-        <form class="user-form" #updateForm="ngForm" (ngSubmit)="UpdateUserForm(updateForm.value)">
-            <div class="row">
+        <form class="user-form" #updateForm="ngForm" (ngSubmit)="UpdateUserForm(updateForm.value)" ngNativeValidate>
+            <div class="grid">
                
-                <div class="form1 col">
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                     <label >User_Id</label>
                     <input type="text" name="user_id" ngModel="{{viewUser.user_id}}" class="form-control" readonly  >
                     <label>UserName</label>
@@ -134,19 +133,19 @@
                     <input type="text" ngModel name="createdSource" ngModel="{{viewUser.createdSource}}" class="form-control">
                 </div>
 
-                <div class="form2 col">
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
 
               
                     <label >CreatedSourceType</label>
-                    <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control">
+                    <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control" required>
                     <label>ModifiedSource</label>
-                    <input type="text" ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control">
+                    <input type="text" ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control" required>
                     <label>ModifiedSourceType</label>
-                    <input type="text" ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control">
+                    <input type="text" ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control" required>
                     <label>Created Date</label>
-                    <input type="text" name="createdDate" ngModel ngModel="{{viewUser.create_datetime}}" class="form-control">
+                    <input type="text" name="createdDate" ngModel ngModel="{{viewUser.create_datetime}}" class="form-control" required>
                     <label >Last Modified Datetime</label>
-                    <input type="text" name="last_modified_datetime" ngModel="{{viewUser.last_modified_datetime}}" class="form-control">
+                    <input type="text" name="last_modified_datetime" ngModel="{{viewUser.last_modified_datetime}}" class="form-control" required>
                     <div class="button">
                         <button class="btn btn-warning" (click)="closeUpdateForm()" >Back</button>
                         <button class="btn btn-primary" >Save</button>

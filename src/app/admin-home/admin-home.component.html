@@ -56,7 +56,9 @@
 </div>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
-
+<div class="header"  *ngIf="ticketView">
+    <h2>Ticket Details</h2>
+</div>
 
 <div class="conatainer" *ngIf="ticketView">
     <h2>Ticket Details</h2>
@@ -66,7 +68,86 @@
         <button (click)="ChangeStatus1()">ChangeStatus</button>
         <button (click)="SetAssignee()">Set Assignee</button>
     </div>
-    <table>
+
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-6 field">
+            <div>
+                <label class="col-6">Ticket_Id :</label>
+                <label class="col-6">{{ticketData.ticket_id}}</label>
+            </div>
+            <div>
+                <label class="col-6">User_Id :</label>
+                <label class="col-6">{{ticketData.user_id}}</label>
+            </div>
+            <div>
+                <label class="col-6">Category :</label>
+                <label class="col-6">{{ticketData.category_desc}}</label>
+            </div>
+            <div>
+                <label class="col-6">Sub Category :</label>
+                <label class="col-6">{{ticketData.sub_category_desc}}</label>
+            </div>
+            <div>
+                <label class="col-6">Assignee :</label>
+                <label class="col-6">{{ticketData.assignee}}</label>
+            </div>
+            <div>
+                <label class="col-6">Subject</label>
+                <label class="col-6">{{ticketData.subject}}</label>
+            </div>
+            <div>
+                <label class="col-6">Description :</label>
+                <label class="col-6">{{ticketData.description}}</label>
+            </div>
+            <div>
+                <label class="col-6">Reporter</label>
+                <label class="col-6">{{ticketData.reporter_id}}</label>
+            </div>
+            <div>
+                <label class="col-6">Priority :</label>
+                <label class="col-6">{{ticketData.priority}}</label>
+            </div>
+
+        </div>
+        <div class="col-12 md:col-12 lg:col-6 field">
+           
+            <div>
+                <label class="col-6">Url_Link :</label>
+                <label class="col-6">{{ticketData.url}}</label>
+            </div>
+            <div>
+                <label class="col-6">Status :</label>
+                <label class="col-6">{{ticketData.status}}</label>
+            </div>
+            <div>
+                <label class="col-6">Created Date :</label>
+                <label class="col-6">{{ticketData.create_datetime}}</label>
+            </div>
+            <div>
+                <label class="col-6">Created Source :</label>
+                <label class="col-6">{{ticketData.createdSource}}</label>
+            </div>
+            <div>
+                <label class="col-6">Created Source Type :</label>
+                <label class="col-6">{{ticketData.createdSourceType}}</label>
+            </div>
+            <div>
+                <label class="col-6">Modified Date :</label>
+                <label class="col-6">{{ticketData.last_modified_datetime}}</label>
+            </div>
+            <div>
+                <label class="col-6">ModifiedSource :</label>
+                <label class="col-6">{{ticketData.modifiedSource}}</label>
+            </div>
+            <div>
+                <label class="col-6">ModifiedSourceType : :</label>
+                <label class="col-6">{{ticketData.modifiedSourceType}}</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
+
+    </div>
+    <!-- <table>
         <tr>
             <th>Ticket_Id :</th>
             <td>{{ticketData.ticket_id}}</td>
@@ -122,7 +203,7 @@
         </tr>
           
         <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
-    </table>
+    </table> -->
    
 
     

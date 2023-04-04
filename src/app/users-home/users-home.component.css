@@ -83,6 +83,7 @@ label { */
    border:1px solid black;
    
   }
+ 
 
 label {
     margin-bottom: 7px;
@@ -115,6 +116,9 @@ input {
     background-color: rgb(16, 160, 208);
     height: 120px;
     position: relative;
+}
+.header h2 {
+    color:aliceblue;
 }
 .ptable {
     margin-top: 60px;

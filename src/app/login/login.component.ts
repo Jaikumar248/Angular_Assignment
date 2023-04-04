@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { UserServiceService } from '../services/user-service.service';
 import { BehaviorSubject } from 'rxjs';
 import { TicketServiceService } from '../services/ticket-service.service';
-import { Message } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,8 +18,9 @@ export class LoginComponent implements OnInit{
   adminKeys:any;
   adminObject:any;
   msgs:Message[]=[];
+  msgsSuccess:Message[]=[];
 
-  constructor(private route: Router, private service: UserServiceService, private ticketService: TicketServiceService) {
+  constructor(private route: Router, private service: UserServiceService, private ticketService: TicketServiceService, private toastr: ToastrService, private messageService:MessageService) {
 
   }
   ngOnInit(): void {
@@ -37,7 +40,8 @@ export class LoginComponent implements OnInit{
   }
 
   loginSubmit(data: any) {
-    
+    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+
     // if (data.email_Id === "admin" && data.password === "admin") {
     //   localStorage.setItem('admin', JSON.stringify(data));
     //   this.service.ReloadToAdmin();
@@ -46,8 +50,10 @@ export class LoginComponent implements OnInit{
     if(data.email_Id === this.adminValue){
       if(data.email_Id === data.password){
         localStorage.setItem('admin', JSON.stringify(this.adminObject));
+        this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
         this.service.ReloadToAdmin();
-        this.msgs = [{severity:'info', summary:'Wrong Credentials', detail:"..."}];
+
+        //this.toastr.success('login successfully');
       }
     }
 
@@ -59,7 +65,9 @@ export class LoginComponent implements OnInit{
         if(data.email_Id === item.email_Id){
           if(data.email_Id === data.password){         
             localStorage.setItem('loggedInUser', JSON.stringify(item));
-            this.msgs = [{ severity: 'success', summary: 'successfully logged in user', detail:".."}];
+            //this.toastr.success('login successfully');
+            this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+            // this.msgsSuccess = [{severity:'succes', summary:'logged in successfully', detail:"..."}];
             this.service.ReloadData();
           }
         }

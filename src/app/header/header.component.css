@@ -62,9 +62,9 @@ a {
 }
 
 
-@media screen and (max-width: 766px) and (min-width: 319px){
+@media screen and (max-width: 426px) and (min-width: 319px){
     .pi{
-        margin-left: 100px;
+        margin-left: 80px;
         margin-right: 25px;
     }
     header img {
@@ -89,9 +89,22 @@ a {
 
 }
 
-@media screen and (max-width: 1024px) and (min-width: 767px){
+@media screen and (max-width: 1022px) and (min-width: 767px){
     .pi {
         margin-left: 460px;
+        font-size: large;
+        margin-right: 20px;
+    }
+    a {
+        padding: 0px;
+        text-decoration: none;
+       padding: 10px;
+        margin-left: 0px;
+    }
+}
+@media screen and (max-width: 1140px) and (min-width: 1023px) {
+    .pi {
+        margin-left: 660px;
         font-size: large;
         margin-right: 20px;
     }

@@ -16,12 +16,12 @@ a {
 
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 160px;
+    margin-left: 100px;
     margin-right: 20px;
-    height: 600px;
-    margin-top: 20px;
+    height: 560px;
+    margin-top: -80px;
     background-color:white ;
-    width: 1200px;
+    width: 1300px;
   
 }
 hr {
@@ -41,7 +41,7 @@ table tr td {
     margin-right: 200px;
 }
 .buttons {
-   
+   display: flex;
     margin-left: 700px;
     
 }
@@ -60,15 +60,142 @@ table tr td {
     margin-top: 10px;
 }
 
+.header {
+    margin-top: 0px;
+    background-color: rgb(16, 160, 208);
+    height: 120px;
+} 
 
-@media screen and (max-width: 767px) and (min-width: 250px) {
+.header h2{
+    color: aliceblue;
+}
+
+
+@media screen and (max-width: 326px) and (min-width: 250px) {
     .search {
         margin-left: 30px;
     }
+    .buttons {
+        display: flex;
+        margin-left: 0px;
+
+     }
+    
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 700px;
+    margin-top: -80px;
+    background-color:white ;
+    width: 320px;
+  
 }
-@media screen and (max-width: 1024px) and (min-width: 768px) {
+}
+@media screen and (max-width: 376px) and (min-width: 327px) {
     .search {
-        margin-left: 500px;
+        margin-left: 30px;
     }
+    .buttons {
+        display: flex;
+        margin-left: 0px;
+
+     }
+    
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 700px;
+    margin-top: -80px;
+    background-color:white ;
+    width: 375px;
+  
+}
+}
+@media screen and (max-width: 326px) and (min-width: 250px) {
+    .search {
+        margin-left: 30px;
+    }
+    .buttons {
+        display: flex;
+        margin-left: 0px;
+
+     }
+    
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 700px;
+    margin-top: -80px;
+    background-color:white ;
+    width: 320px;
+  
+}
+}
+@media screen and (max-width: 426px) and (min-width: 377px) {
+    .search {
+        margin-left: 30px;
+    }
+    .buttons {
+        display: flex;
+        margin-left: 0px;
+
+     }
+    
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 700px;
+    margin-top: -80px;
+    background-color:white ;
+    width: 420px;
+  
+}
 }
 
+@media screen and (max-width: 769px) and (min-width: 426px) {
+    .search {
+        margin-left: 30px;
+    }
+    .buttons {
+        display: flex;
+        margin-left: 0px;
+
+     }
+    
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 900px;
+    margin-top: -80px;
+    background-color:white ;
+    width: 769px;
+  
+}
+}
+
+@media screen and (max-width: 1025px) and (min-width: 769px) {
+    .search {
+        margin-left: 300px;
+    }
+    .buttons {
+        display: flex;
+        margin-left: 200px;
+
+     }
+    
+.conatainer {
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 560px;
+    margin-top: -80px;
+    background-color:white ;
+    width: 1025px;
+  
+}
+}

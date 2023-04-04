@@ -11,7 +11,6 @@ export class TicketServiceService implements OnInit {
   upDateUser = new BehaviorSubject<boolean>(false);
   upDateTicket = new BehaviorSubject<boolean>(false);
   displayTicketTable = new BehaviorSubject<boolean>(false);
-
   adminId:any;
   adminVariable:any;
   constructor(private http:HttpClient, private router:Router) { }
@@ -21,7 +20,7 @@ export class TicketServiceService implements OnInit {
 
   CreateTicket(data:any, user_id:any){
     data['user_user_id'] = user_id;
-    // console.log(data)
+
     return this.http.post(`http://localhost:8080/tickets?user_id=${user_id}`,data);
 
   }
@@ -79,13 +78,14 @@ export class TicketServiceService implements OnInit {
 
   }
 
-  ChangeTicketStatus(ticketId:any, adminId:any, status:any ){
+  ChangeTicketStatus(ticketId:any, adminId:any, status:any, ticketData:any ){
     
-    return this.http.put(`http://localhost:8080/changeStatus?ticket_id=${ticketId}&admin_id=${adminId}&status_id=${status}`, null)
+    return this.http.put(`http://localhost:8080/changeStatus?ticket_id=${ticketId}&admin_id=${adminId}&status_id=${status}`, ticketData)
   }
 
-  ChangeTicketPriority(ticketId:any, adminId:any, priority:any){
-    return this.http.put(`http://localhost:8080/changePriority?ticket_id=${ticketId}&admin_id=${adminId}&priority_id=${priority}`,null);
+  ChangeTicketPriority(ticketId:any, adminId:any, priority:any, ticketData:any ){
+    return this.http.put(`http://localhost:8080/changePriority?ticket_id=${ticketId}&admin_id=${adminId}&priority_id=${priority}`,ticketData);
+   
   }
 
   SetAssignee(admin:any, ticketId:any, userId:any){

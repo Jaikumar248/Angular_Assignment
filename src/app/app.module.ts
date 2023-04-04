@@ -29,7 +29,8 @@ import {MessagesModule} from 'primeng/messages';
 import { UserDetialsComponent } from './user-detials/user-detials.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
-
+import { ToastrModule } from 'ngx-toastr';
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
     MessagesModule,
     DropdownModule,
     DataViewModule,
-   
+    ToastModule,
+    ToastrModule.forRoot()
     
     
   ],

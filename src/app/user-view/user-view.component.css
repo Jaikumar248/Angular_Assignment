@@ -25,13 +25,13 @@ input {
 
 
 .conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 160px;
-    margin-right: 20px;
-    height: 600px;
-    margin-top: 20px;
+    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+   margin-left: 120px;
+    width: 1300px;
+    height: 560px;
+    position: absolute;
+    top: 140px;
     background-color:white ;
-    width: 1200px;
   
 }
 hr {

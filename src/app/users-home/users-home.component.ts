@@ -5,6 +5,7 @@ import { CreateUser } from '../data-type';
 import { UserServiceService } from '../services/user-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-users-home',
   templateUrl: './users-home.component.html',
@@ -21,12 +22,13 @@ export class UsersHomeComponent implements OnInit {
   addUsers:any;
   savedValues1:boolean = false;
   dialogValues:any;
-  constructor(private http: HttpClient, private service: UserServiceService, private router: Router) {
-    this.VeiwAllUsers();
+  constructor(private http: HttpClient, private service: UserServiceService, private router: Router, private toastr:ToastrService) {
+    
   }
 
   ngOnInit(): void {
     this.addUsers = this.service.addusers;
+    this.VeiwAllUsers();
   }
   showCreateUserForm() {
     this.viewUserForm = true;
@@ -34,6 +36,8 @@ export class UsersHomeComponent implements OnInit {
 
   CreateUser(data: CreateUser) {
     this.service.UserCreate(data).subscribe((result) => {
+      setTimeout(()=>this.VeiwAllUsers(),200);
+      this.toastr.success('A new user is Created');
     });
     
     this.savedValues1 = false;
@@ -43,7 +47,7 @@ export class UsersHomeComponent implements OnInit {
   VeiwAllUsers() {
     this.service.GetAllUsers().subscribe((result) => {
       this.allUsers = result;
-
+      // this.router.navigate(['/home/user-detials']);
     })
   }
   // showTicketForm() {
@@ -55,28 +59,21 @@ export class UsersHomeComponent implements OnInit {
   saveUsers(data:any){
     this.username = data.userName;
     this.emailId = data.email_Id;
-    // console.log(this.username);
-    // console.log(this.emailId);
     this.service.GetAllUsers().subscribe((result)=>{
       this.dialogValues = result;
       for(let item of this.dialogValues){
         if(data.email_Id === item.email_Id){
          
           // console.log("Dupliate mail id does not exits ");
-          this.messages = [
+           this.messages = [
             { severity: 'error', summary: 'email id is already exits'}
           ]
+          // this.toastr.error("email is already exits");
           this.savedValues1 = false;
           this.addUsers = true;
           break;
         }
        
-        // else if(data.email_Id === '' && data.userName === ''){
-        //   this.savedValues1 = false;
-        //   this.addUsers = false;
-        //   // console.log("Dupliate mail id does not exits ")
-        //   break;
-        // }
         else{
           this.savedValues1 = true;
           this.addUsers = false;
@@ -87,9 +84,10 @@ export class UsersHomeComponent implements OnInit {
     })
   }
 
+
   closeDialogPop(){
     this.addUsers = false;
-  
+    this.router.navigate(['/home/user-detials']);
   }
 
  

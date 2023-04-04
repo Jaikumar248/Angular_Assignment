@@ -1,5 +1,7 @@
 
-<p-messages [(value)]="msgs"></p-messages>
+<!-- <p-messages [(value)]="msgs"></p-messages> -->
+<!-- <p-messages [(value)]="msgsSuccess"></p-messages> -->
+<p-toast></p-toast>
 <div class="login-main">
     <div class="container">
         <div class="login-image">
@@ -10,7 +12,7 @@
             <p>Please use Registered Username and Password to Login your account</p>
         </div>
         <div>
-            <form class="login-form" #login = ngForm (ngSubmit)="loginSubmit(login.value)">
+            <form class="login-form" #login = ngForm (ngSubmit)="loginSubmit(login.value)" ngNativeValidate>
                 <label >Email_Id<span>*</span></label>
                 <input type="text" name="email_Id" ngModel  required >
                 <div *ngIf="login.controls['email_Id']?.['touched'] && login.controls['email_Id']?.['errors']" class="invalid">
@@ -20,7 +22,7 @@
                 </div>
                 <label>Password<span>*</span></label>
                 <input type="password"  ngModel name="password" required>
-                <div *ngIf="login.controls['password']?.['touched'] && login.controls['password']?.['errors']" class="invalid">
+                <div *ngIf="login.controls['password']?.['touched'] && login.controls['password']?.['errors']" &&  class="invalid">
                     <div *ngIf="login.controls['password']?.['errors']?.['required']">
                         Password is required
                     </div>

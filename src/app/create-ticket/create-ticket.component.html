@@ -3,7 +3,7 @@
 </div>
 <p-dialog header="Add" [(visible)]="displayDialog">
     
-    <form > 
+    <form  ngNativeValidate> 
         <label >User_Id:{{loggedInUser1}}</label> <br>      
      
         <label >Category : </label>
@@ -26,13 +26,13 @@
     </div>
     <hr>
     <div class="row">
-        <form #ticketvalues=ngForm (ngSubmit)="CreateTicket(ticketvalues.value)">
-            <div class="row">
-                <div class="col">
+        <form #ticketvalues=ngForm (ngSubmit)="CreateTicket(ticketvalues.value)" ngNativeValidate>
+            <div class="grid">
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                     <label>Category</label>
                     <input type="text" name="category_id" ngModel="{{this.selectedCategoryValues}}" class="form-control" readonly>
                     <label>Sub_Category</label>
-                    <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'93%', 'margin-left':'22px'}"></p-dropdown><br>
+                    <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'93%', 'margin-left':'22px'}" ></p-dropdown><br>
                     <!-- <input type="text" name="sub_category_id" ngModel class="form-control" required> -->
                     <!-- <label>Assignee_Id</label>
                     <input type="text" name="assignee_Id" ngModel class="form-control" required> -->
@@ -41,7 +41,7 @@
                     <label> Subject</label>
                     <input type="text" name="subject" ngModel class="form-control" required>
                 </div>
-                <div class="col">
+                <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                     
                     <label>Description</label>
                     <input type="text" name="description" ngModel class="form-control" required>
