@@ -2,13 +2,13 @@ import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.css']
 })
-export class CreateTicketComponent implements OnInit,  DoCheck{
+export class CreateTicketComponent implements OnInit{
   
   showTicketButton:boolean = true;
   allTickets:any;
@@ -26,16 +26,12 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
   subCategory:any;
   
 
-  constructor(private router:Router, private ticketService:TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute){
+  constructor(private router:Router, private ticketService:TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute,
+    private location:Location){
     
 
   }
-  ngDoCheck(): void {
-    //this.ViewUserTicket();
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-     //this.ViewUserTicket();
-  }
+ 
 
   ngOnInit(): void {
     this.ViewUserTicket();
@@ -43,9 +39,11 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
     this.displayTicketTable = result;
     this.displayTicketForm = false;
     this.displayForm = false;
-    
+   
   });
-
+  this.refresh();
+  
+  this.displayTicketForm = true;
   this.SubCategories();
   
 
@@ -60,6 +58,12 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
     this.loggedInUser1 = this.loggedInUser1.user_id;
     
 
+  }
+
+  refresh():void {
+    this.router.navigateByUrl('/home/create-ticket', {skipLocationChange : true}).then(()=>{
+      this.router.navigate([decodeURI(this.location.path())]);
+    });
   }
   
   
@@ -81,9 +85,11 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
     loggedInUser = JSON.parse(loggedInUser);
     loggedInUser = loggedInUser.user_id;
     this.ticketService.CreateTicket(CreateTicket,loggedInUser).subscribe((result)=>{
-      // console.log(result);
+    },(error)=>{
       this.ViewUserTicket();
-    });
+      
+    }
+    );
     
     this.displayForm = false;
     this.displayTicketTable = true;
@@ -93,6 +99,7 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
  ViewUserTicket(){
   
   let loggedInUser:any = localStorage.getItem('loggedInUser');
+  console.log(loggedInUser)
   loggedInUser = JSON.parse(loggedInUser);
   loggedInUser = loggedInUser.user_id;
   this.ticketService.ViewAllUserTicket(loggedInUser).subscribe((result)=>{
@@ -127,7 +134,6 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
   console.log(data)
   this.ticketService.ShowCategories().subscribe((result)=>{
     this.selectCategory = result;
-    // console.log(result);
     this.selectCategory = Object.values(result);
   })
  }
@@ -152,7 +158,6 @@ export class CreateTicketComponent implements OnInit,  DoCheck{
 
 
 searchSubcatageries(){
-  // console.log('eoifwniofn')
   this.ticketService.ShowSubCategories(this.catageryValue).subscribe((result)=>{
     console.log(result);
   })
@@ -171,8 +176,7 @@ closeForm(){
 }
 
 SubCategories(){
-  let value = localStorage.getItem('catageryValue')
-  // value = JSON.parse(value);
+  let value = localStorage.getItem('catageryValue');
   console.log(value)
   console.log(this.subCategory);
   this.ticketService.ShowSubCategories(value).subscribe((result)=>{

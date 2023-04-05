@@ -1,5 +1,7 @@
 
-
+<div class="header" *ngIf="showTicketTable">
+    <h2>Ticket List</h2>
+</div>
 <div class="ptable" *ngIf="showTicketTable">
     <div class="search"><input type="text" [(ngModel)]="ticket" (keyup)="ViewTicketById()"><button>search</button></div>
         <p-table  [value]="viewAllTickets" [paginator]=true [rows]="5"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
@@ -147,65 +149,6 @@
         <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
 
     </div>
-    <!-- <table>
-        <tr>
-            <th>Ticket_Id :</th>
-            <td>{{ticketData.ticket_id}}</td>
-            <th>User_Id :</th>
-            <td>{{ticketData.user_id}}</td>
-        </tr>
-        <tr>
-            <th>Category :</th>
-            <td>{{ticketData.category_desc}}</td>
-            <th>Sub Category :</th>
-            <td>{{ticketData.sub_category_desc}}</td>
-        </tr>
-        <tr>
-            <th>Assignee :</th>
-            <td>{{ticketData.assignee}}</td>
-            <th>Subject</th>
-            <td>{{ticketData.subject}}</td>
-        </tr>
-        <tr>
-            <th>Description :</th>
-            <td>{{ticketData.description}}</td>
-            <th>Reporter</th>
-            <td>{{ticketData.reporter_id}}</td>
-        </tr>
-        <tr>
-            <th>Priority :</th>
-            <td>{{ticketData.priority}}</td>
-            <th>Url_Link :</th>
-            <td>{{ticketData.url}}</td>
-        </tr>
-        <tr>
-            <th>Status :</th>
-            <td>{{ticketData.status}}</td>
-            <th>Created Date :</th>
-            <td>{{ticketData.create_datetime}}</td>
-        </tr>
-        <tr>
-            <th>Created Source :</th>
-            <td>{{ticketData.createdSource}}</td>
-            <th>Created Source Type :</th>
-            <td>{{ticketData.createdSourceType}}</td>
-        </tr>
-        <tr>
-            <th>Modified Date :</th>
-            <td>{{ticketData.last_modified_datetime}}</td>
-            <th>ModifiedSource :</th>
-            <td>{{ticketData.modifiedSource}}</td>
-        </tr>
-        <tr>
-            <th>ModifiedSourceType :</th>
-            <td>{{ticketData.modifiedSourceType}}</td>
-          
-        </tr>
-          
-        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
-    </table> -->
-   
-
     
 </div>
 

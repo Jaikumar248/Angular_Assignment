@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { SelectItem } from 'primeng/api';
-import { Ticket } from '../data-type';
+
 
 @Component({
   selector: 'app-admin-home',
@@ -56,11 +56,6 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       this.showTicketTable = false;
     })
 
-    // this.ticketService.displayTicketTable.subscribe((result)=>{
-    //   this.showTicketTable = result;
-    //   this.showUserTable = false;
-    // })
-
   }
   ngOnInit(): void {
     this.userService.displayUserTable.subscribe((result) => {
@@ -73,9 +68,9 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       this.showTicketTable = result;
       this.showUserTable = false;
     })
-    this.ticketService.ViewAllTickets().subscribe((result) => {
-      this.viewAllTickets = result;
-    })
+    // this.ticketService.ViewAllTickets().subscribe((result) => {
+    //   this.viewAllTickets = result;
+    // })
     this.ViewAllTicket();
 
 
@@ -88,7 +83,7 @@ export class AdminHomeComponent implements OnInit, OnChanges {
   ViewAllTicket() {
     this.ticketService.ViewAllTickets().subscribe((result) => {
       this.viewAllTickets = result;
-      console.log(this.viewAllTickets);
+      // console.log(this.viewAllTickets);
     })
   }
 
@@ -265,31 +260,15 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       else {
         console.log(this.ticketId, Number(this.adminKeys) ,this.selectedPriorityValue);
         this.ticketService.ChangeTicketPriority(this.ticketId, this.adminKeys, this.selectedPriorityValue, this.ticketData).subscribe((result) => {
-          console.log("priority changed")
-          // window.location.reload();
           
         },(error)=>{
           this.ViewAllTicket();
-          // console.log("errorrrrrr");
         })
        
       }
       this.displayPopPriority = false;
-      this.ticketView = true;
+      this.showTicketTable = true;
     })
-
-
-    // if(this.ticketstatusId != "open"){
-    //   alert("This ticket is not in open state")
-    // }
-    // else {
-    //   this.ticketService.ChangeTicketPriority(this.ticketId, this.adminKeys, this.selectedPriorityValue).subscribe((result)=>{
-    //   this.router.navigate(['/home/admin-home']);
-
-    //   })
-    // }
-    // this.displayPopPriority = false;
-    // this.ticketView = true;
 
 
   }
@@ -323,6 +302,7 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       this.setAssignee = false;
       this.showTicketTable = true;
     }
+    
 
 
   }

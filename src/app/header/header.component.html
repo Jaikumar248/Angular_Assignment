@@ -19,7 +19,7 @@
 
     <nav class="nav-header" *ngIf="mainHeader">
         <ul>
-            <a type="button" routerLinkActive="active" (click)="homeContent()" ><li>Home</li></a>
+            <a type="button" (click)="homeContent()" ><li  routerLinkActive="active">Home</li></a>
             <a routerLinkActive="active" type="button" (click)="ShowAllUsers()"> <li>UsersDetails</li></a>
             <a routerLinkActive="active" type="button" (click)="ShowTickets()"><li>TicketsDetails</li></a>
             <!-- <a routerLinkActive="active" type="button" (click)="AddUsers()"><li>Add Users</li></a> -->
@@ -31,7 +31,7 @@
 
 
 <div class="footer">
-    <span> @2007-2023</span>
+    <span> @2007-2023 Itorizon</span>
  </div>
 
 

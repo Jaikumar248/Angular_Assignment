@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { CreateUser } from '../data-type';
 import { UserServiceService } from '../services/user-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -36,9 +35,12 @@ export class UsersHomeComponent implements OnInit {
 
   CreateUser(data: CreateUser) {
     this.service.UserCreate(data).subscribe((result) => {
-      setTimeout(()=>this.VeiwAllUsers(),200);
+      
       this.toastr.success('A new user is Created');
-    });
+    },(error)=>{
+      this.VeiwAllUsers();
+    }
+    );
     
     this.savedValues1 = false;
     this.router.navigate(['/home/user-detials']);
@@ -50,9 +52,7 @@ export class UsersHomeComponent implements OnInit {
       // this.router.navigate(['/home/user-detials']);
     })
   }
-  // showTicketForm() {
-  //   this.router.navigate(['/create-ticket'])
-  // }
+ 
 
   
 
@@ -63,12 +63,9 @@ export class UsersHomeComponent implements OnInit {
       this.dialogValues = result;
       for(let item of this.dialogValues){
         if(data.email_Id === item.email_Id){
-         
-          // console.log("Dupliate mail id does not exits ");
            this.messages = [
             { severity: 'error', summary: 'email id is already exits'}
           ]
-          // this.toastr.error("email is already exits");
           this.savedValues1 = false;
           this.addUsers = true;
           break;

@@ -79,12 +79,7 @@ export class HeaderComponent implements OnInit{
 
   }
 
-  // LogoutAdmin(){
-    
-  //   this.router.navigate(['']);
-  //   this.headers2 = true;
-   
-  // }
+  
 
   showTicketForm(){
     this.userService.ShowTickets();

@@ -36,24 +36,17 @@ export class LoginComponent implements OnInit{
     });
   }
   SignUp() {
-    this.route.navigate(['/sign-up'])
+    this.route.navigate(['/sign-up']);
   }
 
   loginSubmit(data: any) {
     this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-
-    // if (data.email_Id === "admin" && data.password === "admin") {
-    //   localStorage.setItem('admin', JSON.stringify(data));
-    //   this.service.ReloadToAdmin();
-    // }
 
     if(data.email_Id === this.adminValue){
       if(data.email_Id === data.password){
         localStorage.setItem('admin', JSON.stringify(this.adminObject));
         this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
         this.service.ReloadToAdmin();
-
-        //this.toastr.success('login successfully');
       }
     }
 

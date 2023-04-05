@@ -54,7 +54,7 @@ a {
     margin-left: 25px;
 }
 .active {
-    color: rgb(48, 151, 225);
+    background-color: rgb(48, 151, 225);
 }
 .pi {
     margin-left: 1190px;

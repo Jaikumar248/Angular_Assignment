@@ -1,10 +1,8 @@
-<div class="addTicketButton" *ngIf="displayTicketForm">
-    <button class="btn btn-primary" (click)="showDialog()" >Add Ticket</button>
-</div>
+
 <p-dialog header="Add" [(visible)]="displayDialog">
     
     <form  ngNativeValidate> 
-        <label >User_Id:{{loggedInUser1}}</label> <br>      
+        <label >User_Id:  {{loggedInUser1}}</label> <br>      
      
         <label >Category : </label>
         <p-autoComplete [(ngModel)]="selectedCategoryValues" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true" ></p-autoComplete>
@@ -30,25 +28,50 @@
             <div class="grid">
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                     <label>Category</label>
-                    <input type="text" name="category_id" ngModel="{{this.selectedCategoryValues}}" class="form-control" readonly>
-                    <label>Sub_Category</label>
-                    <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'93%', 'margin-left':'22px'}" ></p-dropdown><br>
-                    <!-- <input type="text" name="sub_category_id" ngModel class="form-control" required> -->
-                    <!-- <label>Assignee_Id</label>
-                    <input type="text" name="assignee_Id" ngModel class="form-control" required> -->
+                    <p-autoComplete [(ngModel)]="selectedCategoryValues" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <label>Sub Category</label>
+                    <!-- <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'90%', 'margin-left':'23px'}" ></p-dropdown><br> -->
+                    <p-autoComplete [(ngModel)]="subCatagories" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectedSubCatagory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Status </label>
-                    <input type="text" name="status_id" ngModel="{{1}}" class="form-control" required readonly>
-                    <label> Subject</label>
-                    <input type="text" name="subject" ngModel class="form-control" required>
+                    <p-autoComplete [(ngModel)]="subCatagories" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectedSubCatagory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <label >Prirority </label>
+                    <p-autoComplete [(ngModel)]="subCatagories" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectedSubCatagory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+               
+                  
                 </div>
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
-                    
+                    <label> Subject</label>
+                    <input type="text" name="subject" ngModel class="form-control" required maxlength="60">
+                    <div *ngIf="ticketvalues.controls['subject']?.['touched'] && ticketvalues.controls['subject']?.['errors']" 
+                    class="invalid">
+                   <div *ngIf="ticketvalues.controls['subject']?.['errors']?.['maxlength']">
+                       Subject is 120 characters only.
+                   </div>
+                   </div>
                     <label>Description</label>
-                    <input type="text" name="description" ngModel class="form-control" required>
+                    <input type="text" name="description" ngModel class="form-control" maxlength="200">
+                    <div *ngIf="ticketvalues.controls['description']?.['touched'] && ticketvalues.controls['description']?.['errors']" 
+                     class="invalid">
+                        <div *ngIf="ticketvalues.controls['description']?.['errors']?.['maxlength']">
+                            Description is 200 characters only.
+                        </div>
+                    </div>
                     <label >Created Source</label>
-                    <input type="text" name="createdSource" ngModel class="form-control" >
+                    <input type="text" name="createdSource" ngModel class="form-control" maxlength="120" >
+                    <div *ngIf="ticketvalues.controls['createdSource']?.['touched'] && ticketvalues.controls['createdSource']?.['errors']" 
+                    class="invalid">
+                       <div *ngIf="ticketvalues.controls['createdSource']?.['errors']?.['maxlength']">
+                          Created Source is 120 characters only.
+                       </div>
+                   </div>
                     <label >Created Source Type</label>
-                    <input type="text" name="createdSourceType" ngModel class="form-control">
+                    <input type="text" name="createdSourceType" ngModel class="form-control" maxlength="120">
+                    <div *ngIf="ticketvalues.controls['createdSourceType']?.['touched'] && ticketvalues.controls['createdSourceType']?.['errors']" 
+                    class="invalid">
+                       <div *ngIf="ticketvalues.controls['createdSourceType']?.['errors']?.['maxlength']">
+                        created Source Type is 120 characters only.
+                       </div>
+                   </div>
                 </div>
             </div>
             <hr>
@@ -65,9 +88,14 @@
 
 
 
+<div class="header" *ngIf="displayTicketForm">
+    <h2>Add New Ticket</h2>
+</div>
 
-
-<div class="ptable" *ngIf="displayTicketForm">
+<div class="ptable1" *ngIf="displayTicketForm">
+    <div class="addTicketButton" *ngIf="displayTicketForm">
+        <button class="btn btn-primary" (click)="showDialog()" >Add Ticket</button>
+    </div>
 
     <p-table  [value]="allTickets"  [paginator]=true [rows]="6" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
         <ng-template pTemplate="header" class="t-head thead-primary">
@@ -115,9 +143,12 @@
     </p-table>
 </div>
 
-<div class="ptable" *ngIf="displayTicketTable">
+<div class="header"  *ngIf="displayTicketTable">
+    <h2>View Tickets</h2>
+</div>
+<div class="ptable1" *ngIf="displayTicketTable">
 
-    <p-table  [value]="allTickets"  [paginator]=true [rows]="6" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+    <p-table  [value]="allTickets"  [paginator]=true [rows]="7" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
         <ng-template pTemplate="header" class="t-head thead-primary">
             <tr>
                 <th>User_Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>

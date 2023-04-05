@@ -1,6 +1,8 @@
 
-
-<div class="ptable" >
+<div class="header1" *ngIf="displayViewForm">
+    <h2>User List</h2>
+</div>
+<div class="ptable" *ngIf="displayViewForm">
     <div class="addUserButton" *ngIf="displayViewForm">
         <button class="btn btn-primary" (click)="AddUsersPop()">AddUsers</button>
     </div>
@@ -8,7 +10,7 @@
 
     <div *ngIf="displayViewForm">
     
-        <p-table [paginator]=true [rows]="6"  [value]="showUsers" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+        <p-table [paginator]=true [rows]="5"  [value]="showUsers" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
             <ng-template pTemplate="header" >
                 <tr>
                 <th>User ID <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon> </th>
@@ -41,7 +43,6 @@
                 <td>{{item.create_datetime}}</td>
                 <td>{{item.last_modified_datetime}}</td>
                 <td>
-                    <!-- <button class="btn btn-info"><a routerLink="/home/admin-view" (click)="upDateUser()">Edit</a></button> -->
                     <button class="btn btn-warning" (click)="DeleteUser(item.user_id)">Delete</button>
                 </td>
             </tr>
@@ -54,57 +55,67 @@
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
-<div class="header"  *ngIf="displayViewMode">
+<div class="header1"  *ngIf="displayViewMode">
     <h2>User Details</h2>
 </div>
 
 <div class="conatainer" *ngIf="displayViewMode">
     <h2>User Details</h2>
-    <div>
-        
+    <div class="grid">
+        <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+            <div>
+                <label class="col-6">>User ID :</label>
+                <label class="col-6">{{viewUser.user_id}}</label>
+            </div>
+            <div>
+                <label class="col-6">User Name :</label>
+                <label class="col-6">{{viewUser.userName}}</label>
+            </div>
+            <div>
+                <label class="col-6">First Name :</label>
+                <label class="col-6">{{viewUser.firstName}}</label>
+            </div>
+            <div>
+                <label class="col-6">Last Name :</label>
+                <label class="col-6">{{viewUser.lastName}}</label>
+            </div>
+            <div>
+                <label class="col-6">Email_Id :</label>
+                <label class="col-6">{{viewUser.email_Id}}</label>
+            </div>
+        </div>
+        <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+            <div>
+                <label class="col-6">CreatedSource :</label>
+                <label class="col-6">{{viewUser.createdSource}}</label>
+            </div>
+            <div>
+                <label class="col-6">CreatedSourceType :</label>
+                <label class="col-6">{{viewUser.createdSourceType}}</label>
+            </div>
+            <div>
+                <label class="col-6">ModifiedSource :</label>
+                <label class="col-6">{{viewUser.modifiedSource}}</label>
+            </div>
+            <div>
+                <label class="col-6">Created Date :</label>
+                <label class="col-6">{{viewUser.create_datetime}}</label>
+            </div>
+            <div>
+                <label class="col-6">Last Modified Date :</label>
+                <label class="col-6">{{viewUser.last_modified_datetime}}</label>
+            </div>
+           
+        </div>
+        <div class="ebButtons">
+            <button class="btn btn-primary" (click)="EditUser()">Edit</button>
+            <button class="btn btn-warning" (click)="closeUpdateForm()">Back</button>
+          </div>
     </div>
-    <!-- <table>
-        <tr>
-            <th>User ID :</th>
-            <td>{{viewUser.user_id}}</td>
-            <th>User Name :</th>
-            <td>{{viewUser.userName}}</td>
-        </tr>
-        <tr>
-            <th>First Name :</th>
-            <td>{{viewUser.firstName}}</td>
-            <th>Last Name :</th>
-            <td>{{viewUser.lastName}}</td>
-        </tr>
-        <tr>
-            <th>Email_Id :</th>
-            <td>{{viewUser.email_Id}}</td>
-            <th>CreatedSource </th>
-            <td>{{viewUser.createdSource}}</td>
-        </tr>
-        <tr>
-            <th>CreatedSourceType :</th>
-            <td>{{viewUser.createdSourceType}}</td>
-            <th>ModifiedSource</th>
-            <td>{{viewUser.modifiedSource}}</td>
-        </tr>
-        <tr>
-            <th>ModifiedSourceType :</th>
-            <td>{{viewUser.modifiedSourceType}}</td>
-            <th>Created Date :</th>
-            <td>{{viewUser.create_datetime}}</td>
-        </tr>
-        <tr>
-            <th>Last Modified Date</th>
-            <td>{{viewUser.last_modified_datetime}}</td>
-        </tr>
-       
-        
-    </table> -->
    
 </div>
 
-<div class="header"  *ngIf="editUser">
+<div class="header1"  *ngIf="editUser">
     <h2>Update User</h2>
 </div>
 
@@ -122,11 +133,47 @@
                     <label >User_Id</label>
                     <input type="text" name="user_id" ngModel="{{viewUser.user_id}}" class="form-control" readonly  >
                     <label>UserName</label>
-                    <input type="text" name="userName" ngModel="{{viewUser.userName}}"  class="form-control" required>
+                    <input type="text" name="userName" ngModel="{{viewUser.userName}}"  class="form-control" required minlength="4" maxlength="20">
+                    <div *ngIf="updateForm.controls['userName']?.['touched'] && updateForm.controls['userName']?.['errors']"
+                    class="invalid">
+                    <div *ngIf="updateForm.controls['userName']?.['errors']?.['required']">
+                        User Name is required
+                    </div>
+                    <div *ngIf="updateForm.controls['userName']?.['errors']?.['minlength']">
+                        User Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="updateForm.controls['userName']?.['errors']?.['maxlength']">
+                        User Name is Maximum 20 characters only.
+                    </div>
+                </div>
                     <label>First Name</label>
-                    <input type="text" name="firstName" ngModel="{{viewUser.firstName}}" class="form-control" required>
+                    <input type="text" name="firstName" ngModel="{{viewUser.firstName}}" class="form-control" required minlength="4" maxlength="20">
+                    <div *ngIf="updateForm.controls['firstName']?.['touched'] && updateForm.controls['firstName']?.['errors']"
+                    class="invalid">
+                    <div *ngIf="updateForm.controls['firstName']?.['errors']?.['required']">
+                        First Name is required
+                    </div>
+                    <div *ngIf="updateForm.controls['firstName']?.['errors']?.['minlength']">
+                        First Name must be atleast 4 characters.
+                    </div>
+                    <div *ngIf="updateForm.controls['firstName']?.['errors']?.['maxlength']">
+                        First Name is Maximum 20 characters only.
+                    </div>
+                </div>
                     <label>Last Name</label>
                     <input type="text" ngModel name="lastName" ngModel="{{viewUser.lastName}}" class="form-control" required>
+                    <div *ngIf="updateForm.controls['lastName']?.['touched'] && updateForm.controls['lastName']?.['errors']"
+                    class="invalid">
+                    <div *ngIf="updateForm.controls['lastName']?.['errors']?.['required']">
+                        Last Name is required
+                    </div>
+                    <div *ngIf="updateForm.controls['lastName']?.['errors']?.['minlength']">
+                        Last Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="updateForm.controls['lastName']?.['errors']?.['maxlength']">
+                        Last Name  is Maximum 20 characters only.
+                    </div>
+                </div>
                     <label for="">email Id</label>
                     <input type="email" ngModel name="email_Id" ngModel="{{viewUser.email_Id}}" class="form-control" readonly >
                     <label>CreatedSource</label>
@@ -139,13 +186,29 @@
                     <label >CreatedSourceType</label>
                     <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control" required>
                     <label>ModifiedSource</label>
-                    <input type="text" ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control" required>
+                    <input type="text" ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control" required maxlength="60" minlength="6">
+                    <div *ngIf="updateForm.controls['modifiedSource']?.['touched'] && updateForm.controls['modifiedSource']?.['errors']" class="invalid">
+                        <div *ngIf="updateForm.controls['modifiedSource']?.['errors']?.['maxlength']">
+                            Modified source is 60 characters only.
+                        </div>
+                        <div *ngIf="updateForm.controls['modifiedSource']?.['errors']?.['minlength']">
+                            Modified Source is at least 6 characters
+                        </div>
+                    </div>
                     <label>ModifiedSourceType</label>
-                    <input type="text" ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control" required>
+                    <input type="text" ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control" required maxlength="60" minlength="6">
+                    <div *ngIf="updateForm.controls['modifiedSourceType']?.['touched'] && updateForm.controls['modifiedSourceType']?.['errors']" class="invalid">
+                        <div *ngIf="updateForm.controls['modifiedSourceType']?.['errors']?.['maxlength']">
+                            Modified source Type is 60 characters only.
+                        </div>
+                        <div *ngIf="updateForm.controls['modifiedSourceType']?.['errors']?.['minlength']">
+                            Modified Source Type is at least 6 characters
+                        </div>
+                    </div>
                     <label>Created Date</label>
-                    <input type="text" name="createdDate" ngModel ngModel="{{viewUser.create_datetime}}" class="form-control" required>
+                    <input type="text" name="createdDate" ngModel ngModel="{{viewUser.create_datetime}}" class="form-control" required readonly>
                     <label >Last Modified Datetime</label>
-                    <input type="text" name="last_modified_datetime" ngModel="{{viewUser.last_modified_datetime}}" class="form-control" required>
+                    <input type="text" name="last_modified_datetime" ngModel="{{viewUser.last_modified_datetime}}" class="form-control" required readonly>
                     <div class="button">
                         <button class="btn btn-warning" (click)="closeUpdateForm()" >Back</button>
                         <button class="btn btn-primary" >Save</button>
@@ -158,6 +221,10 @@
     </div>    
 
 </div>
+
+
+
+
 
 
 

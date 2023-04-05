@@ -8,20 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MessageComponent } from './message/message.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+
 import { UserDetialsComponent } from './user-detials/user-detials.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { UsersHomeComponent } from './users-home/users-home.component';
 
 const routes: Routes = [
-  // {path: 'users-home', component:UsersHomeComponent},
-  // {path: 'admin-home', component:AdminHomeComponent },
+  
   {path: '', component:LoginComponent},
-  // {path: 'create-ticket', component:CreateTicketComponent},
-  // {path: 'user-view', component:UserViewComponent},
 
-  {path: 'user-view/:ticket_id', component:UserViewComponent},
-  // {path: 'admin-view', component:AdminViewComponent},
   {path: 'home', component:HomeComponent,
    canActivate:[AuthGuard],
   children: [

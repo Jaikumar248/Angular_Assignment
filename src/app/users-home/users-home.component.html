@@ -5,11 +5,17 @@
     <p-messages [(value)]="messages"></p-messages>
     <form #adduser="ngForm" (ngSubmit)="saveUsers(adduser.value)" ngNativeValidate>
         <label>UserName</label>
-        <input type="text" ngModel name="userName" class="form-control" #userName minlength="3" required>
+        <input type="text" ngModel name="userName" class="form-control" #userName minlength="4" maxlength="20" required>
         <div *ngIf="adduser.controls['userName']?.['touched'] && adduser.controls['userName']?.['errors']"
             class="invalid">
             <div *ngIf="adduser.controls['userName']?.['errors']?.['required']">
                 User Name is required
+            </div>
+            <div *ngIf="adduser.controls['userName']?.['errors']?.['minlength']">
+                User Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="adduser.controls['userName']?.['errors']?.['maxlength']">
+                User Name is Maximum 20 characters only.
             </div>
         </div>
         <label>Email_Id</label>
@@ -47,46 +53,65 @@
         <div class="row">
             <form class="user-form" #createuser="ngForm" (ngSubmit)="CreateUser(createuser.value)" ngNativeValidate>
                 <p-messages [(value)]="messages1"></p-messages>
-                <!-- <div class="row"> -->
                     <label>UserName</label>
-                    <input type="text" name="userName" ngModel="{{this.username}}" ngModel class="form-control name" readonly>
-                    <!-- <div class="form1 col"> -->
+                    <input type="text" name="userName" ngModel="{{this.username}}" ngModel class="form-control name" readonly> 
                         <div class="grid">
                             <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                                 <label>First Name</label>
-                                <input type="text" ngModel name="firstName" class="form-control" required minlength="3">
-
+                                <input type="text" ngModel name="firstName" class="form-control" required minlength="4" maxlength="20">
                                 <div *ngIf="createuser.controls['firstName']?.['touched'] && createuser.controls['firstName']?.['errors']"
                                     class="invalid">
                                     <div *ngIf="createuser.controls['firstName']?.['errors']?.['required']">
                                         First Name is required
                                     </div>
+                                    <div *ngIf="createuser.controls['firstName']?.['errors']?.['minlength']">
+                                        First Name must be atleast 4 characters.
+                                    </div>
+                                    <div *ngIf="createuser.controls['firstName']?.['errors']?.['maxlength']">
+                                        First Name is Maximum 20 characters only.
+                                    </div>
                                 </div>
                                 <label>Last Name</label>
-                                <input type="text" ngModel name="lastName" class="form-control" required minlength="3">
+                                <input type="text" ngModel name="lastName" class="form-control" required minlength="2" maxlength="20">
                                 <div *ngIf="createuser.controls['lastName']?.['touched'] && createuser.controls['lastName']?.['errors']"
                                     class="invalid">
                                     <div *ngIf="createuser.controls['lastName']?.['errors']?.['required']">
                                         Last Name is required
+                                    </div>
+                                    <div *ngIf="createuser.controls['lastName']?.['errors']?.['minlength']">
+                                        Last Name must be at least 4 characters long.
+                                    </div>
+                                    <div *ngIf="createuser.controls['lastName']?.['errors']?.['maxlength']">
+                                        Last Name  is Maximum 20 characters only.
                                     </div>
                                 </div>
                                 <label for="">email Id</label>
                                 <input type="email" ngModel="{{this.emailId}}" name="email_Id" class="form-control"
                                     required email readonly>
 
-                                <label>ModifiedSourceType</label>
-                                <input type="text" ngModel name="modifiedSourceType" class="form-control">
+                                <!-- <label>ModifiedSourceType</label>
+                                <input type="text" ngModel name="modifiedSourceType" class="form-control"> -->
                             </div>
 
                             <div class="col-12 sm:col-12 md:col-6 lg:col-6">
 
                                 <label>CreatedSource</label>
-                                <input type="text" ngModel name="createdSource" class="form-control">
+                                <input type="text" ngModel name="createdSource" class="form-control" maxlength="60">
+                                <div *ngIf="createuser.controls['createdSource']?.['touched'] && createuser.controls['createdSource']?.['errors']">
+                                    <div *ngIf="createuser.controls['createdSource']?.['errors']?.['maxlength']">
+                                        Created source is 60 characters only.
+                                    </div>
+                                </div>
                                 <label>CreatedSourceType</label>
-                                <input type="text" ngModel name="createdSourceType" class="form-control">
-                                <label>ModifiedSource</label>
-                                <input type="text" ngModel name="modifiedSource" class="form-control">
-
+                                <input type="text" ngModel name="createdSourceType" class="form-control" maxlength="60">
+                                <div *ngIf="createuser.controls['createdSourceType']?.['touched'] && createuser.controls['createdSourceType']?.['errors']">
+                                    <div *ngIf="createuser.controls['createdSourceType']?.['errors']?.['maxlength']">
+`                                       Created source type is 60 characters only.
+                                    </div>
+                                </div>
+                                <!-- <label>ModifiedSource</label>
+                                <input type="text" ngModel name="modifiedSource" class="form-control"> -->
+ 
                             </div>
                         </div>
                     <!-- </div> -->

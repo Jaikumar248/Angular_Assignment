@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TicketServiceService } from '../services/ticket-service.service';
@@ -25,16 +25,16 @@ export class UserDetialsComponent implements OnInit{
  
 
   ngOnInit(): void {
-   this.DeleteUserMethod();
+  //  this.DeleteUserMethod();
    this.ShowAllUsers();
    let userId = this.activeRoute.snapshot.paramMap.get('ticket_id');
     
   }
-  DeleteUserMethod(){
-    this.userService.GetAllUsers().subscribe((result)=>{
-      this.showUsers = result;
-    })
-  }
+  // DeleteUserMethod(){
+  //   this.userService.GetAllUsers().subscribe((result)=>{
+  //     this.showUsers = result;
+  //   })
+  // }
   ShowAllUsers(){
     this.userService.GetAllUsers().subscribe((result)=>{
       this.showUsers = result;
@@ -47,12 +47,12 @@ export class UserDetialsComponent implements OnInit{
       message:'Are you sure To Delete Selected Object? Click Yes To Delete',
       accept: () => {
         this.userService.DeleteUser(id).subscribe((result)=>{  
-          this.DeleteUserMethod();
+          this.ShowAllUsers();
           this.toastr.success(' User Deleted  successfully');
         },
 
         error => {
-          this.DeleteUserMethod();
+          this.ShowAllUsers();
           this.messageService.add({severity:'error', summary:'Error', detail:error})
         }
         )
@@ -65,7 +65,6 @@ export class UserDetialsComponent implements OnInit{
   }
 
   UserViewMode(item:any){
-    // this.router.navigate(['/home/admin-view']);
     this.viewUser = item;
     this.displayViewMode = true;
     this.displayViewForm = false;
@@ -87,9 +86,12 @@ export class UserDetialsComponent implements OnInit{
 
   UpdateUserForm(data:any){
     this.userService.UpdateUser(data).subscribe((result)=>{
-      this. ShowAllUsers();
+  
       this.toastr.success(' User Updated  successfully');
-    })
+    },(error)=>{
+      this. ShowAllUsers();
+    }
+    )
     this.editUser = false;
     this.displayViewForm = true;
   }

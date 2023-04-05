@@ -1,5 +1,10 @@
-.ptable{
-    margin-top: 20px;
+.ptable {
+    margin-top: -80px;
+    width: 97%;
+    height: 400px;
+    margin-left: 20px;
+    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+    background-color:white ;
 }
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
@@ -15,11 +20,18 @@
     color: aliceblue;
     margin-left: 15px;
 }
+.header1 h2 {
+    color: aliceblue;
+    margin-left: 15px;
+}
 hr {
    margin-top: 30px;
 }
 .view > * {
     display: block;
+}
+.ebButtons button{
+    margin-left: 20px;
 }
 table {
     position: absolute;
@@ -78,10 +90,23 @@ h4 {
     background-color: rgb(16, 160, 208);
     height: 120px;
 } 
+
+.header1 {
+    margin-top: 0px;
+    background-color: rgb(16, 160, 208);
+    height: 120px;
+} 
+
 .addUserButton {
     margin-top: 10px;
     margin-left: 1300px;
 }
+.addUserButton button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
 
 @media screen and (max-width: 370px) and (min-width: 200px) {
     .addUserButton {
