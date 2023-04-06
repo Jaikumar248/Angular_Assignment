@@ -1,15 +1,15 @@
 
 <p-dialog header="Add" [(visible)]="displayDialog">
     
-    <form  ngNativeValidate> 
-        <label >User_Id:  {{loggedInUser1}}</label> <br>      
+    <form > 
+        <label >User Id:  {{loggedInUser1}}</label> <br>      
      
         <label >Category : </label>
         <p-autoComplete [(ngModel)]="selectedCategoryValues" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true" ></p-autoComplete>
 
         <div class="buttons">
             <button class="btn btn-warning ">Cancel</button> 
-            <button class="btn btn-primary" (click)="DisplayTicketForm()">Save</button>
+            <button class="btn btn-primary" (click)="DisplayTicketForm1()">Save</button>
         </div>
     </form>
 </p-dialog>
@@ -28,14 +28,14 @@
             <div class="grid">
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                     <label>Category</label>
-                    <p-autoComplete [(ngModel)]="selectedCategoryValues" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="category_desc" name="category_id" appendTo="body" [required]="true" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true"  autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Sub Category</label>
                     <!-- <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'90%', 'margin-left':'23px'}" ></p-dropdown><br> -->
-                    <p-autoComplete [(ngModel)]="subCatagories" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectedSubCatagory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="sub_category_desc" name="sub_category_id" appendTo="body"  [required]="true" (onSelect)="dispsubCategory($event)" [suggestions]="selectedSubCatagory" (completeMethod)="searchSubCategories($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Status </label>
-                    <p-autoComplete [(ngModel)]="subCatagories" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectedSubCatagory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="status" name="status_id" [disabled]="true" appendTo="body"  [suggestions]="status1" [readonly]="true" (completeMethod)="searchStatus($event)" [dropdown]="true" [readonly]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label >Prirority </label>
-                    <p-autoComplete [(ngModel)]="subCatagories" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectedSubCatagory" (completeMethod)="search($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="intialPriorityValue" [disabled]="true" value="null" appendTo="body" [readonly]="true"  [suggestions]="priorities" (completeMethod)="searchPriority($event)" [dropdown]="true" [readonly]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                
                   
                 </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <label >Created Source</label>
-                    <input type="text" name="createdSource" ngModel class="form-control" maxlength="120" >
+                    <input type="text"  [(ngModel)]="loggedInUserName" name="createdSource" ngModel class="form-control" maxlength="120" >
                     <div *ngIf="ticketvalues.controls['createdSource']?.['touched'] && ticketvalues.controls['createdSource']?.['errors']" 
                     class="invalid">
                        <div *ngIf="ticketvalues.controls['createdSource']?.['errors']?.['maxlength']">
@@ -65,7 +65,7 @@
                        </div>
                    </div>
                     <label >Created Source Type</label>
-                    <input type="text" name="createdSourceType" ngModel class="form-control" maxlength="120">
+                    <input type="text"  [(ngModel)]="createdSource" name="createdSourceType" ngModel class="form-control" maxlength="120">
                     <div *ngIf="ticketvalues.controls['createdSourceType']?.['touched'] && ticketvalues.controls['createdSourceType']?.['errors']" 
                     class="invalid">
                        <div *ngIf="ticketvalues.controls['createdSourceType']?.['errors']?.['maxlength']">
@@ -88,12 +88,12 @@
 
 
 
-<div class="header" *ngIf="displayTicketForm">
+<div class="header" *ngIf="ticketTable">
     <h2>Add New Ticket</h2>
 </div>
 
-<div class="ptable1" *ngIf="displayTicketForm">
-    <div class="addTicketButton" *ngIf="displayTicketForm">
+<div class="ptable1" *ngIf="ticketTable">
+    <div class="addTicketButton" *ngIf="ticketTable">
         <button class="btn btn-primary" (click)="showDialog()" >Add Ticket</button>
     </div>
 
@@ -130,9 +130,8 @@
             <td>{{item.reporter_id}}</td>
             <td>{{item.subject}}</td>
             <td>{{item.url}}</td>
-            <td>{{item.create_datetime}}</td>
-            <td>{{item.last_modified_datetime}}</td>
-            <!-- <td><a routerLink="/home/user-view/{{item.ticket_id}}" type="button" class="user-view">View</a></td> -->
+            <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
+            <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
         </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
@@ -143,7 +142,21 @@
     </p-table>
 </div>
 
-<div class="header"  *ngIf="displayTicketTable">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="header"  *ngIf="displayTicketTable">
     <h2>View Tickets</h2>
 </div>
 <div class="ptable1" *ngIf="displayTicketTable">
@@ -164,7 +177,7 @@
                 <th>Url Link <p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
                 <th>Create_Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
                 <th>Last_Modified_Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
-                <!-- <th>Action</th> -->
+               
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item class="t-body tbody-dark">
@@ -184,7 +197,7 @@
             <td>{{item.url}}</td>
             <td>{{item.create_datetime}}</td>
             <td>{{item.last_modified_datetime}}</td>
-            <!-- <td><a routerLink="/home/user-view/{{item.ticket_id}}" type="button" class="user-view">View</a></td> -->
+            
         </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
@@ -193,4 +206,4 @@
             </tr>
         </ng-template>
     </p-table>
-</div>
+</div> -->

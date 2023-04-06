@@ -176,17 +176,17 @@
                 </div>
                     <label for="">email Id</label>
                     <input type="email" ngModel name="email_Id" ngModel="{{viewUser.email_Id}}" class="form-control" readonly >
-                    <label>CreatedSource</label>
-                    <input type="text" ngModel name="createdSource" ngModel="{{viewUser.createdSource}}" class="form-control">
+                    <!-- <label>CreatedSource</label>
+                    <input type="text" ngModel name="createdSource" ngModel="{{viewUser.createdSource}}" class="form-control"> -->
                 </div>
 
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
 
-              
+<!--               
                     <label >CreatedSourceType</label>
-                    <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control" required>
+                    <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control" required> -->
                     <label>ModifiedSource</label>
-                    <input type="text" ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control" required maxlength="60" minlength="6">
+                    <input type="text" [(ngModel)]="modifiedSource"  ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control" required maxlength="60" minlength="6">
                     <div *ngIf="updateForm.controls['modifiedSource']?.['touched'] && updateForm.controls['modifiedSource']?.['errors']" class="invalid">
                         <div *ngIf="updateForm.controls['modifiedSource']?.['errors']?.['maxlength']">
                             Modified source is 60 characters only.
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <label>ModifiedSourceType</label>
-                    <input type="text" ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control" required maxlength="60" minlength="6">
+                    <input type="text" [(ngModel)]="modifiedSource"  ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control" required maxlength="60" minlength="6">
                     <div *ngIf="updateForm.controls['modifiedSourceType']?.['touched'] && updateForm.controls['modifiedSourceType']?.['errors']" class="invalid">
                         <div *ngIf="updateForm.controls['modifiedSourceType']?.['errors']?.['maxlength']">
                             Modified source Type is 60 characters only.

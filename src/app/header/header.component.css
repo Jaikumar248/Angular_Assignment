@@ -4,7 +4,7 @@ body{
 }
 .nav-header{
     background-color: rgba(15, 105, 135, 0.945);
-    height: 40px;
+    height: 45px;
    
 }
 .nav-items a{
@@ -54,7 +54,7 @@ a {
     margin-left: 25px;
 }
 .active {
-    background-color: rgb(48, 151, 225);
+    background-color:  rgb(8, 159, 209);
 }
 .pi {
     margin-left: 1190px;

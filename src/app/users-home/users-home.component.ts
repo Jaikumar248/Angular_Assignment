@@ -5,6 +5,7 @@ import { UserServiceService } from '../services/user-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-users-home',
   templateUrl: './users-home.component.html',
@@ -21,13 +22,24 @@ export class UsersHomeComponent implements OnInit {
   addUsers:any;
   savedValues1:boolean = false;
   dialogValues:any;
-  constructor(private http: HttpClient, private service: UserServiceService, private router: Router, private toastr:ToastrService) {
+  createdSourceType:any
+  constructor(private http: HttpClient, private service: UserServiceService, private router: Router, private toastr:ToastrService,
+    private location:Location) {
     
   }
 
   ngOnInit(): void {
     this.addUsers = this.service.addusers;
     this.VeiwAllUsers();
+    this.refresh();
+
+    if(localStorage.getItem('admin')){
+      this.createdSourceType = "admin";
+    }
+    if(localStorage.getItem('loggedInUser')){
+      this.createdSourceType = "user";
+    }
+
   }
   showCreateUserForm() {
     this.viewUserForm = true;
@@ -84,6 +96,16 @@ export class UsersHomeComponent implements OnInit {
 
   closeDialogPop(){
     this.addUsers = false;
+    this.router.navigate(['/home/user-detials']);
+  }
+
+  refresh():void {
+    this.router.navigateByUrl('/home/users-home', {skipLocationChange : true}).then(()=>{
+      this.router.navigate([decodeURI(this.location.path())]);
+    });
+  }
+
+  closeUserForm(){
     this.router.navigate(['/home/user-detials']);
   }
 

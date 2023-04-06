@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit{
   Logout(){
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('admin');
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
     this.headers1 = true;
     
 

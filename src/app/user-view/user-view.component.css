@@ -26,8 +26,8 @@ input {
 
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
-     margin-left: 120px;
-    width: 1300px;
+     margin-left: 70px;
+    width: 1400px;
     height: 560px;
     position: absolute;
     top: 140px;
@@ -50,9 +50,12 @@ table tr td {
     padding: 20px;
     margin-right: 200px;
 }
-.buttons {
+/* .buttons {
     margin-top: 510px;
     margin-left: 800px;
+} */
+button {
+    margin-left: 50px;
 }
 
 .header h2 {

@@ -65,7 +65,9 @@ status : any = {
   GetUser(data:any){
     return this.http.get(`http://localhost:8080/viewUser?${data}`);
   }
- 
+  // Getuser(code:any){
+  //   return this.http.get(`http://localhost:8080/viewUser/email_Id${code}` );
+  // }
  
   DeleteUser(id:any){
     return this.http.delete(`http://localhost:8080/deleteUser?user_id=${id}`);

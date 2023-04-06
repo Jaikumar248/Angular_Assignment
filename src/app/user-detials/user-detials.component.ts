@@ -4,6 +4,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-user-detials',
@@ -18,23 +20,26 @@ export class UserDetialsComponent implements OnInit{
   editUser:boolean = false;
   nonEditableField:boolean = false;
   disbaleButton:boolean = false;
-
+  modifiedSource:any;
   constructor(private userService:UserServiceService, private ticketService:TicketServiceService, private router:Router,
     private confirmationService: ConfirmationService, private messageService:MessageService, private activeRoute:ActivatedRoute,
-    private toastr:ToastrService){}
+    private toastr:ToastrService, private location:Location){}
  
 
   ngOnInit(): void {
   //  this.DeleteUserMethod();
    this.ShowAllUsers();
    let userId = this.activeRoute.snapshot.paramMap.get('ticket_id');
-    
+   this.refresh();
+
+   if(localStorage.getItem('admin')){
+    this.modifiedSource = "admin";
   }
-  // DeleteUserMethod(){
-  //   this.userService.GetAllUsers().subscribe((result)=>{
-  //     this.showUsers = result;
-  //   })
-  // }
+  if(localStorage.getItem('loggedInUser')){
+    this.modifiedSource = "user";
+  }
+  }
+
   ShowAllUsers(){
     this.userService.GetAllUsers().subscribe((result)=>{
       this.showUsers = result;
@@ -102,6 +107,12 @@ export class UserDetialsComponent implements OnInit{
     this.displayViewMode = false;
     this.editUser = false;
     this.disbaleButton = true;
+  }
+
+  refresh():void {
+    this.router.navigateByUrl('/home/user-detials', {skipLocationChange : true}).then(()=>{
+      this.router.navigate([decodeURI(this.location.path())]);
+    });
   }
 
 

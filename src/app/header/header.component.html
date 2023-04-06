@@ -9,6 +9,45 @@
         <div class="nav-header">
         
            <ul class="nav-items"> 
+                <a type="button" routerLinkActive="active"  routerLink="/home/message" ><li>Home</li></a>
+                <a type="button" routerLinkActive="active" routerLink="/home/create-ticket"><li>CreateTicket</li></a>
+                <a type="button" routerLinkActive="active" routerLink='/home/view-ticket' ><li>View Tickets</li></a>
+            </ul>
+        </div>
+    </nav>
+   
+
+    <nav class="nav-header" *ngIf="mainHeader">
+        <ul class="nav-items">
+            <a type="button"  routerLinkActive="active" routerLink="/home/message" ><li >Home</li></a>
+            <a type="button" routerLinkActive="active" routerLink="/home/user-detials"> <li>UsersDetails</li></a>
+            <a type="button" routerLinkActive="active" routerLink="/home/admin-home"><li>TicketsDetails</li></a>
+        </ul>
+    </nav>
+</div>
+
+
+
+<div class="footer">
+    <span> @2007-2023 Itorizon</span>
+ </div>
+
+<!-- 
+
+
+
+
+ <header >
+    <img src="https://itorizon.com/wp-content/uploads/2020/10/Logo-Itorizon-2017.png" alt="">
+    <i class="pi pi-bell" pBadge value="2"></i>
+    <a type="button" (click)="Logout()" routerLinkActive="active" >Logout</a>
+</header>
+
+<div class="toggleHeader"  >
+    <nav class="nav-header" *ngIf="!mainHeader">
+        <div class="nav-header">
+        
+           <ul class="nav-items"> 
                 <a type="button" routerLinkActive="active" (click)="homeContent()" ><li>Home</li></a>
                 <a type="button" routerLinkActive="active" (click)="showTicketForm()"><li>CreateTicket</li></a>
                 <a type="button" routerLinkActive="active" (click)="showTicketTable()" ><li>View Tickets</li></a>
@@ -22,8 +61,6 @@
             <a type="button" (click)="homeContent()" ><li  routerLinkActive="active">Home</li></a>
             <a routerLinkActive="active" type="button" (click)="ShowAllUsers()"> <li>UsersDetails</li></a>
             <a routerLinkActive="active" type="button" (click)="ShowTickets()"><li>TicketsDetails</li></a>
-            <!-- <a routerLinkActive="active" type="button" (click)="AddUsers()"><li>Add Users</li></a> -->
-            <!-- <a routerLinkActive="active" type="button" (click)="LogoutAdmin()"><li>Logout</li></a> -->
         </ul>
     </nav>
 </div>
@@ -32,7 +69,8 @@
 
 <div class="footer">
     <span> @2007-2023 Itorizon</span>
- </div>
+ </div> -->
+
 
 
 

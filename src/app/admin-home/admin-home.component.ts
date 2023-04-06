@@ -1,10 +1,10 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { BehaviorSubject } from 'rxjs';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { SelectItem } from 'primeng/api';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -46,7 +46,8 @@ export class AdminHomeComponent implements OnInit, OnChanges {
   userId: any;
 
   constructor(private userService: UserServiceService, private ticketService: TicketServiceService, private router: Router,
-    private confirmationService: ConfirmationService, private messageService: MessageService, private activeRoute: ActivatedRoute, ) {
+    private confirmationService: ConfirmationService, private messageService: MessageService, private activeRoute: ActivatedRoute, 
+    private location:Location) {
 
   }
 
@@ -58,19 +59,18 @@ export class AdminHomeComponent implements OnInit, OnChanges {
 
   }
   ngOnInit(): void {
+    this.refresh();
     this.userService.displayUserTable.subscribe((result) => {
       this.showUserTable = result;
       this.showTicketTable = false;
     })
+    this.showTicketTable = true;
 
-
-    this.ticketService.displayTicketTable.subscribe((result) => {
-      this.showTicketTable = result;
-      this.showUserTable = false;
-    })
-    // this.ticketService.ViewAllTickets().subscribe((result) => {
-    //   this.viewAllTickets = result;
+    // this.ticketService.displayTicketTable.subscribe((result) => {
+    //   this.showTicketTable = result;
+    //   this.showUserTable = false;
     // })
+  
     this.ViewAllTicket();
 
 
@@ -305,6 +305,12 @@ export class AdminHomeComponent implements OnInit, OnChanges {
     
 
 
+  }
+
+  refresh():void {
+    this.router.navigateByUrl('/home/admin-home', {skipLocationChange : true}).then(()=>{
+      this.router.navigate([decodeURI(this.location.path())]);
+    });
   }
 
 }

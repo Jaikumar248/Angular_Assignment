@@ -4,7 +4,7 @@
 </div>
 <div class="ptable" *ngIf="showTicketTable">
     <div class="search"><input type="text" [(ngModel)]="ticket" (keyup)="ViewTicketById()"><button>search</button></div>
-        <p-table  [value]="viewAllTickets" [paginator]=true [rows]="5"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+        <p-table  [value]="viewAllTickets" [paginator]=true [rows]="4"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
             <input type="text" placeholder="Search" [(ngModel)]="searchText">
             <ng-template pTemplate="header" class="t-head thead-primary">
                 <tr>
@@ -39,8 +39,8 @@
                 <td>{{item.reporter_id}}</td>
                 <td>{{item.subject}}</td>
                 <td>{{item.url}}</td>
-                <td>{{item.create_datetime}}</td>
-                <td>{{item.last_modified_datetime}}</td>
+                <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
+                <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
                 <td>
                     <!-- <button class="btn btn-info"><a routerLink="/home/admin-view" (click)="upDateTicket()">Edit</a></button> -->
                     <button class="btn btn-warning" (click)="DeleteTicket(item.ticket_id)">Delete</button>

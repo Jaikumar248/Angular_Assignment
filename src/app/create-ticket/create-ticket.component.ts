@@ -24,8 +24,19 @@ export class CreateTicketComponent implements OnInit{
   subCatagories:any;
   selectedSubCatagory:any;
   subCategory:any;
-  
-
+  status:any;
+  selectedStatus:any;
+  priorities:any;
+  selectedPriority:any;
+  ticketTable:boolean = false;
+  intialPriorityValue = null;
+  category_desc:any;
+  sub_category_desc:any;
+  selectedStatus1:any;
+  status1:any;
+  loggedInUserName:any;
+  loggedInUser2:any;
+  createdSource:any;
   constructor(private router:Router, private ticketService:TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute,
     private location:Location){
     
@@ -35,18 +46,19 @@ export class CreateTicketComponent implements OnInit{
 
   ngOnInit(): void {
     this.ViewUserTicket();
-    this.userService.showTicketsTable.subscribe((result)=>{
-    this.displayTicketTable = result;
-    this.displayTicketForm = false;
-    this.displayForm = false;
+    this.ticketTable = true
+  //   this.userService.showTicketsTable.subscribe((result)=>{
+  //   this.displayTicketTable = result;
+  //   this.displayTicketForm = false    ;
+  //   this.displayForm = false;
    
-  });
-  this.refresh();
-  
-  this.displayTicketForm = true;
-  this.SubCategories();
+  // });
+
   
 
+  this.SubCategories();
+  this. refresh();
+  this.status="open";
   this.userService.showTickets.subscribe((result)=>{
     this.displayTicketForm = result;
     this.displayTicketTable = false;
@@ -55,7 +67,15 @@ export class CreateTicketComponent implements OnInit{
 
     this.loggedInUser1 = localStorage.getItem('loggedInUser');
     this.loggedInUser1 = JSON.parse(this.loggedInUser1);
+    this.loggedInUserName = this.loggedInUser1.userName;
     this.loggedInUser1 = this.loggedInUser1.user_id;
+    
+    if(localStorage.getItem('admin')){
+      this.createdSource = "admin";
+    }
+    if(localStorage.getItem('loggedInUser')){
+      this.createdSource = "user";
+    }
     
 
   }
@@ -68,31 +88,45 @@ export class CreateTicketComponent implements OnInit{
   
   
   CreateTicket(CreateTicket:any){
+    // console.log(CreateTicket)
     let arr1 = this.userService.categories;
     for (let key in arr1){
       if (arr1[key] === CreateTicket.category_id){
-        CreateTicket.category_id = key;
+        CreateTicket.category_id = this.catageryValue;
+        CreateTicket['category_id'] =  key;
       }
+    
     }
 
     let arr2 = this.userService.sub_categories
     for (let key in arr2){
       if (arr2[key] === CreateTicket.sub_category_id){
         CreateTicket.sub_category_id = key;
+        console.log(key);
+        
       }
     }
+   
     let loggedInUser:any = localStorage.getItem('loggedInUser');
     loggedInUser = JSON.parse(loggedInUser);
     loggedInUser = loggedInUser.user_id;
+    let index = 1;
+    CreateTicket.status_id = index;
+    
+    // let key = Object.entries(this.userService.categories);
+    console.log(CreateTicket)
     this.ticketService.CreateTicket(CreateTicket,loggedInUser).subscribe((result)=>{
-    },(error)=>{
-      this.ViewUserTicket();
+      console.log(result);
+      console.log("abc")
       
+    }, 
+    (error)=>{
+      console.log("hiiii");
+      this.router.navigate(['/home/view-ticket']);
     }
     );
     
-    this.displayForm = false;
-    this.displayTicketTable = true;
+  
     
   
   }
@@ -113,17 +147,17 @@ export class CreateTicketComponent implements OnInit{
 
  closeTicketForm(){
   this.displayForm = false;
-  this.displayTicketForm = true;
-  localStorage.clear();
+  this.ticketTable = true;
+  
  }
 
  showDialog(){
   this.displayDialog = true;
-  this.displayTicketForm = false;
+  this.ticketTable = false;
 
  }
 
- DisplayTicketForm(){
+ DisplayTicketForm1(){
   this.displayForm = true;
   this.displayDialog = false;
   this.SubCategories();
@@ -147,6 +181,7 @@ export class CreateTicketComponent implements OnInit{
    if(o === value){
      console.log("select item id is "+index);
      this.catageryValue = index;
+     this.category_desc = event;
      this.subCategory = index;
      localStorage.setItem('catageryValue', JSON.stringify(this.catageryValue));
      break;
@@ -155,11 +190,17 @@ export class CreateTicketComponent implements OnInit{
  }
 
 }
+dispsubCategory(event: any){
+  this.sub_category_desc = event;
+  for(let item of Object.values(this.userService.sub_categories)){
+
+  }
+}
 
 
-searchSubcatageries(){
+searchSubCategories(data:any){
   this.ticketService.ShowSubCategories(this.catageryValue).subscribe((result)=>{
-    console.log(result);
+    this.selectedSubCatagory = result;
   })
 }
 
@@ -183,6 +224,17 @@ SubCategories(){
     console.log(result);
 
     this.subCatagories = result;
+  })
+}
+
+searchStatus(data:any){
+  this.ticketService.ShowStatus().subscribe((result)=>{
+    this.status1 =result;
+  })
+}
+searchPriority(data:any){
+  this.ticketService.ShowPriority().subscribe((result)=>{
+    this.priorities = result;
   })
 }
 
