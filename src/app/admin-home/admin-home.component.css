@@ -7,6 +7,27 @@ a {
     margin-left: 1100px;
     margin-bottom: 10px;
 }
+
+
+:host ::ng-deep .p-paginator {
+    display: flex;
+    justify-content: right;
+    float: right;
+    max-width: max-content;
+    margin: 10px 5px;
+    border: none;
+   
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page , :host ::ng-deep .p-paginator-next, :host ::ng-deep .p-paginator-prev {
+    border-radius: 1px;
+    height: 30px;
+    width: 50px;
+    margin: 0px;
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    color: rgb(52, 145, 179);
+    border: 1px solid black;
+}
 .search  input {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -19,7 +40,9 @@ a {
     box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
     background-color:white ;
 }
-
+.delete {
+    margin-left: 10px;
+}
 
 
 .conatainer {
@@ -64,8 +87,9 @@ table tr td {
 .statusButton button {
     margin: 10px;
 }
-.btn-warning {
-    margin-left: 4px;
+
+.backButton {
+    margin-left: 1200px;
     margin-top: 10px;
 }
 
@@ -90,16 +114,27 @@ table tr td {
         margin-left: 0px;
 
      }
+     .p-dialog {
+        width: 15vw !important;
+    }
+    .btn-warning {
+        margin-left: 40px;
+        margin-top: -35px;
+    }
+    .backButton {
+        margin-left: 200px;
+    }
     
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
     margin-left: 0px;
     margin-right: 0px;
-    height: 700px;
+    height: 912px;
     margin-top: -80px;
     background-color:white ;
     width: 320px;
-  
+    position: sticky;
+
 }
 }
 @media screen and (max-width: 376px) and (min-width: 327px) {
@@ -111,19 +146,30 @@ table tr td {
         margin-left: 0px;
 
      }
+     .p-dialog {
+        width: 20vw !important;
+    }
+    .backButton {
+        margin-left: 200px;
+    }
+    .btn-warning {
+        margin-left: 40px;
+        margin-top: -35px;
+    }
     
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
     margin-left: 0px;
     margin-right: 0px;
-    height: 700px;
+    height: 906px;
     margin-top: -80px;
     background-color:white ;
     width: 375px;
-  
+    position: sticky;
 }
+
 }
-@media screen and (max-width: 326px) and (min-width: 250px) {
+@media screen and (max-width: 426px) and (min-width: 377px) {
     .search {
         margin-left: 30px;
     }
@@ -132,16 +178,29 @@ table tr td {
         margin-left: 0px;
 
      }
+     .p-dialog {
+        width: 25vw !important;
+    }
+
+    .btn-warning {
+        margin-left: 40px;
+        margin-top: -35px;
+    }
+    .backButton {
+        margin-left: 250px;
+    }
+
     
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
     margin-left: 0px;
     margin-right: 0px;
-    height: 700px;
+    height: 911px;
     margin-top: -80px;
     background-color:white ;
     width: 320px;
-  
+    min-height: 100vh;
+    position: sticky;
 }
 }
 @media screen and (max-width: 426px) and (min-width: 377px) {
@@ -153,16 +212,24 @@ table tr td {
         margin-left: 0px;
 
      }
+     .p-dialog {
+        width: 25vw !important;
+    }
+    .btn-warning {
+        margin-left: 40px;
+        margin-top: -35px;
+    }
+    
     
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
     margin-left: 0px;
     margin-right: 0px;
-    height: 700px;
+    height: 906px;
     margin-top: -80px;
     background-color:white ;
     width: 420px;
-  
+    position: sticky;
 }
 }
 
@@ -175,12 +242,22 @@ table tr td {
         margin-left: 0px;
 
      }
+     .backButton{
+        margin-left: 600px;
+     }
+     .p-dialog {
+        width: 30vw !important;
+    }
+    .btn-warning {
+        margin-left: 68px;
+        margin-top: -241px;
+    }
     
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
     margin-left: 0px;
     margin-right: 0px;
-    height: 900px;
+    height: 840px;
     margin-top: -80px;
     background-color:white ;
     width: 769px;
@@ -197,6 +274,9 @@ table tr td {
         margin-left: 200px;
 
      }
+     .p-dialog {
+        width: 35vw !important;
+    }
     
 .conatainer {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
@@ -206,6 +286,12 @@ table tr td {
     margin-top: -80px;
     background-color:white ;
     width: 1025px;
+    
   
+}
+.btn-warning {
+    left:0px;
+    margin-top: 10px;
+    margin-left: -300px;
 }
 }

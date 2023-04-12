@@ -21,6 +21,7 @@ export class UserDetialsComponent implements OnInit{
   nonEditableField:boolean = false;
   disbaleButton:boolean = false;
   modifiedSource:any;
+  isDisabled: boolean = true;
   constructor(private userService:UserServiceService, private ticketService:TicketServiceService, private router:Router,
     private confirmationService: ConfirmationService, private messageService:MessageService, private activeRoute:ActivatedRoute,
     private toastr:ToastrService, private location:Location){}
@@ -28,23 +29,25 @@ export class UserDetialsComponent implements OnInit{
 
   ngOnInit(): void {
   //  this.DeleteUserMethod();
-   this.ShowAllUsers();
-   let userId = this.activeRoute.snapshot.paramMap.get('ticket_id');
-   this.refresh();
+      this.ShowAllUsers();
+      console.log('fewdnejkfbjk')
+      let userId = this.activeRoute.snapshot.paramMap.get('ticket_id');
+      this.refresh();
 
-   if(localStorage.getItem('admin')){
-    this.modifiedSource = "admin";
-  }
-  if(localStorage.getItem('loggedInUser')){
-    this.modifiedSource = "user";
-  }
-  }
+      if(localStorage.getItem('admin')){
+      this.modifiedSource = "admin";
+      }
+      if(localStorage.getItem('loggedInUser')){
+      this.modifiedSource = "user";
+      }
+   }
 
   ShowAllUsers(){
     this.userService.GetAllUsers().subscribe((result)=>{
       this.showUsers = result;
+      console.log('hiiii')
      })
-  }
+   }
 
   DeleteUser(id:any){
 
@@ -114,7 +117,7 @@ export class UserDetialsComponent implements OnInit{
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }
-
+  
 
 
 }

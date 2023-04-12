@@ -1,6 +1,13 @@
 
+
+
+
+
+
+
 <div class="header1" *ngIf="displayViewForm">
-    <h2>User List</h2>
+    <h2> 
+        <i class="pi pi-users"></i>User List</h2>
 </div>
 <div class="ptable" *ngIf="displayViewForm">
     <div class="addUserButton" *ngIf="displayViewForm">
@@ -17,7 +24,7 @@
                 <th>User Name <p-sortIcon field="userName"  pSortableColumn="userName"></p-sortIcon></th>
                 <th>First Name<p-sortIcon field="firstName"  pSortableColumn="firstName"></p-sortIcon> </th>
                 <th>Last Name <p-sortIcon field="lastName"  pSortableColumn="lastName"></p-sortIcon></th>
-                <th>Email_id <p-sortIcon field="email_Id"  pSortableColumn="email_Id"></p-sortIcon></th>
+                <th>Email Id <p-sortIcon field="email_Id"  pSortableColumn="email_Id"></p-sortIcon></th>
                 <th>CreatedSource <p-sortIcon field="createdSource"  pSortableColumn="createdSource"></p-sortIcon></th>
                 <th>CreatedSourceType<p-sortIcon field="createdSourceType"  pSortableColumn="createdSourceType"></p-sortIcon> </th>
                 <th>ModifiedSource <p-sortIcon field="modifiedSource"  pSortableColumn="modifiedSource"></p-sortIcon></th>
@@ -64,7 +71,7 @@
     <div class="grid">
         <div class="col-12 sm:col-12 md:col-6 lg:col-6">
             <div>
-                <label class="col-6">>User ID :</label>
+                <label class="col-6">User ID :</label>
                 <label class="col-6">{{viewUser.user_id}}</label>
             </div>
             <div>
@@ -80,7 +87,7 @@
                 <label class="col-6">{{viewUser.lastName}}</label>
             </div>
             <div>
-                <label class="col-6">Email_Id :</label>
+                <label class="col-6">Email Id :</label>
                 <label class="col-6">{{viewUser.email_Id}}</label>
             </div>
         </div>
@@ -96,6 +103,10 @@
             <div>
                 <label class="col-6">ModifiedSource :</label>
                 <label class="col-6">{{viewUser.modifiedSource}}</label>
+            </div>
+            <div>
+                <label class="col-6">ModifiedSourceType :</label>
+                <label class="col-6">{{viewUser.modifiedSourceType}}</label>
             </div>
             <div>
                 <label class="col-6">Created Date :</label>
@@ -130,9 +141,9 @@
             <div class="grid">
                
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
-                    <label >User_Id</label>
-                    <input type="text" name="user_id" ngModel="{{viewUser.user_id}}" class="form-control" readonly  >
-                    <label>UserName</label>
+                    <label >User Id<span>*</span></label>
+                    <input type="text" name="user_id" ngModel="{{viewUser.user_id}}" class="form-control disabled" readonly  >
+                    <label>UserName<span>*</span></label>
                     <input type="text" name="userName" ngModel="{{viewUser.userName}}"  class="form-control" required minlength="4" maxlength="20">
                     <div *ngIf="updateForm.controls['userName']?.['touched'] && updateForm.controls['userName']?.['errors']"
                     class="invalid">
@@ -146,7 +157,7 @@
                         User Name is Maximum 20 characters only.
                     </div>
                 </div>
-                    <label>First Name</label>
+                    <label>First Name<span>*</span></label>
                     <input type="text" name="firstName" ngModel="{{viewUser.firstName}}" class="form-control" required minlength="4" maxlength="20">
                     <div *ngIf="updateForm.controls['firstName']?.['touched'] && updateForm.controls['firstName']?.['errors']"
                     class="invalid">
@@ -160,7 +171,7 @@
                         First Name is Maximum 20 characters only.
                     </div>
                 </div>
-                    <label>Last Name</label>
+                    <label>Last Name<span>*</span></label>
                     <input type="text" ngModel name="lastName" ngModel="{{viewUser.lastName}}" class="form-control" required>
                     <div *ngIf="updateForm.controls['lastName']?.['touched'] && updateForm.controls['lastName']?.['errors']"
                     class="invalid">
@@ -174,43 +185,43 @@
                         Last Name  is Maximum 20 characters only.
                     </div>
                 </div>
-                    <label for="">email Id</label>
-                    <input type="email" ngModel name="email_Id" ngModel="{{viewUser.email_Id}}" class="form-control" readonly >
-                    <!-- <label>CreatedSource</label>
-                    <input type="text" ngModel name="createdSource" ngModel="{{viewUser.createdSource}}" class="form-control"> -->
+                    <label for="">email Id<span>*</span></label>
+                    <input type="email" ngModel name="email_Id" ngModel="{{viewUser.email_Id}}" class="form-control disabled" readonly >
+                    <label>CreatedSource<span>*</span></label>
+                    <input type="text" ngModel name="createdSource" readonly ngModel="{{viewUser.createdSource}}" class="form-control disabled">
                 </div>
 
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
 
-<!--               
-                    <label >CreatedSourceType</label>
-                    <input type="text" ngModel name="createdSourceType" ngModel="{{viewUser.createdSourceType}}" class="form-control" required> -->
-                    <label>ModifiedSource</label>
-                    <input type="text" [(ngModel)]="modifiedSource"  ngModel name="modifiedSource" ngModel="{{viewUser.modifiedSource}}" class="form-control" required maxlength="60" minlength="6">
+              
+                    <label >CreatedSourceType<span>*</span></label>
+                    <input type="text" ngModel name="createdSourceType" readonly ngModel="{{viewUser.createdSourceType}}" class="form-control disabled" required>
+                    <label>ModifiedSource<span>*</span></label>
+                    <input type="text" [(ngModel)]="modifiedSource" readonly ngModel name="modifiedSource" ngModel [(ngModel)]="modifiedSource"  class="form-control disabled" required maxlength="60" minlength="4">
                     <div *ngIf="updateForm.controls['modifiedSource']?.['touched'] && updateForm.controls['modifiedSource']?.['errors']" class="invalid">
                         <div *ngIf="updateForm.controls['modifiedSource']?.['errors']?.['maxlength']">
                             Modified source is 60 characters only.
                         </div>
                         <div *ngIf="updateForm.controls['modifiedSource']?.['errors']?.['minlength']">
-                            Modified Source is at least 6 characters
+                            Modified Source is at least 4 characters
                         </div>
                     </div>
-                    <label>ModifiedSourceType</label>
-                    <input type="text" [(ngModel)]="modifiedSource"  ngModel name="modifiedSourceType" ngModel="{{viewUser.modifiedSourceType}}" class="form-control" required maxlength="60" minlength="6">
+                    <label>ModifiedSourceType<span>*</span></label>
+                    <input type="text" [(ngModel)]="modifiedSource" readonly ngModel name="modifiedSourceType" ngModel [(ngModel)]="modifiedSource" class="form-control disabled" required maxlength="60" minlength="4">
                     <div *ngIf="updateForm.controls['modifiedSourceType']?.['touched'] && updateForm.controls['modifiedSourceType']?.['errors']" class="invalid">
                         <div *ngIf="updateForm.controls['modifiedSourceType']?.['errors']?.['maxlength']">
                             Modified source Type is 60 characters only.
                         </div>
                         <div *ngIf="updateForm.controls['modifiedSourceType']?.['errors']?.['minlength']">
-                            Modified Source Type is at least 6 characters
+                            Modified Source Type is at least 4 characters
                         </div>
                     </div>
                     <label>Created Date</label>
-                    <input type="text" name="createdDate" ngModel ngModel="{{viewUser.create_datetime}}" class="form-control" required readonly>
+                    <input type="text" name="createdDate" readonly ngModel ngModel="{{viewUser.create_datetime}}" class="form-control disabled" required readonly>
                     <label >Last Modified Datetime</label>
-                    <input type="text" name="last_modified_datetime" ngModel="{{viewUser.last_modified_datetime}}" class="form-control" required readonly>
+                    <input type="text" name="last_modified_datetime" readonly ngModel="{{viewUser.last_modified_datetime}}" class="form-control disabled" required readonly>
                     <div class="button">
-                        <button class="btn btn-warning" (click)="closeUpdateForm()" >Back</button>
+                        <button class="btn btn-warning" (click)="closeUpdateForm()" >Cancel</button>
                         <button class="btn btn-primary" >Save</button>
                      </div>
                 </div>

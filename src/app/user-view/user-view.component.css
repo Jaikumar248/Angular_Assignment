@@ -55,7 +55,8 @@ table tr td {
     margin-left: 800px;
 } */
 button {
-    margin-left: 50px;
+    margin-top: 30px;
+    margin-left: 1300px;
 }
 
 .header h2 {
@@ -74,6 +75,11 @@ button {
         background-color:white ;
       
     }
+    button{
+        margin-top: -11px;
+        margin-left: 264px;
+    }
+    
 }
 @media screen and (max-width: 376px) and (min-width: 321px) {
     .conatainer {
@@ -86,8 +92,14 @@ button {
         background-color:white ;
       
     }
+    button{
+        margin-top: 30px;
+        margin-left: 300px;
+    }
+    
+
 }
-@media screen and (max-width: 426px) and (min-width: 321px) {
+@media screen and (max-width: 426px) and (min-width: 377px) {
     .conatainer {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
         margin-left: 0px;
@@ -98,6 +110,11 @@ button {
         background-color:white ;
       
     }
+    button{
+        margin-top: 30px;
+        margin-left: 370px;
+    }
+
 }
 @media screen and (max-width: 769px) and (min-width: 426px) {
     .conatainer {
@@ -110,6 +127,10 @@ button {
         background-color:white ;
       
     }
+    button{
+        margin-top: 30px;
+        margin-left: 700px;
+    }
 }
 @media screen and (max-width: 1025px) and (min-width:770px) {
     .conatainer {
@@ -121,6 +142,10 @@ button {
         top: 140px;
         background-color:white ;
       
+    }
+    button{
+        margin-top: 30px;
+        margin-left: 930px;
     }
 }
 

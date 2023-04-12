@@ -3,6 +3,8 @@
    border:1px solid black;
    
   }
+
+
 label {
     margin-bottom: 7px;
 }
@@ -40,6 +42,7 @@ input {
 }
 .header h2 {
     color:aliceblue;
+    margin-left: 2px;
 }
 .ptable {
     margin-top: 60px;
@@ -48,7 +51,16 @@ input {
     margin-left: 1300px;
     margin-top: 20px;
 }
+.disabled {
+    background-color:#e3e5e7;
+}
+i {
+    font-size: xx-large;
+}
 .invalid {
+    color: red;
+}
+span {
     color: red;
 }
 

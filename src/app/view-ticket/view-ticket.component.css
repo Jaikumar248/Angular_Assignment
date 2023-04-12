@@ -64,6 +64,25 @@ table, th, td {
     padding: 10px;
     display: flex;
 }
+:host ::ng-deep .p-paginator {
+    display: flex;
+    justify-content: right;
+    float: right;
+    max-width: max-content;
+    margin: 10px 5px;
+    border: none;
+   
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page , :host ::ng-deep .p-paginator-next, :host ::ng-deep .p-paginator-prev {
+    border-radius: 1px;
+    height: 30px;
+    width: 50px;
+    margin: 0px;
+    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+    color: rgb(52, 145, 179);;
+    border: 1px solid black;
+}
 .search input {
     width: 200px;
 }
@@ -76,10 +95,11 @@ table, th, td {
     height: 400px;
     margin-top: -70px;
     position: absolute;
-    margin-left: 20px;
+    margin-left: 15px;
     box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
     background-color:white ;
 }
+
 .btn {
     margin-left: 10px;
 }

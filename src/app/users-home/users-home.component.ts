@@ -22,7 +22,8 @@ export class UsersHomeComponent implements OnInit {
   addUsers:any;
   savedValues1:boolean = false;
   dialogValues:any;
-  createdSourceType:any
+  createdSourceType:any;
+  isDisabled: boolean = true;
   constructor(private http: HttpClient, private service: UserServiceService, private router: Router, private toastr:ToastrService,
     private location:Location) {
     
@@ -46,16 +47,20 @@ export class UsersHomeComponent implements OnInit {
   }
 
   CreateUser(data: CreateUser) {
+    console.log(data)
     this.service.UserCreate(data).subscribe((result) => {
-      
-      this.toastr.success('A new user is Created');
+      console.log("user is added success");
+     
     },(error)=>{
+      
+      console.log("user is added");
       this.VeiwAllUsers();
+      this.router.navigate(['/home/user-detials']);
     }
     );
     
     this.savedValues1 = false;
-    this.router.navigate(['/home/user-detials']);
+    // this.router.navigate(['/home/user-detials']);
 
   }
   VeiwAllUsers() {

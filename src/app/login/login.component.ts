@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit{
   }
 
   loginSubmit(data: any) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+    // this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
 
     // if (data.email_Id === "admin" && data.password === "admin") {
     //   localStorage.setItem('admin', JSON.stringify(data));
@@ -63,11 +63,10 @@ export class LoginComponent implements OnInit{
     if(data.email_Id === this.adminValue){
       if(data.email_Id === data.password){
         localStorage.setItem('admin', JSON.stringify(this.adminObject));
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+        // this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
         this.service.ReloadToAdmin();
-
-        //this.toastr.success('login successfully');
       }
+      this.msgs = [{severity:'error', summary:'Wrong Credentials', detail:"..."}];
     }
 
     else {
@@ -78,9 +77,7 @@ export class LoginComponent implements OnInit{
         if(data.email_Id === item.email_Id){
           if(data.email_Id === data.password){         
             localStorage.setItem('loggedInUser', JSON.stringify(item));
-            //this.toastr.success('login successfully');
-            this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-            // this.msgsSuccess = [{severity:'succes', summary:'logged in successfully', detail:"..."}];
+            // this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
             this.service.ReloadData();
           }
         }

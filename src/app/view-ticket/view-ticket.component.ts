@@ -30,6 +30,7 @@ export class ViewTicketComponent implements OnInit {
     this.ticketService.ViewAllUserTicket(loggedInUser).subscribe((result)=>{
      
       this.allTickets = result;
+      // console.log(result);
       
     })
     

@@ -1,8 +1,9 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import {Location} from '@angular/common';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
@@ -37,6 +38,7 @@ export class CreateTicketComponent implements OnInit{
   loggedInUserName:any;
   loggedInUser2:any;
   createdSource:any;
+  
   constructor(private router:Router, private ticketService:TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute,
     private location:Location){
     
@@ -47,14 +49,6 @@ export class CreateTicketComponent implements OnInit{
   ngOnInit(): void {
     this.ViewUserTicket();
     this.ticketTable = true
-  //   this.userService.showTicketsTable.subscribe((result)=>{
-  //   this.displayTicketTable = result;
-  //   this.displayTicketForm = false    ;
-  //   this.displayForm = false;
-   
-  // });
-
-  
 
   this.SubCategories();
   this. refresh();
@@ -112,8 +106,6 @@ export class CreateTicketComponent implements OnInit{
     loggedInUser = loggedInUser.user_id;
     let index = 1;
     CreateTicket.status_id = index;
-    
-    // let key = Object.entries(this.userService.categories);
     console.log(CreateTicket)
     this.ticketService.CreateTicket(CreateTicket,loggedInUser).subscribe((result)=>{
       console.log(result);
@@ -148,18 +140,35 @@ export class CreateTicketComponent implements OnInit{
  closeTicketForm(){
   this.displayForm = false;
   this.ticketTable = true;
+  this.displayDialog = false;
   
  }
+ 
+ CloseTicketPop(){
+  // this.selectCategory = "";
+  // this.selectedCategoryValues = "";
+  this.displayDialog = false;
+  this.ticketTable = true;
+  this.ViewUserTicket();
+  this.displayForm = false;
+  
+  // this.router.navigate(['/home/create-ticket']);
+ }
+ clearInput(){
+  this.selectCategory = null;
+ }
+
 
  showDialog(){
   this.displayDialog = true;
-  this.ticketTable = false;
+  this.ticketTable = true;
 
  }
 
  DisplayTicketForm1(){
   this.displayForm = true;
   this.displayDialog = false;
+  this.ticketTable = false;
   this.SubCategories();
  }
  

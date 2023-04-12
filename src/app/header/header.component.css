@@ -45,6 +45,7 @@ header img {
   right: 0;
   color: aliceblue;
   text-align: center;
+  padding: 1rem;
 }
 
 a {
@@ -67,6 +68,11 @@ a {
         margin-left: 80px;
         margin-right: 25px;
     }
+    .nav-header{
+        background-color: rgba(15, 105, 135, 0.945);
+        height: 34px;
+       
+    }
     header img {
         width: 100px;
         height: 30px;
@@ -83,7 +89,6 @@ a {
     a {
         padding: 0px;
         text-decoration: none;
-       
         margin-left: 0px;
     }
 

@@ -70,8 +70,49 @@ span{
 .invalid{
     color:red;
 }
+@media screen and (max-width: 426px) and (min-width: 319px){
 
-@media screen and (max-width: 1023px) and (min-width: 319px){
+    .login-main{
+        width: 330px;
+        margin-top: 100px;
+        margin-left: 70px;
+        background-color: rgb(250, 250, 252);
+        height: 570px;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px 10px rgb(230, 238, 240);
+        
+    }
+    .login-image img {
+        width: 230px;
+        margin-top: 30px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        padding: 7px;
+        width: 250px;
+    }
+    .login-button {
+        padding: 8px;
+        background-color: rgb(38, 187, 237);
+        border: 1px solid rgb(38, 187, 237);
+        color: white;
+       width: 250px;
+    }
+    h2 {
+        text-align: center;
+        margin-right: 40px;
+    }
+    p {
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        margin-right: 40px;
+    }
+
+ 
+}
+
+@media screen and (max-width: 1023px) and (min-width: 760px){
 
     .login-main{
         width: 330px;

@@ -32,6 +32,7 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { ToastrModule } from 'ngx-toastr';
 import {ToastModule} from 'primeng/toast';
 import { ViewTicketComponent } from './view-ticket/view-ticket.component';
+
 @NgModule({
   declarations: [
     AppComponent,

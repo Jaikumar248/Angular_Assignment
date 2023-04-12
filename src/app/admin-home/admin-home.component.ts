@@ -1,10 +1,11 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { SelectItem } from 'primeng/api';
 import { Location } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -44,13 +45,14 @@ export class AdminHomeComponent implements OnInit, OnChanges {
   adminValue: any;
   selectedAdmin: any;
   userId: any;
-
+  seletectPriorities1:any;
+ 
   constructor(private userService: UserServiceService, private ticketService: TicketServiceService, private router: Router,
     private confirmationService: ConfirmationService, private messageService: MessageService, private activeRoute: ActivatedRoute, 
     private location:Location) {
 
   }
-
+@ViewChild('status') 'statusvalue1': NgForm;
   ngOnChanges(changes: SimpleChanges): void {
     this.userService.displayUserTable.subscribe((result) => {
       this.showUserTable = result;
@@ -78,12 +80,16 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       this.selectedStatus = Object.values(result);
     });
 
+    this.ticketService.ShowPriority().subscribe((result) => {
+      this.seletectPriorities =result;
+    })
+
 
   }
   ViewAllTicket() {
     this.ticketService.ViewAllTickets().subscribe((result) => {
       this.viewAllTickets = result;
-      // console.log(this.viewAllTickets);
+      console.log(this.viewAllTickets);
     })
   }
 
@@ -163,42 +169,79 @@ export class AdminHomeComponent implements OnInit, OnChanges {
 
   ChangePriority() {
     this.displayPopPriority = true;
-    this.ticketView = false;
+    this.ticketView = true;
+   
   }
 
   ChangeStatus1() {
     this.displayPopStatus = true;
-    this.ticketView = false;
+    this.ticketView = true;
   }
 
   ChangeStatus(data: any) {
-
+   
     this.ticketService.ShowStatus().subscribe((result) => {
       this.selectedStatus = Object.values(result);
     });
   }
 
-  ChangePriority1(data: any) {
+  completePriority(data:any){
+    this.seletectPriorities1 = [];
+    for(let item of this.seletectPriorities){
+      if(data === ''){
+        this.seletectPriorities1.push(item)
+      }
+      else {
+        if(item.toLowerCase().includes(data.toLowerCase())){
+          this.seletectPriorities1.push(item);
+        }
+      }
+    }
+  }
+  ChangePriority1(event: any) {
     this.ticketService.ShowPriority().subscribe((result) => {
       this.seletectPriorities = result;
-
     })
+
+    // this.seletectPriorities = this.userService.priority;
+    // this.seletectPriorities = Object.values(this.seletectPriorities);
+    // console.log(this.seletectPriorities);
+    // this.seletectPriorities = this.seletectPriorities.filter((c: any) => c.startsWith(event.query))
+
+    // this.ticketService.ShowPriority().subscribe((result) => {
+    //   this.seletectPriorities =result;
+    // })
+    // let filtered: any[] = [];
+    // let query = event.query;
+
+    // for(let i = 0; i < array.length; i++){
+    //   let priority1 = array[i];
+    //   if (priority1.toLowerCase().indexOf(query.toLowerCase())==0){
+    //     filtered.push(priority1);
+    //   }
+    // }
+
+    // this.seletectPriorities = filtered;
+
   }
 
   closeStatusPop() {
     this.displayPopStatus = false;
     this.ticketView = true;
+    
   }
 
   closePriority() {
     this.displayPopPriority = false;
     this.ticketView = true;
+    
   }
   closeSetAssignee() {
     this.setAssignee = false;
     this.ticketView = true;
 
   }
+ 
 
   displayStatusValue(event: any) {
     this.selectedStatusValue = event;
@@ -211,12 +254,14 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       }
       index = index + 1;
       this.selectedStatusValue = index;
+      // console.log( this.selectedStatusValue);
     }
   }
 
   displayPriorityValue(event: any) {
     this.selectedPriorityValue = event;
     let value = this.selectedPriorityValue;
+    console.log(value)
     let index = 1;
     for (let o of Object.values(this.userService.priority)) {
       if (o === value) {
@@ -234,6 +279,11 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       this.adminObject = result;
       let vara = Object.keys(result)
       this.adminKeys = vara.toString();
+      if(localStorage.getItem('admin')){
+        this.ticketData.modifiedSource = "admin";
+        this.ticketData.modifiedSourceType = "admin";
+      }
+      console.log(this.ticketData);
       this.ticketService.ChangeTicketStatus(this.ticketId, this.adminKeys, this.selectedStatusValue, this.ticketData).subscribe((result) => {
        
       }, (error)=>{
@@ -243,7 +293,7 @@ export class AdminHomeComponent implements OnInit, OnChanges {
 
     this.displayPopStatus = false;
     this.showTicketTable = true;
-
+    this.ticketView = false;
   }
 
 
@@ -268,6 +318,7 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       }
       this.displayPopPriority = false;
       this.showTicketTable = true;
+      this.ticketView = false;
     })
 
 
@@ -301,9 +352,7 @@ export class AdminHomeComponent implements OnInit, OnChanges {
       }
       this.setAssignee = false;
       this.showTicketTable = true;
-    }
-    
-
+    }   
 
   }
 

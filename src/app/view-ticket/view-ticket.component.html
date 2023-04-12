@@ -6,17 +6,21 @@
     <p-table  [value]="allTickets"  [paginator]=true [rows]="7" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
         <ng-template pTemplate="header" class="t-head thead-primary">
             <tr>
-                <th>User_Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
-                <th>Ticket_Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
-                <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th>
-                <th>Catagory_Id <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
-                <th>Sub_Category_Id <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
+                <th>User Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
+                <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
+                <!-- <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th> -->
+                <th>Catagory <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
+                <th>SubCategory <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
                 <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
-                <th>Priority_Id <p-sortIcon field="priority"  pSortableColumn="priority"></p-sortIcon></th>
-                <th>Status_Id <p-sortIcon field="status"  pSortableColumn="status"></p-sortIcon></th>
+                <th>Priority <p-sortIcon field="priority"  pSortableColumn="priority"></p-sortIcon></th>
+                <th>Status <p-sortIcon field="status"  pSortableColumn="status"></p-sortIcon></th>
                 <th>Reporter_Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
                 <th>Subject <p-sortIcon field="subject"  pSortableColumn="subject"></p-sortIcon></th>
                 <th>Url Link <p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
+                <th>Create Source<p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
+                <th>Created Source Type<p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
+                <th>Modified Source<p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
+                <th>Modified Source Type<p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
                 <th>Create_Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
                 <th>Last_Modified_Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
                
@@ -28,7 +32,7 @@
         <tr (dblclick)="viewModel(item.ticket_id)">
             <td>{{item.reporter_id}}</td>
             <td>{{item.ticket_id}}</td>
-            <td>{{item.assignee}}</td>
+            <!-- <td>{{item.assignee}}</td> -->
             <td>{{item.category_desc}}</td>
             <td>{{item.sub_category_desc}}</td>
             <td>{{item.description}}</td>
@@ -37,8 +41,12 @@
             <td>{{item.reporter_id}}</td>
             <td>{{item.subject}}</td>
             <td>{{item.url}}</td>
-            <td>{{item.create_datetime}}</td>
-            <td>{{item.last_modified_datetime}}</td>
+            <td>{{item.createdSource}}</td>
+            <td>{{item.createdSourceType}}</td>
+            <td>{{item.modifiedSource}}</td>
+            <td>{{item.modifiedSourceType}}</td>
+            <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
+            <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
             
         </tr>
         </ng-template>

@@ -31,6 +31,7 @@ export class TicketServiceService implements OnInit {
 
   ViewAllTickets(){
     return this.http.get('http://localhost:8080/viewAll');
+   
   }
 
 
@@ -79,11 +80,12 @@ export class TicketServiceService implements OnInit {
   }
 
   ChangeTicketStatus(ticketId:any, adminId:any, status:any, ticketData:any ){
-    
+    console.log(ticketData);
     return this.http.put(`http://localhost:8080/changeStatus?ticket_id=${ticketId}&admin_id=${adminId}&status_id=${status}`, ticketData)
   }
 
   ChangeTicketPriority(ticketId:any, adminId:any, priority:any, ticketData:any ){
+    
     return this.http.put(`http://localhost:8080/changePriority?ticket_id=${ticketId}&admin_id=${adminId}&priority_id=${priority}`,ticketData);
    
   }
