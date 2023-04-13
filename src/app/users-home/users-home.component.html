@@ -1,7 +1,5 @@
-<!-- <div class="addButton" *ngIf="!addUsers">
-    <button class="btn btn-primary" (click)="AddUsers()">Add Users</button>
-</div> -->
-<p-dialog header="AddUsers" [(visible)]="addUsers" autoWidth="false" >
+
+<p-dialog header="AddUsers"  [(visible)]="addUsers" [modal]="true" [closable]="false"  autoWidth="false" >
     <p-messages [(value)]="messages"></p-messages>
     <form #adduser="ngForm" (ngSubmit)="saveUsers(adduser.value)" ngNativeValidate>
         <label>UserName<span>*</span></label>
@@ -38,13 +36,13 @@
 
 
 
-<div class="header" *ngIf="savedValues1">
+<div class="header" *ngIf="openUserForm">
     
     <h2><i class="pi pi-user-plus"></i> Add New User</h2>
 </div>
 
 
-<div class="usercreateddiv " *ngIf="savedValues1">
+<div class="usercreateddiv " *ngIf="openUserForm">
     <div class="container ">
         <div class="user-header">
             <h4> 
@@ -111,16 +109,10 @@
 `                                       Created source type is 60 characters only.
                                     </div>
                                 </div>
-                                <!-- <label>ModifiedSource</label>
-                                <input type="text" ngModel name="modifiedSource" readonly class="form-control">
-                                <label>ModifiedSourceType</label>
-                                <input type="text" ngModel name="modifiedSourceType" readonly class="form-control"> -->
  
                             </div>
                         </div>
-                    <!-- </div> -->
-
-                <!-- </div> -->
+                  
                 <div class="button">
                     <button class="btn btn-warning" (click)="closeUserForm()" >Cancel</button>
                     <button class="btn btn-primary" >Save</button>
@@ -131,7 +123,6 @@
         </div>
 
         <hr>
-
-
+        
     </div>
 </div>

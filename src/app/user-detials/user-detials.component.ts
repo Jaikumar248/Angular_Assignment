@@ -13,24 +13,21 @@ import { Location } from '@angular/common';
   styleUrls: ['./user-detials.component.css']
 })
 export class UserDetialsComponent implements OnInit{
-  showUsers:any;
+  showAllUsers:any;
   viewUser:any;
-  displayViewMode:boolean = false;
-  displayViewForm:boolean = true;
-  editUser:boolean = false;
-  nonEditableField:boolean = false;
-  disbaleButton:boolean = false;
+  displayUserDetails:boolean = false;
+  displayUserTable:boolean = true;
+  displayEditUserForm:boolean = false;
   modifiedSource:any;
-  isDisabled: boolean = true;
+  
+
   constructor(private userService:UserServiceService, private ticketService:TicketServiceService, private router:Router,
     private confirmationService: ConfirmationService, private messageService:MessageService, private activeRoute:ActivatedRoute,
     private toastr:ToastrService, private location:Location){}
  
 
   ngOnInit(): void {
-  //  this.DeleteUserMethod();
       this.ShowAllUsers();
-      console.log('fewdnejkfbjk')
       let userId = this.activeRoute.snapshot.paramMap.get('ticket_id');
       this.refresh();
 
@@ -44,8 +41,7 @@ export class UserDetialsComponent implements OnInit{
 
   ShowAllUsers(){
     this.userService.GetAllUsers().subscribe((result)=>{
-      this.showUsers = result;
-      console.log('hiiii')
+      this.showAllUsers = result;
      })
    }
 
@@ -74,21 +70,18 @@ export class UserDetialsComponent implements OnInit{
 
   UserViewMode(item:any){
     this.viewUser = item;
-    this.displayViewMode = true;
-    this.displayViewForm = false;
-    this.disbaleButton = false;
+    this.displayUserDetails = true;
+    this.displayUserTable = false;
   }
 
   EditUser(){
-   this.editUser = true;
-   this.displayViewMode = false;
-   this.nonEditableField = true;
-   this.disbaleButton = false;
+   this.displayEditUserForm = true;
+   this.displayUserDetails = false;
   }
   closeUpdateForm(){
-    this.editUser = false;
-    this.displayViewForm = true;
-    this.displayViewMode = false;
+    this.displayEditUserForm = false;
+    this.displayUserTable = true;
+    this.displayUserDetails = false;
 
   }
 
@@ -100,16 +93,15 @@ export class UserDetialsComponent implements OnInit{
       this. ShowAllUsers();
     }
     )
-    this.editUser = false;
-    this.displayViewForm = true;
+    this.displayEditUserForm = false;
+    this.displayUserTable = true;
   }
 
   AddUsersPop(){
     this.userService.AddUsers();
-    this.displayViewForm = false;
-    this.displayViewMode = false;
-    this.editUser = false;
-    this.disbaleButton = true;
+    this.displayUserTable = false;
+    this.displayUserDetails = false;
+    this.displayEditUserForm = false;
   }
 
   refresh():void {

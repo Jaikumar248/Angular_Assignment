@@ -4,7 +4,7 @@ a {
     color: black;
 }
 .search {
-    margin-left: 1100px;
+    margin-left: 1200px;
     margin-bottom: 10px;
 }
 
@@ -35,7 +35,7 @@ a {
 .ptable {
     margin-top: -70px;
     width: 97%;
-    height: 360px;
+    height: 550px;
     margin-left: 20px;
     box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
     background-color:white ;
@@ -136,6 +136,14 @@ table tr td {
     position: sticky;
 
 }
+.ptable {
+    margin-top: -88px;
+    width: 97%;
+    height: 360px;
+    margin-left: 4px;
+    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+    background-color:white ;
+}
 }
 @media screen and (max-width: 376px) and (min-width: 327px) {
     .search {
@@ -155,6 +163,14 @@ table tr td {
     .btn-warning {
         margin-left: 40px;
         margin-top: -35px;
+    }
+    .ptable {
+        margin-top: -88px;
+        width: 97%;
+        height: 360px;
+        margin-left: 4px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color:white ;
     }
     
 .conatainer {
@@ -212,6 +228,14 @@ table tr td {
         margin-left: 0px;
 
      }
+     .ptable {
+        margin-top: -88px;
+        width: 97%;
+        height: 360px;
+        margin-left: 4px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color:white ;
+    }
      .p-dialog {
         width: 25vw !important;
     }
@@ -249,8 +273,8 @@ table tr td {
         width: 30vw !important;
     }
     .btn-warning {
-        margin-left: 68px;
-        margin-top: -241px;
+        margin-left: 39px;
+        margin-top: -37px;
     }
     
 .conatainer {
@@ -261,6 +285,7 @@ table tr td {
     margin-top: -80px;
     background-color:white ;
     width: 769px;
+    position: absolute;
   
 }
 }

@@ -29,7 +29,7 @@
         <ng-template pTemplate="body" let-item class="t-body tbody-dark">
     
     
-        <tr (dblclick)="viewModel(item.ticket_id)">
+        <tr (dblclick)="TicketViewMode(item.ticket_id)">
             <td>{{item.reporter_id}}</td>
             <td>{{item.ticket_id}}</td>
             <!-- <td>{{item.assignee}}</td> -->

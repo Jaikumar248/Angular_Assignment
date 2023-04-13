@@ -5,7 +5,7 @@
         <label >User Id:  {{loggedInUser1}}</label> <br>      
      
         <label >Category : </label>
-        <p-autoComplete [(ngModel)]="selectedCategoryValues" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [required]="true" [dropdown]="true" ></p-autoComplete>
+        <p-autoComplete [(ngModel)]="selectedCategoryValues" type="search" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory1" [ngModelOptions]="{'standalone':true}" (completeMethod)="completeCategory($event.query)"  [forceSelection]=false [required]="true" [dropdown]="true" ></p-autoComplete>
 
         <div class="buttons1">
             
@@ -35,10 +35,10 @@
             <div class="grid">
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
                     <label>Category <span>*</span></label>
-                    <p-autoComplete [(ngModel)]="category_desc" name="category_id" appendTo="body" [required]="true" (onSelect)="disp($event)" [suggestions]="selectCategory" (completeMethod)="search($event)" [dropdown]="true"  autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="category_desc" name="category_id" appendTo="body" [required]="true" (onSelect)="disp($event)" [suggestions]="selectCategory1" (completeMethod)="completeCategory($event.query)" [dropdown]="true"  autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Sub Category <span>*</span></label>
                     <!-- <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'90%', 'margin-left':'23px'}" ></p-dropdown><br> -->
-                    <p-autoComplete [(ngModel)]="sub_category_desc" name="sub_category_id" appendTo="body"  [required]="true" (onSelect)="dispsubCategory($event)" [suggestions]="selectedSubCatagory" (completeMethod)="searchSubCategories($event)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="sub_category_desc" name="sub_category_id" appendTo="body"  [required]="true" (onSelect)="dispsubCategory($event)" [suggestions]="selectedSubCatagory1" (completeMethod)="completeSubCategory($event.query)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Status </label>
                     <p-autoComplete [(ngModel)]="status" name="status_id" [disabled]="true" appendTo="body"  [suggestions]="status1" [readonly]="true" (completeMethod)="searchStatus($event)" [dropdown]="true" [readonly]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label >Prirority </label>
@@ -129,7 +129,7 @@
         <ng-template pTemplate="body" let-item class="t-body tbody-dark">
     
     
-        <tr (dblclick)="viewModel(item.ticket_id)">
+        <tr (dblclick)="viewTicketDetails(item.ticket_id)">
             <td>{{item.reporter_id}}</td>
             <td>{{item.ticket_id}}</td>
             <!-- <td>{{item.assignee}}</td> -->

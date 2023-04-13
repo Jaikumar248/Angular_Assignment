@@ -13,17 +13,15 @@ import { Location } from '@angular/common';
 })
 export class UsersHomeComponent implements OnInit {
   allUsers: any;
-  viewUserForm: boolean = false;
-
   messages: Message[] = [];
   messages1: Message[] = [];
   username:any;
   emailId:any;
   addUsers:any;
-  savedValues1:boolean = false;
+  openUserForm:boolean = false;
   dialogValues:any;
   createdSourceType:any;
-  isDisabled: boolean = true;
+
   constructor(private http: HttpClient, private service: UserServiceService, private router: Router, private toastr:ToastrService,
     private location:Location) {
     
@@ -42,9 +40,6 @@ export class UsersHomeComponent implements OnInit {
     }
 
   }
-  showCreateUserForm() {
-    this.viewUserForm = true;
-  }
 
   CreateUser(data: CreateUser) {
     console.log(data)
@@ -58,21 +53,16 @@ export class UsersHomeComponent implements OnInit {
       this.router.navigate(['/home/user-detials']);
     }
     );
-    
-    this.savedValues1 = false;
-    // this.router.navigate(['/home/user-detials']);
+    this.openUserForm = false;
+   
 
   }
   VeiwAllUsers() {
     this.service.GetAllUsers().subscribe((result) => {
       this.allUsers = result;
-      // this.router.navigate(['/home/user-detials']);
     })
   }
  
-
-  
-
   saveUsers(data:any){
     this.username = data.userName;
     this.emailId = data.email_Id;
@@ -83,15 +73,13 @@ export class UsersHomeComponent implements OnInit {
            this.messages = [
             { severity: 'error', summary: 'email id is already exits'}
           ]
-          this.savedValues1 = false;
+          this.openUserForm = false;
           this.addUsers = true;
           break;
-        }
-       
+        }     
         else{
-          this.savedValues1 = true;
+          this.openUserForm = true;
           this.addUsers = false;
-
         }
        
       }

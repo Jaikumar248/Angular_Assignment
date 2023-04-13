@@ -16,21 +16,15 @@ export class UserViewComponent implements OnInit{
   }
   ngOnInit(): void {
     let ticketId = this.activeRoute.snapshot.paramMap.get('ticket_id');
-    console.log(ticketId)
+    console.log(ticketId);
     ticketId && this.ticketService.ViewTicket(ticketId).subscribe((result)=>{
-      console.log(result);
-      
       this.ticketData = result;
-      console.log(this.ticketData)
+     
     });
 
     this.refresh();
   }
 
-  closeForm(){
-    this.router.navigate(['/home/create-ticket']);
-    
-  }
 
   closeViewMode(){
     this.router.navigate(['/home/create-ticket'])

@@ -44,6 +44,8 @@ status : any = {
     3:"high",
     4:"critical"
   }
+
+
   isUserLoggedIn = new BehaviorSubject<boolean>(false);
   displayUserTable = new BehaviorSubject<boolean>(false);
 
@@ -65,21 +67,16 @@ status : any = {
   GetUser(data:any){
     return this.http.get(`http://localhost:8080/viewUser?${data}`);
   }
-  // Getuser(code:any){
-  //   return this.http.get(`http://localhost:8080/viewUser/email_Id${code}` );
-  // }
  
   DeleteUser(id:any){
     return this.http.delete(`http://localhost:8080/deleteUser?user_id=${id}`);
   }
 
-  ReloadData(){
-   
+  ReloadData(){ 
       if(localStorage.getItem('loggedInUser')){
         this.isUserLoggedIn.next(true);
         this.router.navigate(['/home']);
       }
- 
   }
 
   ReloadToAdmin(){
@@ -114,7 +111,5 @@ status : any = {
     return this.http.put('http://localhost:8080/updateUser',data);
   }
  
-
-
 
 }

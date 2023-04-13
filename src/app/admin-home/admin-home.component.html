@@ -162,10 +162,10 @@
     
 </div>
 
-<p-dialog  header="ChangePriority"[(visible)]="displayPopPriority" [modal]="true"  autoWidth="false">
+<p-dialog  header="ChangePriority"[(visible)]="displayPopPriority" [modal]="true"  [closable]="false"  autoWidth="false">
     <form ngNativeValidate>
         <label>Priority :</label>
-        <p-autoComplete [(ngModel)]="selectedPriorityValue" (onClear)="selectedPriorityValue = '' " (onSelect)="displayPriorityValue($event)" [required]="true"  appendTo="body" [suggestions]="seletectPriorities1" (completeMethod)="completePriority($event.query)" [dropdown]="true"  ></p-autoComplete>
+        <p-autoComplete [(ngModel)]="selectedPriorityValue" [ngModelOptions]="{'standalone':true}" (onClear)="selectedPriorityValue = '' " (onSelect)="displayPriorityValue($event)" [required]="true"  appendTo="body" [suggestions]="seletectPriorities1" (completeMethod)="completePriority($event.query)" [dropdown]="true"  ></p-autoComplete>
         <div class="statusButton">
             <button class="btn btn-warning" (click)="closePriority()">Cancel</button>
             <button class="btn btn-primary" (click)="savePriority()" >Save</button>
@@ -173,11 +173,11 @@
     </form>
 </p-dialog>
 
-<p-dialog header="ChangeStatus"[(visible)]="displayPopStatus" [modal]="true" autoWidth="false">
+<p-dialog header="ChangeStatus"[(visible)]="displayPopStatus" [modal]="true" [closable]="false" autoWidth="false">
     <form >
         <label for="">Status :</label>
 
-        <p-autoComplete [(ngModel)]="selectedStatusValue"  (onSelect)="displayStatusValue($event)" [required]="true" [forceSelection]="true"  appendTo="body" [suggestions]="selectedStatus" (completeMethod)="ChangeStatus($event)" [dropdown]="true" ></p-autoComplete>
+        <p-autoComplete [(ngModel)]="selectedStatusValue"  (onSelect)="displayStatusValue($event)" [required]="true" [ngModelOptions]="{'standalone':true}"   appendTo="body" [suggestions]="selectedStatus1" (completeMethod)="completeStatus($event.query)" [dropdown]="true" ></p-autoComplete>
         
         <div class="statusButton">
             <button class="btn btn-warning" (click)="closeStatusPop()">Cancel</button>

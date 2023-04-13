@@ -1,9 +1,9 @@
 .ptable {
     margin-top: -80px;
     width: 97%;
-    height: 400px;
+    height: 550px;
     margin-left: 10px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+    box-shadow: 2px 2px 1px 1px rgb(230, 238, 240);
     background-color:white ;
 }
 i {
@@ -171,6 +171,14 @@ h4 {
         margin-top: 10px;
         margin-left: 170px;
     }
+    .ptable {
+        margin-top: -80px;
+        width: 97%;
+        height: 550px;
+        margin-left: 2px;
+        box-shadow: 2px 2px 1px 1px rgb(230, 238, 240);
+        background-color:white ;
+    }
 }
 @media screen and (max-width: 424px) and (min-width: 374px) {
     .addUserButton {
@@ -198,6 +206,14 @@ h4 {
         top: 140px;
         background-color:white ;
     
+    }
+    .ptable {
+        margin-top: -80px;
+        width: 97%;
+        height: 550px;
+        margin-left: 2px;
+        box-shadow: 2px 2px 1px 1px rgb(230, 238, 240);
+        background-color:white ;
     }
     .ebButtons {
         margin-top: 10px;
