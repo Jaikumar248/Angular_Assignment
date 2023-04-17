@@ -48,11 +48,9 @@ status : any = {
 
   isUserLoggedIn = new BehaviorSubject<boolean>(false);
   displayUserTable = new BehaviorSubject<boolean>(false);
-
   showTickets = new BehaviorSubject<boolean>(false);
   showTicketsTable = new BehaviorSubject<boolean>(false);
   staticMessage:boolean = true;
-
   addusers = new BehaviorSubject<boolean>(false);
 
   constructor(private http:HttpClient, private router: Router, private activatedRoute:ActivatedRoute) { }
@@ -60,6 +58,7 @@ status : any = {
   UserCreate(data:CreateUser){
     return this.http.post('http://localhost:8080/createUser',data);
   }
+
   GetAllUsers(){
     return this.http.get('http://localhost:8080/viewAllUser');
   }
@@ -88,7 +87,6 @@ status : any = {
   ShowUsersInAdmin(){
     this.router.navigate(['/home/user-detials']);
     this.displayUserTable.next(true);
-
   }
 
   ShowTickets(){
@@ -100,7 +98,6 @@ status : any = {
     this.router.navigate(['/home/create-ticket']);
     this.showTicketsTable.next(true);
   }
-
 
   AddUsers(){
     this.addusers.next(true);

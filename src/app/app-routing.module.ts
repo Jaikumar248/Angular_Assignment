@@ -13,25 +13,23 @@ import { UserDetialsComponent } from './user-detials/user-detials.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { UsersHomeComponent } from './users-home/users-home.component';
 import { ViewTicketComponent } from './view-ticket/view-ticket.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
   
   {path: '', redirectTo: 'login', pathMatch:'full'},
   {path: 'login', component: LoginComponent},
- 
-  {path: 'home', component:HomeComponent,
-   canActivate:[AuthGuard],
+  {path: 'home', component:HomeComponent, 
   children: [
-    {path: 'create-ticket', component:CreateTicketComponent, canActivate:[AuthGuard]},
+    {path: 'create-ticket', component:CreateTicketComponent, canActivate:[AdminGuard]},
     {path: 'admin-home', component:AdminHomeComponent, canActivate:[AuthGuard] },
     {path: 'admin-view', component:AdminViewComponent , canActivate:[AuthGuard]},
     {path: 'users-home', component:UsersHomeComponent, canActivate:[AuthGuard]},
-    {path: 'user-view', component:UserViewComponent, canActivate:[AuthGuard]},
-    {path: 'user-view/:ticket_id', component:UserViewComponent, canActivate:[AuthGuard]},
-    {path: 'message', component:MessageComponent, canActivate:[AuthGuard]},
+    {path: 'user-view', component:UserViewComponent, canActivate:[AdminGuard]},
+    {path: 'user-view/:ticket_id', component:UserViewComponent, canActivate:[AdminGuard]},
+    {path: 'message', component:MessageComponent},
     {path: 'user-detials', component:UserDetialsComponent, canActivate:[AuthGuard]},
-    {path: 'view-ticket', component:ViewTicketComponent,  canActivate:[AuthGuard]}
-    
+    {path: 'view-ticket', component:ViewTicketComponent,  canActivate:[AdminGuard]}  
   ]
   }
 ];

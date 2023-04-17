@@ -25,20 +25,16 @@ export class HeaderComponent implements OnInit{
     if(localStorage.getItem('loggedInUser')){
       this.mainHeader = false;
     }
-
   }
  
   Logout(){
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('admin');
-    this.router.navigate(['']);
-    
+    this.router.navigate(['']); 
   }
 
   homeContent(){
     this.router.navigate(['/home/message']);
   }
-
-
 
 }

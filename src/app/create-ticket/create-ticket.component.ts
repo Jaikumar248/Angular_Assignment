@@ -1,16 +1,15 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Location } from '@angular/common';
-import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.css']
 })
 export class CreateTicketComponent implements OnInit {
-
 
   allTickets: any;
   displayTicketForm: boolean = false;
@@ -39,12 +38,11 @@ export class CreateTicketComponent implements OnInit {
   loggedInUser2: any;
   createdSource: any;
   selectCategory1: any;
-  selectedSubCatagory1: any
+  selectedSubCatagory1: any;
+
   constructor(private router: Router, private ticketService: TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute,
     private location: Location) {
-
   }
-
 
   ngOnInit(): void {
     this.ViewUserTicket();
@@ -54,7 +52,6 @@ export class CreateTicketComponent implements OnInit {
       this.selectCategory = Object.values(result);
     })
 
-
     this.SubCategories();
     this.refresh();
     this.status = "open";
@@ -62,7 +59,6 @@ export class CreateTicketComponent implements OnInit {
       this.displayTicketForm = result;
       this.displayTicketTable = false;
     })
-
 
     this.loggedInUser1 = localStorage.getItem('loggedInUser');
     this.loggedInUser1 = JSON.parse(this.loggedInUser1);
@@ -72,11 +68,10 @@ export class CreateTicketComponent implements OnInit {
     if (localStorage.getItem('admin')) {
       this.createdSource = "admin";
     }
+
     if (localStorage.getItem('loggedInUser')) {
       this.createdSource = "user";
     }
-
-
   }
 
   refresh(): void {
@@ -85,9 +80,7 @@ export class CreateTicketComponent implements OnInit {
     });
   }
 
-
   CreateTicket(CreateTicket: any) {
-
     let arr1 = this.userService.categories;
     for (let key in arr1) {
       if (arr1[key] === CreateTicket.category_id) {
@@ -95,12 +88,11 @@ export class CreateTicketComponent implements OnInit {
         CreateTicket['category_id'] = key;
       }
     }
+
     let arr2 = this.userService.sub_categories
     for (let key in arr2) {
       if (arr2[key] === CreateTicket.sub_category_id) {
         CreateTicket.sub_category_id = key;
-        console.log(key);
-
       }
     }
 
@@ -111,31 +103,20 @@ export class CreateTicketComponent implements OnInit {
     CreateTicket.status_id = index;
     console.log(CreateTicket)
     this.ticketService.CreateTicket(CreateTicket, loggedInUser).subscribe((result) => {
-      console.log(result);
-      console.log("abc")
-
     },
       (error) => {
         this.router.navigate(['/home/view-ticket']);
       }
     );
-
-
-
-
   }
-  ViewUserTicket() {
 
+  ViewUserTicket() {
     let loggedInUser: any = localStorage.getItem('loggedInUser');
-    console.log(loggedInUser)
     loggedInUser = JSON.parse(loggedInUser);
     loggedInUser = loggedInUser.user_id;
     this.ticketService.ViewAllUserTicket(loggedInUser).subscribe((result) => {
       this.allTickets = result;
-
     })
-
-
   }
 
   closeTicketForm() {
@@ -146,14 +127,11 @@ export class CreateTicketComponent implements OnInit {
   }
 
   CloseTicketPop() {
-
     this.displayDialog = false;
     this.ticketTable = true;
     this.ViewUserTicket();
     this.displayForm = false;
   }
-
-
 
   completeCategory(data: any) {
     this.selectCategory1 = [];
@@ -184,29 +162,19 @@ export class CreateTicketComponent implements OnInit {
     }
   }
 
-  showDialog() {
+  ShowCategoryDialogBox() {
     this.displayDialog = true;
     this.ticketTable = true;
-
   }
 
-  DisplayTicketForm1() {
+  SelectCategoryValue() {
     this.displayForm = true;
     this.displayDialog = false;
     this.ticketTable = false;
     this.SubCategories();
   }
 
-
-  search(data: any) {
-
-    this.ticketService.ShowCategories().subscribe((result) => {
-      this.selectCategory = result;
-
-    })
-  }
-
-  disp(event: any) {
+  SelectedCategoryValue(event: any) {
     this.selectedCategoryValues = event;
     console.log(this.selectedCategoryValues);
     let value = this.selectedCategoryValues;
@@ -222,20 +190,18 @@ export class CreateTicketComponent implements OnInit {
       }
       index = index + 1;
     }
-
+    this.sub_category_desc = '';
+    this.searchSubCategories(this.catageryValue);
   }
+
   dispsubCategory(event: any) {
     this.sub_category_desc = event;
-    for (let item of Object.values(this.userService.sub_categories)) {
-
-    }
   }
-
 
   searchSubCategories(data: any) {
     this.ticketService.ShowSubCategories(this.catageryValue).subscribe((result) => {
       this.selectedSubCatagory = result;
-    })
+    });
   }
 
   viewTicketDetails(item: any) {
@@ -245,27 +211,24 @@ export class CreateTicketComponent implements OnInit {
       this.ticketData = result;
     });
   }
-  closeForm() {
-    this.displayTicketTable = true;
-
-  }
 
   SubCategories() {
     let value = localStorage.getItem('catageryValue');
     this.ticketService.ShowSubCategories(value).subscribe((result) => {
       this.subCatagories = result;
-    })
+    });
   }
 
   searchStatus(data: any) {
     this.ticketService.ShowStatus().subscribe((result) => {
       this.status1 = result;
-    })
+    });
   }
+
   searchPriority(data: any) {
     this.ticketService.ShowPriority().subscribe((result) => {
       this.priorities = result;
-    })
+    });
   }
 
 }

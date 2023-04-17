@@ -7,22 +7,22 @@ import { UserServiceService } from './services/user-service.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  
   constructor( private userService:UserServiceService, private router:Router ){
 
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(localStorage.getItem('admin') || localStorage.getItem('loggedInUser')){
+      if(localStorage.getItem('admin') ){
         return true ;
       }
+
       else {
         this.router.navigate([''])
         return false;
       }
-    
-   
+     
   }
   
 }

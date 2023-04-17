@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
 
-
     if (localStorage.getItem('loggedInUser')) {
       this.route.navigate(['/home']);
     }
@@ -41,25 +40,23 @@ export class LoginComponent implements OnInit {
       this.adminKeys = vara.toString();
       let vara2 = Object.values(result);
       this.adminValue = vara2.toString();
-
     });
 
   }
+
   SignUp() {
     this.route.navigate(['/sign-up'])
   }
 
   loginSubmit(data: any) {
 
-
     if (data.email_Id === this.adminValue) {
       if (data.email_Id === data.password) {
-        localStorage.setItem('admin', JSON.stringify(this.adminObject));
+        localStorage.setItem('admin', JSON.stringify(this.adminValue));
         this.service.ReloadToAdmin();
       }
       this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
     }
-
     else {
       this.service.GetAllUsers().subscribe((result) => {
         this.showusers = result;
@@ -70,20 +67,17 @@ export class LoginComponent implements OnInit {
               this.service.ReloadData();
             }
           }
-
           else {
             this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
           }
         }
-
       })
     }
-
   }
+
   refresh(): void {
     this.route.navigateByUrl('', { skipLocationChange: true }).then(() => {
       this.route.navigate([decodeURI(this.location.path())]);
     });
   }
-
 }

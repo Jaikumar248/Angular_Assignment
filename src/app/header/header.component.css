@@ -3,7 +3,7 @@ body{
     margin: 0 !important;
 }
 .nav-header{
-    background-color: rgba(15, 105, 135, 0.945);
+    background-color: rgba(3, 77, 102, 0.945);
     height: 45px;
    
 }
@@ -37,21 +37,22 @@ header img {
     margin-left: 30px;
 }
 .footer {
-  height: 40px;
-  background-color: rgba(15, 105, 135, 0.945);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: aliceblue;
-  text-align: center;
-  padding: 1rem;
+    height: 40px;
+    background-color: rgba(3, 77, 102, 0.945);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: aliceblue;
+    text-align: center;
+    padding: 1rem;
 }
+
+
 
 a {
     padding: 8px;
     text-decoration: none;
-   
     margin-left: 25px;
 }
 .active {

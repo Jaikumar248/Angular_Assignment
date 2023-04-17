@@ -12,18 +12,17 @@ export class ViewTicketComponent implements OnInit {
 
   allTickets: any;
   ticketData: any;
+
   constructor(private ticketService: TicketServiceService, private router: Router, private activeRoute: ActivatedRoute,
     private location: Location) { }
+
   ngOnInit(): void {
     this.ViewUserTicket();
     this.refresh();
   }
 
-
-
   ViewUserTicket() {
     let loggedInUser: any = localStorage.getItem('loggedInUser');
-    console.log(loggedInUser)
     loggedInUser = JSON.parse(loggedInUser);
     loggedInUser = loggedInUser.user_id;
     this.ticketService.ViewAllUserTicket(loggedInUser).subscribe((result) => {

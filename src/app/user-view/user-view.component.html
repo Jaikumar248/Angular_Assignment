@@ -4,10 +4,9 @@
     <h2>Ticket Details</h2>
 </div>
 
-<div class="conatainer">
+<div class="ticketDetailsBody">
     <h2>Ticket Details</h2>
 
- 
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-6 field">
             <div>
@@ -60,7 +59,7 @@
             </div>
             <div>
                 <label class="col-6">Created Date :</label>
-                <label class="col-6">{{ticketData.create_datetime}}</label>
+                <label class="col-6">{{ticketData.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">Created Source :</label>
@@ -71,19 +70,19 @@
                 <label class="col-6">{{ticketData.createdSourceType}}</label>
             </div>
             <div>
-                <label class="col-6">Modified Date :</label>
-                <label class="col-6">{{ticketData.last_modified_datetime}}</label>
+                <label class="col-6">Modified Date  :</label>
+                <label class="col-6">{{ticketData.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">ModifiedSource :</label>
                 <label class="col-6">{{ticketData.modifiedSource}}</label>
             </div>
             <div>
-                <label class="col-6">ModifiedSourceType : :</label>
+                <label class="col-6">ModifiedSourceType : </label>
                 <label class="col-6">{{ticketData.modifiedSourceType}}</label>
             </div>
         </div>
-        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
+        <button type="button" class="btn btn-warning backButton" (click)="closeViewMode()">Back</button>
 
     </div>
 </div>

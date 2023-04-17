@@ -1,22 +1,10 @@
-/* label {
-    margin-bottom: 7px;
-    margin-left: 30px;
-} */
-input {
-    margin-bottom: 10px;
-    width: 285px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
+
+
 .ticket-header h2 {
     padding-top: 20px;
 }
-.buttons {
-    text-align: right;
-}
-.buttons button {
-    margin: 0px 10px;
-}
+
+
 .header {
     background-color: rgb(16, 160, 208);
     height: 120px;
@@ -24,7 +12,7 @@ input {
 }
 
 
-.conatainer {
+.ticketDetailsBody {
     box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
      margin-left: 70px;
     width: 1400px;
@@ -34,27 +22,11 @@ input {
     background-color:white ;
   
 }
-hr {
-   margin-top: 30px;
-}
-.view > * {
-    display: block;
-}
-table {
-    position: absolute;
-    margin: auto;
-    margin-top: 10px;
-    margin-left: 50px;
-}
-table tr td {
-    padding: 20px;
-    margin-right: 200px;
-}
-/* .buttons {
-    margin-top: 510px;
-    margin-left: 800px;
-} */
-button {
+
+
+
+
+.backButton {
     margin-top: 30px;
     margin-left: 1300px;
 }
@@ -65,7 +37,8 @@ button {
 
 
 @media screen and (max-width: 321px) and (min-width: 200px) {
-    .conatainer {
+    
+    .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
         margin-left: 0px;
         width: 321px;
@@ -75,14 +48,14 @@ button {
         background-color:white ;
       
     }
-    button{
+    .backButton{
         margin-top: -11px;
         margin-left: 264px;
     }
     
 }
 @media screen and (max-width: 376px) and (min-width: 321px) {
-    .conatainer {
+    .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
         margin-left: 0px;
         width: 370px;
@@ -92,7 +65,7 @@ button {
         background-color:white ;
       
     }
-    button{
+    .backButton{
         margin-top: 30px;
         margin-left: 300px;
     }
@@ -100,7 +73,7 @@ button {
 
 }
 @media screen and (max-width: 426px) and (min-width: 377px) {
-    .conatainer {
+    .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
         margin-left: 0px;
         width: 476px;
@@ -110,14 +83,14 @@ button {
         background-color:white ;
       
     }
-    button{
+    .backButton{
         margin-top: 30px;
         margin-left: 370px;
     }
 
 }
 @media screen and (max-width: 769px) and (min-width: 426px) {
-    .conatainer {
+    .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
         margin-left: 0px;
         width: 760px;
@@ -127,13 +100,13 @@ button {
         background-color:white ;
       
     }
-    button{
+    .backButton{
         margin-top: 30px;
         margin-left: 700px;
     }
 }
 @media screen and (max-width: 1025px) and (min-width:770px) {
-    .conatainer {
+    .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
         margin-left: 0px;
         width: 1025px;
@@ -143,7 +116,7 @@ button {
         background-color:white ;
       
     }
-    button{
+    .backButton{
         margin-top: 30px;
         margin-left: 930px;
     }

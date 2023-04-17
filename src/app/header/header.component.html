@@ -4,26 +4,32 @@
     <a type="button" (click)="Logout()" routerLinkActive="active" >Logout</a>
 </header>
 
-<div class="toggleHeader"  >
+<div class="toggleHeader">
+
     <nav class="nav-header" *ngIf="!mainHeader">
+
         <div class="nav-header">
         
            <ul class="nav-items"> 
                 <a type="button" routerLinkActive="active"  routerLink="/home/message" ><li>Home</li></a>
                 <a type="button" routerLinkActive="active" routerLink="/home/create-ticket"><li>CreateTicket</li></a>
-                <a type="button" routerLinkActive="active" routerLink='/home/view-ticket' ><li>View Tickets</li></a>
+                <a type="button" routerLinkActive="active" routerLink='/home/view-ticket' ><li>ViewTickets</li></a>
             </ul>
+
         </div>
+
     </nav>
    
-
     <nav class="nav-header" *ngIf="mainHeader">
+
         <ul class="nav-items">
             <a type="button"  routerLinkActive="active" routerLink="/home/message" ><li >Home</li></a>
             <a type="button" routerLinkActive="active" routerLink="/home/user-detials"> <li>UsersDetails</li></a>
             <a type="button" routerLinkActive="active" routerLink="/home/admin-home"><li>TicketsDetails</li></a>
         </ul>
+
     </nav>
+    
 </div>
 
 

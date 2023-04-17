@@ -2,11 +2,15 @@
 <div class="header" *ngIf="showTicketTable">
     <h2>Ticket List</h2>
 </div>
-<div class="ptable" *ngIf="showTicketTable">
-    <div class="search"><input type="text" [(ngModel)]="ticket" (keyup)="ViewTicketById()"></div>
-        <p-table  [value]="viewAllTickets" [paginator]=true [rows]="5"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+
+<div class="tableTickets" *ngIf="showTicketTable">
+
+    <div class="search"><input type="text" placeholder="search tickets" [(ngModel)]="ticket" (keyup)="ViewTicketById()"></div>
+
+        <p-table  [value]="viewAllTickets" [paginator]=true [rows]="5" [alwaysShowPaginator]="false"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
             <input type="text" placeholder="Search" [(ngModel)]="searchText">
             <ng-template pTemplate="header" class="t-head thead-primary">
+
                 <tr>
                     <th>User Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
                     <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
@@ -27,9 +31,9 @@
                     <th>Last Modified Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
                     <th>Action</th>
                 </tr>
+
             </ng-template>
             <ng-template pTemplate="body" let-item class="t-body tbody-dark">
-        
         
             <tr (dblclick)="TicketviewMode(item)">
                 <td>{{item.reporter_id}}</td>
@@ -54,33 +58,39 @@
                     <button class="btn btn-warning " (click)="DeleteTicket(item.ticket_id)">Delete</button>
                 </td>
             </tr>
+
             </ng-template>
 
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="14" style="text-align: center;">No data</td>
+                    <td colspan="14" style="text-align: center;">No data Found</td>
                 </tr>
             </ng-template>
+
         </p-table>
-    
+
 </div>
+
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
 <div class="header"  *ngIf="ticketView">
     <h2>Ticket Details</h2>
 </div>
 
-<div class="conatainer" *ngIf="ticketView">
+<div class="ticketDetails" *ngIf="ticketView">
+
     <h2>Ticket Details</h2>
+
     <div class="buttons">
-    
         <button (click)="ChangePriority()">ChangePriority</button>
-        <button (click)="ChangeStatus1()">ChangeStatus</button>
+        <button (click)="ChangeStatusButton()">ChangeStatus</button>
         <!-- <button (click)="SetAssignee()">Set Assignee</button> -->
     </div>
 
     <div class="grid">
+
         <div class="col-12 md:col-12 lg:col-6 field">
+
             <div>
                 <label class="col-6">Ticket_Id :</label>
                 <label class="col-6">{{ticketData.ticket_id}}</label>
@@ -155,7 +165,7 @@
             </div>
         </div >
         <div class="backButton">
-            <button type="button" class="btn btn-warning" (click)="closeViewMode()">Back</button>
+            <button type="button" class="btn btn-warning" (click)="closeViewMode()">Cancel</button>
         </div>
 
     </div>
@@ -163,6 +173,7 @@
 </div>
 
 <p-dialog  header="ChangePriority"[(visible)]="displayPopPriority" [modal]="true"  [closable]="false"  autoWidth="false">
+
     <form ngNativeValidate>
         <label>Priority :</label>
         <p-autoComplete [(ngModel)]="selectedPriorityValue" [ngModelOptions]="{'standalone':true}" (onClear)="selectedPriorityValue = '' " (onSelect)="displayPriorityValue($event)" [required]="true"  appendTo="body" [suggestions]="seletectPriorities1" (completeMethod)="completePriority($event.query)" [dropdown]="true"  ></p-autoComplete>
@@ -171,33 +182,34 @@
             <button class="btn btn-primary" (click)="savePriority()" >Save</button>
         </div>
     </form>
+
 </p-dialog>
 
 <p-dialog header="ChangeStatus"[(visible)]="displayPopStatus" [modal]="true" [closable]="false" autoWidth="false">
-    <form >
-        <label for="">Status :</label>
 
+    <form ngNativeValidate>
+        <label for="">Status :</label>
         <p-autoComplete [(ngModel)]="selectedStatusValue"  (onSelect)="displayStatusValue($event)" [required]="true" [ngModelOptions]="{'standalone':true}"   appendTo="body" [suggestions]="selectedStatus1" (completeMethod)="completeStatus($event.query)" [dropdown]="true" ></p-autoComplete>
-        
         <div class="statusButton">
             <button class="btn btn-warning" (click)="closeStatusPop()">Cancel</button>
             <button class="btn btn-primary" (click)="saveStatus()">Save</button>
         </div>
     </form>
+
 </p-dialog>
 
 
 <p-dialog header="SetAssignee" [(visible)]="setAssignee" [style]="{width:'20vw', height:'20vw'}">
-    <form >
-        <label for="">SetAssignee :</label>
 
+    <form>
+        <label for="">SetAssignee :</label>
         <p-autoComplete [(ngModel)]="getAdminValue" (onSelect)="displayAdminValue($event)"   appendTo="body" [suggestions]="adminValue" (completeMethod)="SetAssigneeSave($event)" [dropdown]="true" ></p-autoComplete>
-        
         <div class="statusButton">
             <button class="btn btn-warning" (click)="closeSetAssignee()">Cancel</button>
             <button class="btn btn-primary" (click)="saveAssignee()">Save</button>
         </div>
     </form>
+
 </p-dialog>
 
 

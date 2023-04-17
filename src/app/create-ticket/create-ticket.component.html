@@ -1,52 +1,52 @@
 
-<p-dialog header="AddTicket" [modal]="true" [(visible)]="displayDialog">
+<p-dialog header="AddTicket" [modal]="true" [closable]="false" [(visible)]="displayDialog">
     
-    <form #form="ngForm" (ngSubmit)="DisplayTicketForm1()" ngNativeValidate> 
-        <label >User Id:  {{loggedInUser1}}</label> <br>      
-     
-        <label >Category : </label>
-        <p-autoComplete [(ngModel)]="selectedCategoryValues" type="search" appendTo="body" (onSelect)="disp($event)" [suggestions]="selectCategory1" [ngModelOptions]="{'standalone':true}" (completeMethod)="completeCategory($event.query)"  [forceSelection]=false [required]="true" [dropdown]="true" ></p-autoComplete>
+    <form #form="ngForm" (ngSubmit)="SelectCategoryValue()" ngNativeValidate> 
 
-        <div class="buttons1">
-            
+        <label >User Id :  {{loggedInUser1}}</label> <br>        
+        <label >Category <span>*</span> : </label>
+        <p-autoComplete [(ngModel)]="selectedCategoryValues" type="search" appendTo="body" (onSelect)="SelectedCategoryValue($event)" [suggestions]="selectCategory1" [ngModelOptions]="{'standalone':true}" (completeMethod)="completeCategory($event.query)"  [forceSelection]=false [required]="true" [dropdown]="true" ></p-autoComplete>
+
+        <div class="buttons1">    
             <button class="btn btn-primary savebutton" type="submit">Save</button>
-         
-            <!--  <button pButton type="submit" >save</button> -->
         </div>
         
     </form>
     <button class="close-button btn btn-warning " (click)="closeTicketForm()" >Cancel</button>
-    
-
 
 </p-dialog>
 
 <div class="header" *ngIf="displayForm">
     <h2>Add New Ticket</h2>
 </div>
+
 <div class="conatainer" *ngIf="displayForm">
 
     <div class="ticket-header">
         <h4>Create New Ticket </h4>
     </div>
+
     <hr>
+
     <div class="row">
+
         <form #ticketvalues=ngForm (ngSubmit)="CreateTicket(ticketvalues.value)" ngNativeValidate>
             <div class="grid">
+
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+
                     <label>Category <span>*</span></label>
-                    <p-autoComplete [(ngModel)]="category_desc" name="category_id" appendTo="body" [required]="true" (onSelect)="disp($event)" [suggestions]="selectCategory1" (completeMethod)="completeCategory($event.query)" [dropdown]="true"  autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
+                    <p-autoComplete [(ngModel)]="category_desc" name="category_id" appendTo="body" [required]="true" (onSelect)="SelectedCategoryValue($event)" [suggestions]="selectCategory1" (completeMethod)="completeCategory($event.query)" [dropdown]="true"  autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Sub Category <span>*</span></label>
-                    <!-- <p-dropdown [options]="subCatagories" name="sub_category_id" [(ngModel)]="selectedSubCatagory" autoWidth="false" [style]="{'width':'90%', 'margin-left':'23px'}" ></p-dropdown><br> -->
                     <p-autoComplete [(ngModel)]="sub_category_desc" name="sub_category_id" appendTo="body"  [required]="true" (onSelect)="dispsubCategory($event)" [suggestions]="selectedSubCatagory1" (completeMethod)="completeSubCategory($event.query)" [dropdown]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label>Status </label>
                     <p-autoComplete [(ngModel)]="status" name="status_id" [disabled]="true" appendTo="body"  [suggestions]="status1" [readonly]="true" (completeMethod)="searchStatus($event)" [dropdown]="true" [readonly]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
                     <label >Prirority </label>
                     <p-autoComplete [(ngModel)]="intialPriorityValue"  [disabled]="true" value="null" appendTo="body" [readonly]="true"  [suggestions]="priorities" (completeMethod)="searchPriority($event)" [dropdown]="true" [readonly]="true" autoWidth="false" [style]="{'width':'90%', 'margin-left':'22px'}" ></p-autoComplete>
-               
                   
                 </div>
                 <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+
                     <label> Subject</label>
                     <input type="text" name="subject" ngModel class="form-control"  maxlength="120">
                     <div *ngIf="ticketvalues.controls['subject']?.['touched'] && ticketvalues.controls['subject']?.['errors']" 
@@ -63,7 +63,7 @@
                             Description is 200 characters only.
                         </div>
                     </div>
-                    <label >Created Source</label>
+                    <label >Created Source <span>*</span></label>
                     <input type="text"  [(ngModel)]="loggedInUserName" readonly name="createdSource" ngModel class="form-control disabled" maxlength="120" >
                     <div *ngIf="ticketvalues.controls['createdSource']?.['touched'] && ticketvalues.controls['createdSource']?.['errors']" 
                     class="invalid">
@@ -71,7 +71,7 @@
                           Created Source is 120 characters only.
                        </div>
                    </div>
-                    <label >Created Source Type</label>
+                    <label >Created Source Type <span>*</span></label>
                     <input type="text"  [(ngModel)]="createdSource" name="createdSourceType" readonly ngModel class="form-control disabled" maxlength="120">
                     <div *ngIf="ticketvalues.controls['createdSourceType']?.['touched'] && ticketvalues.controls['createdSourceType']?.['errors']" 
                     class="invalid">
@@ -80,17 +80,20 @@
                        </div>
                    </div>
                 </div>
+
             </div>
+
             <hr>
+
             <div class="buttons">
                 <button class="btn btn-warning" (click)="closeTicketForm()">Cancel</button>
                 <button class="btn btn-primary">Save</button>
-
             </div>
+
         </form>
+
     </div>
  
-
 </div>
 
 
@@ -100,12 +103,14 @@
 </div>
 
 <div class="ptable1" *ngIf="ticketTable">
+
     <div class="addTicketButton" *ngIf="ticketTable">
-        <button class="btn btn-primary" (click)="showDialog()" >Add Ticket</button>
+        <button class="btn btn-primary" (click)="ShowCategoryDialogBox()" >Add Ticket</button>
     </div>
 
-    <p-table  [value]="allTickets"  [paginator]=true [rows]="6" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+    <p-table  [value]="allTickets"  [paginator]=true [rows]="6" [alwaysShowPaginator]="false" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
         <ng-template pTemplate="header" class="t-head thead-primary">
+
             <tr>
                 <th>User Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
                 <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
@@ -125,6 +130,7 @@
                 <th>Create Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
                 <th>Last Modified Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
             </tr>
+
         </ng-template>
         <ng-template pTemplate="body" let-item class="t-body tbody-dark">
     
@@ -148,13 +154,17 @@
             <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
             <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
         </tr>
+
         </ng-template>
+
         <ng-template pTemplate="emptymessage">
             <tr>
                 <td colspan="14" style="text-align: center;">No data Found</td>
             </tr>
         </ng-template>
+
     </p-table>
+
 </div>
 
 

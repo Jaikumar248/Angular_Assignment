@@ -1,46 +1,25 @@
 
-<p-dialog header="AddUsers"  [(visible)]="addUsers" [modal]="true" [closable]="false"  autoWidth="false" >
+<!-- <p-dialog header="AddUsers"  [(visible)]="addUsers" [modal]="true" [closable]="false"  autoWidth="false" >
+
     <p-messages [(value)]="messages"></p-messages>
     <form #adduser="ngForm" (ngSubmit)="saveUsers(adduser.value)" ngNativeValidate>
         <label>UserName<span>*</span></label>
-        <input type="text" ngModel name="userName" class="form-control" #userName minlength="4" maxlength="20" required>
-        <div *ngIf="adduser.controls['userName']?.['touched'] && adduser.controls['userName']?.['errors']"
-            class="invalid">
-            <div *ngIf="adduser.controls['userName']?.['errors']?.['required']">
-                User Name is required
-            </div>
-            <div *ngIf="adduser.controls['userName']?.['errors']?.['minlength']">
-                User Name must be at least 4 characters long.
-            </div>
-            <div *ngIf="adduser.controls['userName']?.['errors']?.['maxlength']">
-                User Name is Maximum 20 characters only.
-            </div>
-        </div>
+        <input type="text" ngModel name="userName" class="form-control" #userName  maxlength="20" required>
+      
         <label>Email Id<span>*</span></label>
         <input type="email" ngModel name="email_Id" class="form-control" #email_Id required email pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*.[com]$" >
-        <div *ngIf="adduser.controls['email_Id']?.['touched'] && adduser.controls['email_Id']?.['errors']"
-            class="invalid">
-            <div *ngIf="adduser.controls['email_Id']?.['errors']?.['required']">
-                Email_Id Name is required
-            </div>
-            <div *ngIf="adduser.controls['email_Id']?.['errors']?.['required']">
-                Invalid Mail pattern
-            </div>
-        </div>
+       
         <div class="buttons">
             <button class="btn btn-warning" (click)="closeDialogPop()">Cancel</button>
             <button class="btn btn-primary">Save</button>
         </div>
     </form>
-</p-dialog>
 
-
+</p-dialog> -->
 
 <div class="header" *ngIf="openUserForm">
-    
     <h2><i class="pi pi-user-plus"></i> Add New User</h2>
 </div>
-
 
 <div class="usercreateddiv " *ngIf="openUserForm">
     <div class="container ">
@@ -48,6 +27,7 @@
             <h4> 
                 Add New User</h4>
         </div>
+
         <hr>
 
         <div class="row">
@@ -56,6 +36,7 @@
       
                         <div class="grid">
                             <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+
                                 <label>UserName<span>*</span></label>
                                 <input type="text" name="userName" ngModel="{{this.username}}" ngModel class="form-control name disabled" readonly> 
                                 <label>First Name<span>*</span></label>
@@ -87,10 +68,8 @@
                                     </div>
                                 </div>
                                 <label for="">email Id<span>*</span></label>
-                                <input type="email" ngModel="{{this.emailId}}" name="email_Id" class="form-control disabled"
-                                    required email readonly>
-
-                                
+                                <input type="email" ngModel="{{this.emailId}}" name="email_Id" class="form-control disabled" required email readonly>
+                               
                             </div>
 
                             <div class="col-12 sm:col-12 md:col-6 lg:col-6">

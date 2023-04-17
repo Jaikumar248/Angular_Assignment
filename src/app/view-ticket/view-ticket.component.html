@@ -1,11 +1,13 @@
 <div class="header"  >
     <h2>View Tickets</h2>
 </div>
-<div class="ptable1">
 
-    <p-table  [value]="allTickets"  [paginator]=true [rows]="7" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
+<div class="tableTicketDetails">
+
+    <p-table  [value]="allTickets"  [paginator]=true [rows]="5" [alwaysShowPaginator]="false" styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
         <ng-template pTemplate="header" class="t-head thead-primary">
             <tr>
+
                 <th>User Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
                 <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
                 <!-- <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th> -->
@@ -46,14 +48,16 @@
             <td>{{item.modifiedSource}}</td>
             <td>{{item.modifiedSourceType}}</td>
             <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
-            <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
-            
+            <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>    
         </tr>
+
         </ng-template>
+
         <ng-template pTemplate="emptymessage">
             <tr>
                 <td colspan="14" style="text-align: center;">No data Found</td>
             </tr>
         </ng-template>
+
     </p-table>
 </div>
