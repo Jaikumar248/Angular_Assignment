@@ -6,7 +6,19 @@
     box-shadow: 2px 2px 1px 1px rgb(230, 238, 240);
     background-color:white ;
 }
+.flex {
+    margin-top: 20px;
+}
+#radio {
+    margin-left: 20px;
+}
+.col-12 {
+    margin-top: 15px;
+}
 
+.detials {
+    margin-left: 40px;
+}
 i {
     font-size: xx-large;
     margin-left: 5px;
@@ -76,6 +88,12 @@ table tr td {
 }
 span{
     color: red;
+}
+.dialogButtons  {
+    text-align: right;
+}
+.dialogButtons button {
+    margin-left: 5px;
 }
 
 .buttons{

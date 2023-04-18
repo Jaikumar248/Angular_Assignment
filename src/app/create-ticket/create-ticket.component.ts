@@ -39,6 +39,7 @@ export class CreateTicketComponent implements OnInit {
   createdSource: any;
   selectCategory1: any;
   selectedSubCatagory1: any;
+  CategoryValue:any;
 
   constructor(private router: Router, private ticketService: TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute,
     private location: Location) {
@@ -75,7 +76,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   refresh(): void {
-    this.router.navigateByUrl('/home/create-ticket', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/home/createTicket', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }
@@ -105,7 +106,7 @@ export class CreateTicketComponent implements OnInit {
     this.ticketService.CreateTicket(CreateTicket, loggedInUser).subscribe((result) => {
     },
       (error) => {
-        this.router.navigate(['/home/view-ticket']);
+        this.router.navigate(['/home/viewTicket']);
       }
     );
   }
@@ -168,10 +169,18 @@ export class CreateTicketComponent implements OnInit {
   }
 
   SelectCategoryValue() {
-    this.displayForm = true;
-    this.displayDialog = false;
-    this.ticketTable = false;
-    this.SubCategories();
+  
+    let check = Object.values(this.userService.categories).some((data)=>{
+      return data===this.selectedCategoryValues;
+    })
+    if(check){
+          this.displayForm = true;
+          this.displayDialog = false;
+          this.ticketTable = false;
+          this.SubCategories();
+    }else{
+      alert("please select only dropdown values only");
+    }
   }
 
   SelectedCategoryValue(event: any) {
@@ -205,7 +214,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   viewTicketDetails(item: any) {
-    this.router.navigate([`/home/user-view/${item}`]);
+    this.router.navigate([`/home/userView/${item}`]);
     let ticketId = this.activeRoute.snapshot.paramMap.get('ticket_id');
     ticketId && this.ticketService.ViewTicket(ticketId).subscribe((result) => {
       this.ticketData = result;

@@ -50,7 +50,7 @@ a {
     margin-left: 56px;
     margin-right: 20px;
     height: 560px;
-    margin-top: -80px;
+    margin-top: -100px;
     background-color:white ;
     width: 1400px;
   
@@ -77,8 +77,13 @@ table tr td {
     margin-bottom: 20px;
     
 }
+.grid {
+    margin-top: 30px;
+    margin-left: 30px;
+}
 .buttons button {
-   margin-left: 10px;
+    margin-top: 30px;
+   margin-left: 20px;
 }
 
 .statusButton {
@@ -89,10 +94,13 @@ table tr td {
 }
 
 .backButton {
-    margin-left: 1200px;
+    margin-left: 850px;
     margin-top: 10px;
 }
 
+.backButton button {
+    margin-left: 30px;
+}
 .header {
     margin-top: 0px;
     background-color: rgb(16, 160, 208);

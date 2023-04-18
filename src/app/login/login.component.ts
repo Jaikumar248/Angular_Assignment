@@ -49,19 +49,23 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(data: any) {
+    this.service.GetAllUsers().subscribe((result) => {
+      this.showusers = result;
+      
 
-    if (data.email_Id === this.adminValue) {
-      if (data.email_Id === data.password) {
-        localStorage.setItem('admin', JSON.stringify(this.adminValue));
-        this.service.ReloadToAdmin();
-      }
-      this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
-    }
-    else {
-      this.service.GetAllUsers().subscribe((result) => {
-        this.showusers = result;
-        for (let item of this.showusers) {
-          if (data.email_Id === item.email_Id) {
+      for (let item of this.showusers){
+        console.log(item.isAdmin);
+        if ( item.isAdmin && data.email_Id === item.email_Id ) {
+          console.log(item.isAdmin, "admin");
+          if (data.email_Id === data.password) {
+            localStorage.setItem('admin', JSON.stringify(item));
+            this.service.ReloadToAdmin();
+          }
+          this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
+        }
+        else {
+          if (data.email_Id === item.email_Id && !data.isAdmin) {
+            console.log(item.isAdmin, "user");
             if (data.email_Id === data.password) {
               localStorage.setItem('loggedInUser', JSON.stringify(item));
               this.service.ReloadData();
@@ -71,8 +75,32 @@ export class LoginComponent implements OnInit {
             this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
           }
         }
-      })
-    }
+      }
+    
+    
+    
+    
+
+
+})
+
+   
+    // else {
+    //   this.service.GetAllUsers().subscribe((result) => {
+    //     this.showusers = result;
+    //     for (let item of this.showusers) {
+    //       if (data.email_Id === item.email_Id && !data.isAmdin) {
+    //         if (data.email_Id === data.password) {
+    //           localStorage.setItem('loggedInUser', JSON.stringify(item));
+    //           this.service.ReloadData();
+    //         }
+    //       }
+    //       else {
+    //         this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
+    //       }
+    //     }
+    //   })
+    // }
   }
 
   refresh(): void {

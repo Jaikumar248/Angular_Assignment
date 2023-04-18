@@ -3,17 +3,18 @@
     
     <form #form="ngForm" (ngSubmit)="SelectCategoryValue()" ngNativeValidate> 
 
-        <label >User Id :  {{loggedInUser1}}</label> <br>        
-        <label >Category <span>*</span> : </label>
-        <p-autoComplete [(ngModel)]="selectedCategoryValues" type="search" appendTo="body" (onSelect)="SelectedCategoryValue($event)" [suggestions]="selectCategory1" [ngModelOptions]="{'standalone':true}" (completeMethod)="completeCategory($event.query)"  [forceSelection]=false [required]="true" [dropdown]="true" ></p-autoComplete>
+        <label id="userLabel">User Id : </label> 
+        <label>{{loggedInUser1}}</label><br>        
+        <label id="label">Category <span>*</span>  </label>
+        <p-autoComplete [(ngModel)]="selectedCategoryValues"  type="search" appendTo="body" (onSelect)="SelectedCategoryValue($event)" [suggestions]="selectCategory1" [ngModelOptions]="{'standalone':true}" (completeMethod)="completeCategory($event.query)"  [forceSelection]=false [required]="true" [dropdown]="true" ></p-autoComplete>
 
         <div class="buttons1">    
             <button class="btn btn-primary savebutton" type="submit">Save</button>
+            <button class=" btn btn-warning " (click)="closeTicketForm()" >Cancel</button>
         </div>
         
     </form>
-    <button class="close-button btn btn-warning " (click)="closeTicketForm()" >Cancel</button>
-
+ 
 </p-dialog>
 
 <div class="header" *ngIf="displayForm">

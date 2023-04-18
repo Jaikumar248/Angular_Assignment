@@ -79,23 +79,25 @@ status : any = {
   }
 
   ReloadToAdmin(){
+    console.log(localStorage.getItem('admin'));
+    
     if(localStorage.getItem('admin')){
       this.router.navigate(['/home']);
     }
   }
 
   ShowUsersInAdmin(){
-    this.router.navigate(['/home/user-detials']);
+    this.router.navigate(['/home/userDetails']);
     this.displayUserTable.next(true);
   }
 
   ShowTickets(){
-    this.router.navigate(['/home/create-ticket']);
+    this.router.navigate(['/home/createTicket']);
     this.showTickets.next(true);
   }
 
   ShowTicketsTable(){
-    this.router.navigate(['/home/create-ticket']);
+    this.router.navigate(['/home/createTicket']);
     this.showTicketsTable.next(true);
   }
 

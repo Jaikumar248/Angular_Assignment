@@ -32,6 +32,8 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { ToastrModule } from 'ngx-toastr';
 import {ToastModule} from 'primeng/toast';
 import { ViewTicketComponent } from './view-ticket/view-ticket.component';
+import {RadioButtonModule} from 'primeng/radiobutton';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { ViewTicketComponent } from './view-ticket/view-ticket.component';
     DropdownModule,
     DataViewModule,
     ToastModule,
+    RadioButtonModule,
     ToastrModule.forRoot()
     
     

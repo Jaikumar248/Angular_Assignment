@@ -21,15 +21,15 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component:HomeComponent, 
   children: [
-    {path: 'create-ticket', component:CreateTicketComponent, canActivate:[AdminGuard]},
-    {path: 'admin-home', component:AdminHomeComponent, canActivate:[AuthGuard] },
+    {path: 'createTicket', component:CreateTicketComponent, canActivate:[AdminGuard]},
+    {path: 'adminHome', component:AdminHomeComponent, canActivate:[AuthGuard] },
     {path: 'admin-view', component:AdminViewComponent , canActivate:[AuthGuard]},
     {path: 'users-home', component:UsersHomeComponent, canActivate:[AuthGuard]},
-    {path: 'user-view', component:UserViewComponent, canActivate:[AdminGuard]},
-    {path: 'user-view/:ticket_id', component:UserViewComponent, canActivate:[AdminGuard]},
+    {path: 'userView', component:UserViewComponent, canActivate:[AdminGuard]},
+    {path: 'userView/:ticket_id', component:UserViewComponent, canActivate:[AdminGuard]},
     {path: 'message', component:MessageComponent},
-    {path: 'user-detials', component:UserDetialsComponent, canActivate:[AuthGuard]},
-    {path: 'view-ticket', component:ViewTicketComponent,  canActivate:[AdminGuard]}  
+    {path: 'userDetails', component:UserDetialsComponent, canActivate:[AuthGuard]},
+    {path: 'viewTicket', component:ViewTicketComponent,  canActivate:[AdminGuard]}  
   ]
   }
 ];

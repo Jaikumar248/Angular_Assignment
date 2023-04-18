@@ -31,7 +31,7 @@ export class ViewTicketComponent implements OnInit {
   }
 
   TicketViewMode(item: any) {
-    this.router.navigate([`/home/user-view/${item}`]);
+    this.router.navigate([`/home/userView/${item}`]);
     let ticketId = this.activeRoute.snapshot.paramMap.get('ticket_id');
     ticketId && this.ticketService.ViewTicket(ticketId).subscribe((result) => {
       this.ticketData = result;
@@ -39,7 +39,7 @@ export class ViewTicketComponent implements OnInit {
   }
 
   refresh(): void {
-    this.router.navigateByUrl('/home/view-ticket', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/home/viewTicket', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }

@@ -54,7 +54,6 @@
                 <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
                 <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
                 <td>
-                    <!-- <button class="btn btn-info"><a routerLink="/home/admin-view" (click)="upDateTicket()">Edit</a></button> -->
                     <button class="btn btn-warning " (click)="DeleteTicket(item.ticket_id)">Delete</button>
                 </td>
             </tr>
@@ -78,14 +77,6 @@
 </div>
 
 <div class="ticketDetails" *ngIf="ticketView">
-
-    <h2>Ticket Details</h2>
-
-    <div class="buttons">
-        <button (click)="ChangePriority()">ChangePriority</button>
-        <button (click)="ChangeStatusButton()">ChangeStatus</button>
-        <!-- <button (click)="SetAssignee()">Set Assignee</button> -->
-    </div>
 
     <div class="grid">
 
@@ -164,12 +155,13 @@
                 <label class="col-6">{{ticketData.modifiedSourceType}}</label>
             </div>
         </div >
-        <div class="backButton">
-            <button type="button" class="btn btn-warning" (click)="closeViewMode()">Cancel</button>
-        </div>
 
     </div>
-    
+    <div class="backButton">
+        <button class="" type="button" (click)="ChangePriority()">ChangePriority</button>
+        <button type="button" (click)="ChangeStatusButton()">ChangeStatus</button>
+        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Cancel</button>
+    </div>
 </div>
 
 <p-dialog  header="ChangePriority"[(visible)]="displayPopPriority" [modal]="true"  [closable]="false"  autoWidth="false">

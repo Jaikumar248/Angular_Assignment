@@ -24,11 +24,11 @@ export class UserViewComponent implements OnInit {
   }
 
   closeViewMode() {
-    this.router.navigate(['/home/create-ticket']);
+    this.router.navigate(['/home/createTicket']);
   }
 
   refresh(): void {
-    this.router.navigateByUrl('/home/user-view/ this.ticketData ', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/home/userView/this.ticketData ', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }

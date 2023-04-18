@@ -31,6 +31,10 @@ export class UserDetialsComponent implements OnInit {
   openUserForm: boolean = false;
   dialogValues: any;
   createdSourceType: any;
+  createdModifiedValue: any;
+  modifiedSourceType:any;
+  createdSource:any;
+  adminUserType:any;
 
   constructor(private userService: UserServiceService, private ticketService: TicketServiceService, private router: Router,
     private confirmationService: ConfirmationService, private messageService: MessageService, private activeRoute: ActivatedRoute,
@@ -43,18 +47,14 @@ export class UserDetialsComponent implements OnInit {
     
     this.refresh();
 
-    if (localStorage.getItem('admin')) {
-      this.modifiedSource = "admin";
+    if(localStorage.getItem('admin')){
+      this.createdModifiedValue = localStorage.getItem('admin');
+      this.createdModifiedValue = JSON.parse( this.createdModifiedValue);
+      this.modifiedSource = this.createdModifiedValue.userName;
+      this.modifiedSourceType = "admin";
     }
-    if (localStorage.getItem('loggedInUser')) {
-      this.modifiedSource = "user";
-    }
-    if (localStorage.getItem('admin')) {
-      this.createdSourceType = "admin";
-    }
-    if (localStorage.getItem('loggedInUser')) {
-      this.createdSourceType = "user";
-    }
+  
+
   }
   @ViewChild('adduser') form:NgForm | undefined;
   ShowAllUsers() {
@@ -64,7 +64,6 @@ export class UserDetialsComponent implements OnInit {
   }
 
   DeleteUser(id: any) {
-
     this.confirmationService.confirm({
       message: 'Are you sure To Delete Selected Object? Click Yes To Delete',
       accept: () => {
@@ -114,7 +113,6 @@ export class UserDetialsComponent implements OnInit {
   }
 
   AddUsersPop() {
-    // this.userService.AddUsers();
     this.addUsersButton = true;
     this.displayUserTable = true;
     this.displayUserDetails = false;
@@ -122,7 +120,7 @@ export class UserDetialsComponent implements OnInit {
   }
 
   refresh(): void {
-    this.router.navigateByUrl('/home/user-detials', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/home/userDetails', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }
@@ -165,7 +163,9 @@ export class UserDetialsComponent implements OnInit {
     this.displayUserTable = true;
   }
   CreateUser(data: CreateUser) {
+    console.log(data)
     this.userService.UserCreate(data).subscribe((result) => {
+      console.log(result);
     }, (error) => {
       this.ShowAllUsers();
       

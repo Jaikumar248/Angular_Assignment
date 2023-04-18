@@ -24,7 +24,7 @@ span {
 
 .buttons1 {
     text-align: left;
-    margin-left: 100px;
+    margin-left: 222px;
     margin-top: 11px;
 }
 
@@ -103,6 +103,12 @@ hr {
     margin-right: 10px;
     box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
     background-color:white ;
+}
+#label {
+    margin-right: 20px;
+}
+#userLabel {
+    margin-right: 20px;
 }
 
 :host ::ng-deep .p-paginator {
