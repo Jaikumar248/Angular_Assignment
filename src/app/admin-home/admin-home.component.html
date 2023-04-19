@@ -14,7 +14,6 @@
                 <tr>
                     <th>User Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
                     <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
-                    <!-- <th>Assignee <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th> -->
                     <th>Catagory <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
                     <th>Sub Category <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
                     <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
@@ -38,7 +37,6 @@
             <tr (dblclick)="TicketviewMode(item)">
                 <td>{{item.reporter_id}}</td>
                 <td>{{item.ticket_id}}</td>
-                <!-- <td>{{item.assignee}}</td> -->
                 <td>{{item.category_desc}}</td>
                 <td>{{item.sub_category_desc}}</td>
                 <td>{{item.description}}</td>
@@ -78,7 +76,7 @@
 
 <div class="ticketDetails" *ngIf="ticketView">
 
-    <div class="grid">
+    <div class="grid details">
 
         <div class="col-12 md:col-12 lg:col-6 field">
 
@@ -98,10 +96,6 @@
                 <label class="col-6">Sub Category :</label>
                 <label class="col-6">{{ticketData.sub_category_desc}}</label>
             </div>
-            <!-- <div>
-                <label class="col-6">Assignee :</label>
-                <label class="col-6">{{ticketData.assignee}}</label>
-            </div> -->
             <div>
                 <label class="col-6">Subject</label>
                 <label class="col-6">{{ticketData.subject}}</label>
@@ -132,7 +126,7 @@
             </div>
             <div>
                 <label class="col-6">Created Date :</label>
-                <label class="col-6">{{ticketData.create_datetime}}</label>
+                <label class="col-6">{{ticketData.create_datetime  | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">Created Source :</label>
@@ -144,7 +138,7 @@
             </div>
             <div>
                 <label class="col-6">Modified Date :</label>
-                <label class="col-6">{{ticketData.last_modified_datetime}}</label>
+                <label class="col-6">{{ticketData.last_modified_datetime  | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">ModifiedSource :</label>
@@ -158,9 +152,9 @@
 
     </div>
     <div class="backButton">
-        <button class="" type="button" (click)="ChangePriority()">ChangePriority</button>
-        <button type="button" (click)="ChangeStatusButton()">ChangeStatus</button>
-        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Cancel</button>
+        <button id="priority" type="button" (click)="ChangePriorityButton()">ChangePriority</button>
+        <button id="priority" type="button" (click)="ChangeStatusButton()">ChangeStatus</button>
+        <button type="button" class="btn btn-warning" (click)="CloseViewMode()">Cancel</button>
     </div>
 </div>
 
@@ -177,6 +171,7 @@
 
 </p-dialog>
 
+
 <p-dialog header="ChangeStatus"[(visible)]="displayPopStatus" [modal]="true" [closable]="false" autoWidth="false">
 
     <form ngNativeValidate>
@@ -191,18 +186,8 @@
 </p-dialog>
 
 
-<p-dialog header="SetAssignee" [(visible)]="setAssignee" [style]="{width:'20vw', height:'20vw'}">
+<p-toast></p-toast>
 
-    <form>
-        <label for="">SetAssignee :</label>
-        <p-autoComplete [(ngModel)]="getAdminValue" (onSelect)="displayAdminValue($event)"   appendTo="body" [suggestions]="adminValue" (completeMethod)="SetAssigneeSave($event)" [dropdown]="true" ></p-autoComplete>
-        <div class="statusButton">
-            <button class="btn btn-warning" (click)="closeSetAssignee()">Cancel</button>
-            <button class="btn btn-primary" (click)="saveAssignee()">Save</button>
-        </div>
-    </form>
-
-</p-dialog>
 
 
 

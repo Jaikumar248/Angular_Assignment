@@ -44,6 +44,9 @@ a {
     margin-left: 10px;
 }
 
+.grid{
+    margin-top: 20px;
+}
 
 .ticketDetails {
     box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
@@ -77,9 +80,15 @@ table tr td {
     margin-bottom: 20px;
     
 }
+#priority {
+    background-color:  rgba(3, 77, 102, 0.945);
+    color: azure;
+}
 .grid {
-    margin-top: 30px;
     margin-left: 30px;
+}
+.col-12 {
+    margin-top: 40px;
 }
 .buttons button {
     margin-top: 30px;
@@ -95,7 +104,7 @@ table tr td {
 
 .backButton {
     margin-left: 850px;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 .backButton button {

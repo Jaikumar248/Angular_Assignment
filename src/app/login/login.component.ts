@@ -33,33 +33,20 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem('admin')) {
       this.route.navigate(['/home']);
     }
-
-    this.ticketService.GetAdminDetails().subscribe((result) => {
-      this.adminObject = result;
-      let vara = Object.keys(result)
-      this.adminKeys = vara.toString();
-      let vara2 = Object.values(result);
-      this.adminValue = vara2.toString();
-    });
-
   }
 
-  SignUp() {
-    this.route.navigate(['/sign-up'])
-  }
-
+  // Login user or admin
   loginSubmit(data: any) {
-    this.service.GetAllUsers().subscribe((result) => {
+    this.service.GetAllUsersForLogin().subscribe((result) => {
       this.showusers = result;
-      
-
-      for (let item of this.showusers){
+      for (let item of this.showusers) {
         console.log(item.isAdmin);
-        if ( item.isAdmin && data.email_Id === item.email_Id ) {
+        if (item.isAdmin && data.email_Id === item.email_Id) {
           console.log(item.isAdmin, "admin");
           if (data.email_Id === data.password) {
             localStorage.setItem('admin', JSON.stringify(item));
             this.service.ReloadToAdmin();
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
           }
           this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
         }
@@ -69,6 +56,7 @@ export class LoginComponent implements OnInit {
             if (data.email_Id === data.password) {
               localStorage.setItem('loggedInUser', JSON.stringify(item));
               this.service.ReloadData();
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
             }
           }
           else {
@@ -76,33 +64,10 @@ export class LoginComponent implements OnInit {
           }
         }
       }
-    
-    
-    
-    
-
-
-})
-
-   
-    // else {
-    //   this.service.GetAllUsers().subscribe((result) => {
-    //     this.showusers = result;
-    //     for (let item of this.showusers) {
-    //       if (data.email_Id === item.email_Id && !data.isAmdin) {
-    //         if (data.email_Id === data.password) {
-    //           localStorage.setItem('loggedInUser', JSON.stringify(item));
-    //           this.service.ReloadData();
-    //         }
-    //       }
-    //       else {
-    //         this.msgs = [{ severity: 'error', summary: 'Wrong Credentials', detail: "..." }];
-    //       }
-    //     }
-    //   })
-    // }
+    });
   }
 
+  //After page refresh this method will reload the current route. 
   refresh(): void {
     this.route.navigateByUrl('', { skipLocationChange: true }).then(() => {
       this.route.navigate([decodeURI(this.location.path())]);

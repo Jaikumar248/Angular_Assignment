@@ -1,9 +1,8 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
-import { SelectItem } from 'primeng/api';
 import { Location } from '@angular/common';
 
 
@@ -39,7 +38,6 @@ export class AdminHomeComponent implements OnInit {
   ticketstatusId: any;
   selectedPriorityValue: any;
   seletectPriorities: any;
-  setAssignee: boolean = false;
   getAdmin: any;
   getAdminValue: any;
   adminValue: any;
@@ -54,7 +52,6 @@ export class AdminHomeComponent implements OnInit {
   constructor(private userService: UserServiceService, private ticketService: TicketServiceService, private router: Router,
     private confirmationService: ConfirmationService, private messageService: MessageService, private activeRoute: ActivatedRoute, 
     private location:Location) {
-
   }
 
   ngOnInit(): void {
@@ -74,20 +71,14 @@ export class AdminHomeComponent implements OnInit {
     })
   }
 
+  //Fetching all tickets here
   ViewAllTicket() {
     this.ticketService.ViewAllTickets().subscribe((result) => {
       this.viewAllTickets = result;
-    })
+    });
   }
 
-  AddUsers() {
-    this.router.navigate(['/users-home']);
-  }
-
-  upDateTicket() {
-    this.ticketService.ShowTicketForm();
-  }
-
+  //Fetch the ticket details based on ticket id
   ViewTicketById() {
     this.ticket;
     if (this.ticket == '') {
@@ -105,28 +96,30 @@ export class AdminHomeComponent implements OnInit {
       });
   }
 
+  //Delete ticket 
   DeleteTicket(data: any) {
-    this.adminVariable = localStorage.getItem('admin');
-    this.adminVariable = JSON.parse(this.adminVariable);
-    let vara2 = Object.keys(this.adminVariable);
-    this.adminId = vara2.toString();
-    
+      let adminId = localStorage.getItem('admin');
+      adminId = adminId && JSON.parse(adminId);
+      console.log(typeof(adminId));
+      let admin : any = adminId;
+      admin = admin.user_id;
     this.confirmationService.confirm({
       message: 'Are you sure To Delete Selected Object? Click Yes To Delete',
       accept: () => {
-        this.ticketService.DeleteTicket(data, this.adminId).subscribe((result) => {
+        this.ticketService.DeleteTicket(data, admin).subscribe((result) => {
           this.ViewAllTicket(); 
           this.messageService.add({ severity: 'success', summary: 'success', detail: 'Deleted Successful' });
         },
           error => {
             this.ViewAllTicket();
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+            this.messageService.add({ severity: 'success', summary: 'success', detail: 'Deleted Successful' });
           }
-        )
+        );
       }
-    })
+    });
   }
 
+  //On double click in the table we can see ticket in view mode.
   TicketviewMode(item: any) {
     this.ticketData = item;
     this.ticketId = item.ticket_id;
@@ -136,17 +129,19 @@ export class AdminHomeComponent implements OnInit {
     this.showTicketTable = false;
   }
 
-  closeViewMode() {
+  //On click cancel button it will close the ticket view mode
+  CloseViewMode() {
     this.ticketView = false;
     this.showTicketTable = true;
   }
 
-  ChangePriority() {
+  //On click changePriority button it will open the change priority dialog box
+  ChangePriorityButton() {
     this.displayPopPriority = true;
     this.ticketView = true;
-   
   }
 
+  //On click changeStatus button it will open the change status dialog box
   ChangeStatusButton() {
     this.displayPopStatus = true;
     this.ticketView = true;
@@ -158,6 +153,7 @@ export class AdminHomeComponent implements OnInit {
     });
   }
 
+  //Search the autocomplete dropdown values in priority
   completePriority(data:any){
     this.seletectPriorities1 = [];
     for(let item of this.seletectPriorities){
@@ -172,6 +168,7 @@ export class AdminHomeComponent implements OnInit {
     }
   }
 
+  //Search the autocomplete dropdown values in status.
   completeStatus(data:any){
     this.selectedStatus1 = [];
     for(let item of this.selectedStatus){
@@ -189,33 +186,30 @@ export class AdminHomeComponent implements OnInit {
   ChangePriority1(event: any) {
     this.ticketService.ShowPriority().subscribe((result) => {
       this.seletectPriorities = result;
-    })
+    });
   }
 
+  //close the status dialog box
   closeStatusPop() {
     this.displayPopStatus = false;
     this.ticketView = true;
     this.selectedStatusValue = '';
   }
 
+  // Close the priority dialog box.
   closePriority() {
     this.displayPopPriority = false;
     this.ticketView = true;
     this.selectedPriorityValue = "";
   }
-
-  closeSetAssignee() {
-    this.setAssignee = false;
-    this.ticketView = true;
-  }
- 
+  
+  //Selected value from the autocomplete status dropdown.
   displayStatusValue(event: any) {
     this.selectedStatusValue = event;
     let value = this.selectedStatusValue;
     let index = 1;
     for (let o of Object.values(this.userService.status)) {
       if (o === value) {
-        console.log("select status id is " + index);
         break;
       }
       index = index + 1;
@@ -224,20 +218,22 @@ export class AdminHomeComponent implements OnInit {
     }
   }
 
+  //Selected value from the autocomplete priority dropdown.
   displayPriorityValue(event: any) {
     this.selectedPriorityValue = event;
     let value = this.selectedPriorityValue;
     let index = 1;
     for (let o of Object.values(this.userService.priority)) {
       if (o === value) {
+        this.selectedPriorityValue1 = index;
         break;
       }
       index = index + 1;
-      this.selectedPriorityValue1 = index;
       this.selectedPriorityValue = event;
     }
   }
 
+  //Changing the Status of the ticket.
   saveStatus() {
       let adminId = localStorage.getItem('admin');
       adminId = adminId && JSON.parse(adminId);
@@ -248,30 +244,31 @@ export class AdminHomeComponent implements OnInit {
         this.ticketData.modifiedSource = "admin";
         this.ticketData.modifiedSourceType = "admin";
       }
-      console.log(this.ticketData);
       this.ticketService.ChangeTicketStatus(this.ticketId, admin, this.selectedStatusValue1, this.ticketData).subscribe((result) => {
        
       }, (error)=>{
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'changed the Status' });
         this.ViewAllTicket();
       });
-   
     this.selectedStatusValue = "";
     this.displayPopStatus = false;
     this.showTicketTable = true;
     this.ticketView = false;
   }
 
+  //Changing the Priority of the ticket.
   savePriority() {
       let adminId = localStorage.getItem('admin');
       adminId = adminId && JSON.parse(adminId);
       let admin : any = adminId;
       admin = admin.user_id;
       if (this.ticketstatusId != "open") {
-        alert("This ticket is not in open state")
+        alert("This ticket is not in open state");
       }
       else {
         this.ticketService.ChangeTicketPriority(this.ticketId, admin, this.selectedPriorityValue1, this.ticketData).subscribe((result) => { 
         },(error)=>{
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'changed the priority' });
           this.ViewAllTicket();
         }) 
       }
@@ -281,35 +278,7 @@ export class AdminHomeComponent implements OnInit {
       this.ticketView = false;
   }
 
-  SetAssignee() {
-    this.setAssignee = true;
-    this.ticketView = false;
-  }
-
-  SetAssigneeSave(data: any) {
-    this.ticketService.GetAdminDetails().subscribe((result) => {
-      this.getAdmin = result;
-      this.adminValue = Object.values(result);
-    })
-  }
-
-  displayAdminValue(event: any) {
-    this.selectedAdmin = event;
-  }
-
-  saveAssignee() {
-    for (let key in this.getAdmin) {
-      if (this.getAdmin[key] === this.selectedAdmin) {
-        this.ticketService.SetAssignee(key, this.ticketId, this.userId).subscribe(success => {
-        },(error)=>{
-          this.ViewAllTicket();
-        });
-      }
-      this.setAssignee = false;
-      this.showTicketTable = true;
-    }   
-  }
-
+  //After page refresh this method will reload the current route. 
   refresh():void {
     this.router.navigateByUrl('/home/adminHome', {skipLocationChange : true}).then(()=>{
       this.router.navigate([decodeURI(this.location.path())]);

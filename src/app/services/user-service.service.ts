@@ -63,6 +63,10 @@ status : any = {
     return this.http.get('http://localhost:8080/viewAllUser');
   }
 
+  GetAllUsersForLogin(){
+    return this.http.get('http://localhost:8080/viewAllUserForLogin');
+  }
+
   GetUser(data:any){
     return this.http.get(`http://localhost:8080/viewUser?${data}`);
   }
@@ -80,7 +84,6 @@ status : any = {
 
   ReloadToAdmin(){
     console.log(localStorage.getItem('admin'));
-    
     if(localStorage.getItem('admin')){
       this.router.navigate(['/home']);
     }
@@ -99,11 +102,6 @@ status : any = {
   ShowTicketsTable(){
     this.router.navigate(['/home/createTicket']);
     this.showTicketsTable.next(true);
-  }
-
-  AddUsers(){
-    this.addusers.next(true);
-    this.router.navigate(['/home/users-home']);
   }
 
   UpdateUser(data:any){

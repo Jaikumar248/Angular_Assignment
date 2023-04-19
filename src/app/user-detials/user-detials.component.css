@@ -15,7 +15,9 @@
 .col-12 {
     margin-top: 15px;
 }
-
+.radioButton {
+    color: red;
+}
 .detials {
     margin-left: 40px;
 }
@@ -120,10 +122,10 @@ input {
 }
 .user-header h4{
     padding-top: 10px;
-    
 }
 .button {
- text-align: right;
+    margin-top: 20px;
+    text-align: right;
 }
 .button button {
     margin: 0px 10px;

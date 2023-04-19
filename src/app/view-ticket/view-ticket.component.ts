@@ -37,7 +37,8 @@ export class ViewTicketComponent implements OnInit {
       this.ticketData = result;
     });
   }
-
+  
+  //After page refresh this method will reload the current route.
   refresh(): void {
     this.router.navigateByUrl('/home/viewTicket', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);

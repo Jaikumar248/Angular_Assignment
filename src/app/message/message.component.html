@@ -1,5 +1,6 @@
 <div class="message">
-    <h2>Welcome to Itorizon  IT Support Tracker</h2>
+    <h2 *ngIf="loggedInUser">Welcome to Itorizon  IT Support Tracker for Users</h2>
+    <h2 *ngIf="loggedInAdmin">Welcome to Itorizon  IT Support Tracker for Admin</h2>
 </div>
 
 

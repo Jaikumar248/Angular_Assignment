@@ -26,13 +26,15 @@ export class HeaderComponent implements OnInit{
       this.mainHeader = false;
     }
   }
- 
+  
+  // Logout current user
   Logout(){
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('admin');
     this.router.navigate(['']); 
   }
 
+  //After login this page will be load 
   homeContent(){
     this.router.navigate(['/home/message']);
   }

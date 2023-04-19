@@ -10,7 +10,6 @@
 
                 <th>User Id <p-sortIcon field="user_id"  pSortableColumn="user_id"></p-sortIcon></th>
                 <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
-                <!-- <th>Assignee_Id <p-sortIcon field="assignee"  pSortableColumn="assignee"></p-sortIcon></th> -->
                 <th>Catagory <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
                 <th>SubCategory <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
                 <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
@@ -34,7 +33,6 @@
         <tr (dblclick)="TicketViewMode(item.ticket_id)">
             <td>{{item.reporter_id}}</td>
             <td>{{item.ticket_id}}</td>
-            <!-- <td>{{item.assignee}}</td> -->
             <td>{{item.category_desc}}</td>
             <td>{{item.sub_category_desc}}</td>
             <td>{{item.description}}</td>
@@ -61,3 +59,6 @@
 
     </p-table>
 </div>
+
+
+

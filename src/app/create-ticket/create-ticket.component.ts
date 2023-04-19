@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { Location } from '@angular/common';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-ticket',
@@ -42,7 +43,7 @@ export class CreateTicketComponent implements OnInit {
   CategoryValue:any;
 
   constructor(private router: Router, private ticketService: TicketServiceService, private userService: UserServiceService, private activeRoute: ActivatedRoute,
-    private location: Location) {
+    private location: Location, private confirmationService: ConfirmationService, private messageService: MessageService,) {
   }
 
   ngOnInit(): void {
@@ -75,13 +76,23 @@ export class CreateTicketComponent implements OnInit {
     }
   }
 
+  // After page refresh this method will reload the current route. 
   refresh(): void {
     this.router.navigateByUrl('/home/createTicket', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }
 
+  //For Creating a new ticket
   CreateTicket(CreateTicket: any) {
+    let check = Object.values(this.userService.categories).some((data)=>{
+      return data === this.selectedCategoryValues;
+    })
+    let checkSubCategory =  Object.values(this.userService.sub_categories).some((data)=>{
+      return data === this.sub_category_desc;
+    }) 
+    if(check && checkSubCategory){
+      
     let arr1 = this.userService.categories;
     for (let key in arr1) {
       if (arr1[key] === CreateTicket.category_id) {
@@ -89,14 +100,12 @@ export class CreateTicketComponent implements OnInit {
         CreateTicket['category_id'] = key;
       }
     }
-
     let arr2 = this.userService.sub_categories
     for (let key in arr2) {
       if (arr2[key] === CreateTicket.sub_category_id) {
         CreateTicket.sub_category_id = key;
       }
     }
-
     let loggedInUser: any = localStorage.getItem('loggedInUser');
     loggedInUser = JSON.parse(loggedInUser);
     loggedInUser = loggedInUser.user_id;
@@ -106,11 +115,17 @@ export class CreateTicketComponent implements OnInit {
     this.ticketService.CreateTicket(CreateTicket, loggedInUser).subscribe((result) => {
     },
       (error) => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'successfully created ticket' });
         this.router.navigate(['/home/viewTicket']);
       }
     );
+    }
+    else {
+      alert("please select only dropdown values");
+    }
   }
 
+  // Fetch all the tickets based on login user
   ViewUserTicket() {
     let loggedInUser: any = localStorage.getItem('loggedInUser');
     loggedInUser = JSON.parse(loggedInUser);
@@ -120,6 +135,7 @@ export class CreateTicketComponent implements OnInit {
     })
   }
 
+  // close the ticket form and close the category dialog box on click cancel
   closeTicketForm() {
     this.displayForm = false;
     this.ticketTable = true;
@@ -127,13 +143,14 @@ export class CreateTicketComponent implements OnInit {
     this.selectedCategoryValues = '';
   }
 
-  CloseTicketPop() {
-    this.displayDialog = false;
-    this.ticketTable = true;
-    this.ViewUserTicket();
-    this.displayForm = false;
-  }
+  // CloseTicketPop() {
+  //   this.displayDialog = false;
+  //   this.ticketTable = true;
+  //   this.ViewUserTicket();
+  //   this.displayForm = false;
+  // }
 
+  //Search the autocomplete dropdown values in category
   completeCategory(data: any) {
     this.selectCategory1 = [];
     for (let item of this.selectCategory) {
@@ -148,6 +165,7 @@ export class CreateTicketComponent implements OnInit {
     }
   }
 
+  //Search the autocomplete dropdown values in subcategory.
   completeSubCategory(data: any) {
     this.searchSubCategories(data);
     this.selectedSubCatagory1 = [];
@@ -163,13 +181,14 @@ export class CreateTicketComponent implements OnInit {
     }
   }
 
+  //On click add ticket button dialog box will open
   ShowCategoryDialogBox() {
     this.displayDialog = true;
     this.ticketTable = true;
   }
 
+  // Here checking selected value is dropdown value or not
   SelectCategoryValue() {
-  
     let check = Object.values(this.userService.categories).some((data)=>{
       return data===this.selectedCategoryValues;
     })
@@ -207,18 +226,16 @@ export class CreateTicketComponent implements OnInit {
     this.sub_category_desc = event;
   }
 
+  //Sub Category dropdown values based on category id
   searchSubCategories(data: any) {
     this.ticketService.ShowSubCategories(this.catageryValue).subscribe((result) => {
       this.selectedSubCatagory = result;
     });
   }
 
+  // view ticket details in view mode
   viewTicketDetails(item: any) {
     this.router.navigate([`/home/userView/${item}`]);
-    let ticketId = this.activeRoute.snapshot.paramMap.get('ticket_id');
-    ticketId && this.ticketService.ViewTicket(ticketId).subscribe((result) => {
-      this.ticketData = result;
-    });
   }
 
   SubCategories() {
@@ -228,12 +245,14 @@ export class CreateTicketComponent implements OnInit {
     });
   }
 
+  //Fetching the status values here
   searchStatus(data: any) {
     this.ticketService.ShowStatus().subscribe((result) => {
       this.status1 = result;
     });
   }
 
+  //Fetching the priority values here
   searchPriority(data: any) {
     this.ticketService.ShowPriority().subscribe((result) => {
       this.priorities = result;

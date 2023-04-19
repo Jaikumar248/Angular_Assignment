@@ -27,6 +27,7 @@ export class UserViewComponent implements OnInit {
     this.router.navigate(['/home/createTicket']);
   }
 
+  //After page refresh this method will reload the current route.
   refresh(): void {
     this.router.navigateByUrl('/home/userView/this.ticketData ', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);

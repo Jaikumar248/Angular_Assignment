@@ -10,8 +10,9 @@
 
     <div *ngIf="displayUserTable">
 
-        <p-table [paginator]=true [rows]="5" [value]="showAllUsers" [alwaysShowPaginator]="false" styleClass="p-datatable-striped"
-            [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}">
+        <p-table [paginator]=true [rows]="5" [value]="showAllUsers" [alwaysShowPaginator]="false"
+            styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand"
+            [tableStyle]="{'min-width': '50rem'}">
             <ng-template pTemplate="header">
                 <tr>
                     <th>User ID <p-sortIcon field="user_id" pSortableColumn="user_id"></p-sortIcon> </th>
@@ -68,7 +69,7 @@
 
 <div class="conatainer" *ngIf="displayUserDetails">
 
-    
+
     <div class="grid detials">
 
         <div class="col-12 sm:col-12 md:col-6 lg:col-6 viewDetails">
@@ -114,11 +115,11 @@
             </div>
             <div>
                 <label class="col-6">Created Date :</label>
-                <label class="col-6">{{viewUser.create_datetime}}</label>
+                <label class="col-6">{{viewUser.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">Last Modified Date :</label>
-                <label class="col-6">{{viewUser.last_modified_datetime}}</label>
+                <label class="col-6">{{viewUser.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
 
         </div>
@@ -212,8 +213,8 @@
                     <input type="text" ngModel name="createdSourceType" readonly
                         ngModel="{{viewUser.createdSourceType}}" class="form-control disabled" required>
                     <label>ModifiedSource<span>*</span></label>
-                    <input type="text" [(ngModel)]="modifiedSource" readonly ngModel name="modifiedSource" ngModel
-                        [(ngModel)]="modifiedSource" class="form-control disabled" required maxlength="60"
+                    <input type="text" ngModel="{{viewUser.modifiedSource}}" readonly ngModel name="modifiedSource" ngModel
+                        class="form-control disabled" required maxlength="60"
                         minlength="4">
                     <div *ngIf="updateForm.controls['modifiedSource']?.['touched'] && updateForm.controls['modifiedSource']?.['errors']"
                         class="invalid">
@@ -225,9 +226,8 @@
                         </div>
                     </div>
                     <label>ModifiedSourceType<span>*</span></label>
-                    <input type="text" [(ngModel)]="modifiedSourceType" readonly ngModel name="modifiedSourceType" ngModel
-                         class="form-control disabled" required maxlength="60"
-                        minlength="4">
+                    <input type="text" ngModel="{{viewUser.modifiedSourceType}}" readonly ngModel name="modifiedSourceType"
+                        ngModel class="form-control disabled" required maxlength="60" minlength="4">
                     <div *ngIf="updateForm.controls['modifiedSourceType']?.['touched'] && updateForm.controls['modifiedSourceType']?.['errors']"
                         class="invalid">
                         <div *ngIf="updateForm.controls['modifiedSourceType']?.['errors']?.['maxlength']">
@@ -245,37 +245,36 @@
                         ngModel="{{viewUser.last_modified_datetime}}" class="form-control disabled" required readonly>
                     <div class="button">
                         <button class="btn btn-warning" (click)="closeUpdateForm()">Cancel</button>
-                        <button class="btn btn-primary">Save</button>
+                        <button class="btn btn-primary" [disabled]="!updateForm.touched">Save</button>
                     </div>
                 </div>
             </div>
-            <hr>
-
+           
         </form>
     </div>
 
 </div>
 
 
-<p-dialog header="AddUsers"  [(visible)]="addUsersButton" [modal]="true" [closable]="false"  autoWidth="false" >
+<p-dialog header="AddUsers" [(visible)]="addUsersButton" [modal]="true" [closable]="false" autoWidth="false">
 
-    <p-messages [(value)]="messages"></p-messages>
     <form #adduser="ngForm" (ngSubmit)="saveUsers(adduser.value)" ngNativeValidate>
         <label>UserName<span>*</span></label>
-        <input type="text" ngModel name="userName" class="form-control" #userName  maxlength="20" pattern="[a-zA-Z\\s]*" required>
-      
+        <input type="text" ngModel name="userName" class="form-control" #userName maxlength="20" pattern="[a-zA-Z\\s]*"
+            required>
+
         <label>Email Id<span>*</span></label>
-        <input type="email" ngModel name="email_Id" class="form-control" #email_Id required email pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*.[a-zA-Z]$" >
-       
+        <input type="email" ngModel name="email_Id" class="form-control" #email_Id required email
+            pattern='^[a-z0-9]+@[a-z]+.[a-z]{2,}$'>
+
         <div class="dialogButtons">
-        
             <button class="btn btn-primary">Save</button>
             <button class="btn btn-warning" (click)="closeDialogPop()">Cancel</button>
         </div>
     </form>
- 
 
 </p-dialog>
+
 
 <div class="header1" *ngIf="openUserForm">
     <h2><i class="pi pi-user-plus"></i> Add New User</h2>
@@ -284,98 +283,87 @@
 <div class="usercreateddiv " *ngIf="openUserForm">
     <div class="container ">
         <div class="user-header">
-            <h4> 
+            <h4>
                 Add New User</h4>
         </div>
         <hr>
         <div class="row">
-            <form class="user-form" #createuser="ngForm" (ngSubmit)="createuser.valid && CreateUser(createuser.value)" ngNativeValidate>
+            <form class="user-form" #createuser="ngForm" (ngSubmit)="createuser.valid && CreateUser(createuser.value)"
+                ngNativeValidate>
                 <p-messages [(value)]="messages1"></p-messages>
-      
-                        <div class="grid">
-                            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
 
-                                <label>UserName<span>*</span></label>
-                                <input type="text" name="userName" ngModel="{{this.username}}" pattern="[a-zA-Z\\s]*" ngModel class="form-control name disabled" readonly> 
-                                <label>First Name<span>*</span></label>
-                                <input type="text" ngModel name="firstName"  class="form-control" pattern="[a-zA-Z\\s]*" required minlength="4" maxlength="20">
-                                <div *ngIf="createuser.controls['firstName']?.['touched'] && createuser.controls['firstName']?.['errors']"
-                                    class="invalid">
-                                    <div *ngIf="createuser.controls['firstName']?.['errors']?.['required']">
-                                        First Name is required
-                                    </div>
-                                    <div *ngIf="createuser.controls['firstName']?.['errors']?.['minlength']">
-                                        First Name must be atleast 4 characters.
-                                    </div>
-                                    <div *ngIf="createuser.controls['firstName']?.['errors']?.['maxlength']">
-                                        First Name is Maximum 20 characters only.
-                                    </div>
-                                </div>
-                                <label>Last Name<span>*</span></label>
-                                <input type="text" ngModel name="lastName" pattern="[a-zA-Z\\s]*" class="form-control" required minlength="2" maxlength="20">
-                                <div *ngIf="createuser.controls['lastName']?.['touched'] && createuser.controls['lastName']?.['errors']"
-                                    class="invalid">
-                                    <div *ngIf="createuser.controls['lastName']?.['errors']?.['required']">
-                                        Last Name is required
-                                    </div>
-                                    <div *ngIf="createuser.controls['lastName']?.['errors']?.['minlength']">
-                                        Last Name must be at least 4 characters long.
-                                    </div>
-                                    <div *ngIf="createuser.controls['lastName']?.['errors']?.['maxlength']">
-                                        Last Name  is Maximum 20 characters only.
-                                    </div>
-                                </div>
-                                <label for="">email Id<span>*</span></label>
-                                <input type="email" ngModel="{{this.emailId}}" name="email_Id" class="form-control disabled" required email readonly>
-                               
-                            </div>
+                <div class="grid">
+                    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
 
-                            <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+                        <label>UserName<span>*</span></label>
+                        <input type="text" name="userName" ngModel="{{this.username}}" pattern="[a-zA-Z\\s]*" ngModel
+                            class="form-control name disabled" readonly>
+                        <label>First Name<span>*</span></label>
+                        <input type="text" ngModel name="firstName" class="form-control" pattern="[a-zA-Z\\s]*" required
+                            minlength="4" maxlength="20">                       
+                        <label>Last Name<span>*</span></label>
+                        <input type="text" ngModel name="lastName" pattern="[a-zA-Z\\s]*" class="form-control" required
+                            minlength="2" maxlength="20">   
+                        <label for="">email Id<span>*</span></label>
+                        <input type="email" ngModel="{{this.emailId}}" name="email_Id" class="form-control disabled"
+                            required email readonly>
 
-                                <label>CreatedSource</label>
-                                <input type="text" ngModel  [(ngModel)]="modifiedSource" readonly name="createdSource" class="form-control disabled" maxlength="60">
-                                <div *ngIf="createuser.controls['createdSource']?.['touched'] && createuser.controls['createdSource']?.['errors']">
-                                    <div *ngIf="createuser.controls['createdSource']?.['errors']?.['maxlength']">
-                                        Created source is 60 characters only.
-                                    </div>
-                                </div>
-                                <label>CreatedSourceType</label>
-                                <input type="text" ngModel [(ngModel)]="modifiedSourceType" readonly name="createdSourceType" class="form-control disabled" maxlength="60">
-                                <div *ngIf="createuser.controls['createdSourceType']?.['touched'] && createuser.controls['createdSourceType']?.['errors']">
-                                    <div *ngIf="createuser.controls['createdSourceType']?.['errors']?.['maxlength']">
-`                                       Created source type is 60 characters only.
-                                    </div>
-                                </div>
-                                
-                               <div class="flex">
-                               <div class="flex align-items-center">
-                                 <label>isAdmin <span>*</span></label>
-                               </div>
-                                <div class="flex align-items-center">
-                                    <p-radioButton id="radio" name="isAdmin" value="true" [required]="true" #isAdmin="ngModel" [(ngModel)]="adminUserType"></p-radioButton>
-                                    <label>Yes</label>
-                                    <div *ngIf="createuser.controls['isAdmin']?.['errors']?.['required']">
-                                       isAdmin is required
-                                    </div>
-                                </div>
-                                <div  class="flex align-items-center">    
-                                    <p-radioButton id="radio" name="isAdmin" value="false" [required]="true"  #isAdmin="ngModel"  [(ngModel)]="adminUserType"></p-radioButton>
-                                    <label >No</label>
-                                </div>
-                               </div>
+                    </div>
+
+                    <div class="col-12 sm:col-12 md:col-6 lg:col-6">
+
+                        <label>CreatedSource</label>
+                        <input type="text" ngModel [(ngModel)]="modifiedSource" readonly name="createdSource"
+                            class="form-control disabled" maxlength="60">
+                        <div
+                            *ngIf="createuser.controls['createdSource']?.['touched'] && createuser.controls['createdSource']?.['errors']">
+                            <div *ngIf="createuser.controls['createdSource']?.['errors']?.['maxlength']">
+                                Created source is 60 characters only.
                             </div>
                         </div>
-                  
-                <div class="button">
-                    <button class="btn btn-warning" (click)="closeUserForm()" >Cancel</button>
-                    <button class="btn btn-primary" >Save</button>
+                        <label>CreatedSourceType</label>
+                        <input type="text" ngModel [(ngModel)]="modifiedSourceType" readonly name="createdSourceType"
+                            class="form-control disabled" maxlength="60">
+                        <div
+                            *ngIf="createuser.controls['createdSourceType']?.['touched'] && createuser.controls['createdSourceType']?.['errors']">
+                            <div *ngIf="createuser.controls['createdSourceType']?.['errors']?.['maxlength']">
+                                ` Created source type is 60 characters only.
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="flex align-items-center">
+                                <label>isAdmin <span>*</span></label>
+                            </div>
+                            <div class="flex align-items-center">
+                                <p-radioButton id="radio" name="isAdmin" value="true" required
+                                    #isAdmin="ngModel" [(ngModel)]="adminUserType"></p-radioButton>
+                                <label>Yes</label>
+                            </div>
+                            <div class="flex align-items-center">
+                                <p-radioButton id="radio" name="isAdmin" value="false" required
+                                    #isAdmin="ngModel" [(ngModel)]="adminUserType"></p-radioButton>
+                                <label>No</label>
+                            </div>
+                        </div>
+                        <div *ngIf="createuser.submitted && isAdmin.invalid">
+                            <span id="radioButton">please select the type of user</span>
+                        </div>
+                    </div>
                 </div>
-               
+
+                <div class="button">
+                    <button class="btn btn-warning" (click)="closeUserForm()">Cancel</button>
+                    <button class="btn btn-primary">Save</button>
+                </div>
+
             </form>
-            
+
         </div>
 
         <hr>
-        
+
     </div>
 </div>
+
+<p-toast></p-toast>
