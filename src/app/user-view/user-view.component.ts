@@ -16,20 +16,20 @@ export class UserViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let ticketId = this.activeRoute.snapshot.paramMap.get('ticket_id');
-    ticketId && this.ticketService.ViewTicket(ticketId).subscribe((result) => {
+    let ticketId = this.activeRoute.snapshot.paramMap.get('ticketId');
+    ticketId && this.ticketService.viewTicket(ticketId).subscribe((result) => {
       this.ticketData = result;
     });
     this.refresh();
   }
 
   closeViewMode() {
-    this.router.navigate(['/home/createTicket']);
+    this.router.navigate(['/home/createtickets']);
   }
 
   //After page refresh this method will reload the current route.
   refresh(): void {
-    this.router.navigateByUrl('/home/userView/this.ticketData ', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/home/ticketdetails/this.ticketData ', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }

@@ -2,12 +2,12 @@ body{
     padding: 0 !important;
     margin: 0 !important;
 }
-.nav-header{
+.navHeader{
     background-color: rgba(3, 77, 102, 0.945);
     height: 45px;
    
 }
-.nav-items a{
+.navItems a{
     text-decoration: none;
     list-style-type: none;
     font-size: larger;
@@ -15,10 +15,10 @@ body{
     cursor: pointer;
     
 }
-.nav-items {
+.navItems {
     display: flex;
 }
-.nav-items h3{
+.navItems h3{
     color: antiquewhite;
 }
 li {
@@ -48,8 +48,6 @@ header img {
     padding: 1rem;
 }
 
-
-
 a {
     padding: 8px;
     text-decoration: none;
@@ -63,13 +61,40 @@ a {
     font-size: large;
 }
 
-
-@media screen and (max-width: 426px) and (min-width: 319px){
+@media screen and (max-width: 426px) and (min-width: 321px){
     .pi{
         margin-left: 80px;
         margin-right: 25px;
     }
-    .nav-header{
+    .navHeader{
+        background-color: rgba(15, 105, 135, 0.945);
+        height: 34px;
+    }
+    header img {
+        width: 100px;
+        height: 30px;
+        object-fit:contain ;
+        margin-left: 30px;
+    }
+    .navHeader ul a li {
+        display: flex;
+        font-size: medium;
+        margin-left: 10px;
+        padding: 5px;
+    }
+    a {
+        padding: 0px;
+        text-decoration: none;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 320px) and (min-width: 200px){
+    .pi{
+        margin-left: 80px;
+        margin-right: 25px;
+    }
+    .navHeader{
         background-color: rgba(15, 105, 135, 0.945);
         height: 34px;
        
@@ -80,10 +105,10 @@ a {
         object-fit:contain ;
         margin-left: 30px;
     }
-    .nav-header ul a li {
+    .navHeader ul a li {
         display: flex;
         font-size: medium;
-        margin-left: 10px;
+        margin-left: 5px;
         padding: 5px;
     }
    

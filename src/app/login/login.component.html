@@ -1,46 +1,44 @@
-
 <p-messages [(value)]="msgs"></p-messages>
 
-<div class="login-main">
+<div class="loginMain">
 
     <div class="container">
 
-        <div class="login-image">
+        <div class="loginImage">
             <img src="https://itorizon.com/wp-content/uploads/2020/10/Logo-Itorizon-2017.png" alt="">
         </div>
 
-        <div class="login-text">
+        <div class="loginText">
             <h2 id="welcomeText">Welcome</h2>
             <p id="content">Please use Registered Username and Password to Login your account</p>
         </div>
 
         <div>
 
-            <form class="login-form" #login = ngForm (ngSubmit)="loginSubmit(login.value)" ngNativeValidate>
-                <label >Email Id<span>*</span></label>
-                <input type="text" name="email_Id" ngModel  required >
-                <div *ngIf="login.controls['email_Id']?.['touched'] && login.controls['email_Id']?.['errors']" class="invalid">
-                    <div *ngIf="login.controls['email_Id']?.['errors']?.['required']">
+            <form class="loginForm" #login=ngForm (ngSubmit)="loginSubmit(login.value)" ngNativeValidate>
+                <label>Email Id<span>*</span></label>
+                <input type="text" name="emailId" ngModel required>
+                <div *ngIf="login.controls['emailId']?.['touched'] && login.controls['emailId']?.['errors']"
+                    class="invalid">
+                    <div *ngIf="login.controls['emailId']?.['errors']?.['required']">
                         Email is required
                     </div>
                 </div>
                 <label>Password<span>*</span></label>
-                <input type="password"  ngModel name="password" required>
-                <div *ngIf="login.controls['password']?.['touched'] && login.controls['password']?.['errors']" &&  class="invalid">
+                <input type="password" ngModel name="password" required>
+                <div *ngIf="login.controls['password']?.['touched'] && login.controls['password']?.['errors']" &&
+                    class="invalid">
                     <div *ngIf="login.controls['password']?.['errors']?.['required']">
                         Password is required
                     </div>
                 </div>
-                
+
                 <button class="login-button">Login</button>
             </form>
-           
+
         </div>
 
     </div>
-    
+
 </div>
 <p-toast></p-toast>
-
-
-

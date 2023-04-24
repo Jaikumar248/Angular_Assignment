@@ -1,31 +1,30 @@
-
-
-<div class="header" >
-    <h2>Ticket Details</h2>
+<div class="header">
+    <h3>Ticket Details</h3>
 </div>
 
 <div class="ticketDetailsBody">
-    
+
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-6 field">
+
             <div>
-                <label class="col-6">Ticket_Id :</label>
-                <label class="col-6">{{ticketData.ticket_id}}</label>
+                <label class="col-6">Ticket Id :</label>
+                <label class="col-6">{{ticketData.ticketId}}</label>
             </div>
             <div>
-                <label class="col-6">User_Id :</label>
-                <label class="col-6">{{ticketData.user_id}}</label>
+                <label class="col-6">User Id :</label>
+                <label class="col-6">{{ticketData.userId}}</label>
             </div>
             <div>
                 <label class="col-6">Category :</label>
-                <label class="col-6">{{ticketData.category_desc}}</label>
+                <label class="col-6">{{ticketData.categoryDesc}}</label>
             </div>
             <div>
                 <label class="col-6">Sub Category :</label>
-                <label class="col-6">{{ticketData.sub_category_desc}}</label>
+                <label class="col-6">{{ticketData.subCategoryDesc}}</label>
             </div>
             <div>
-                <label class="col-6">Subject</label>
+                <label class="col-6">Subject :</label>
                 <label class="col-6">{{ticketData.subject}}</label>
             </div>
             <div>
@@ -33,28 +32,24 @@
                 <label class="col-6">{{ticketData.description}}</label>
             </div>
             <div>
-                <label class="col-6">Reporter</label>
-                <label class="col-6">{{ticketData.reporter_id}}</label>
-            </div>
-            <div>
                 <label class="col-6">Priority :</label>
                 <label class="col-6">{{ticketData.priority}}</label>
+            </div>
+            <div>
+                <label class="col-6">Url :</label>
+                <label class="col-6">{{ticketData.url}}</label>
             </div>
 
         </div>
         <div class="col-12 md:col-12 lg:col-6 field">
-           
-            <div>
-                <label class="col-6">Url_Link :</label>
-                <label class="col-6">{{ticketData.url}}</label>
-            </div>
+
             <div>
                 <label class="col-6">Status :</label>
                 <label class="col-6">{{ticketData.status}}</label>
             </div>
             <div>
                 <label class="col-6">Created Date :</label>
-                <label class="col-6">{{ticketData.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</label>
+                <label class="col-6">{{ticketData.createDatetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">Created Source :</label>
@@ -65,24 +60,20 @@
                 <label class="col-6">{{ticketData.createdSourceType}}</label>
             </div>
             <div>
-                <label class="col-6">Modified Date  :</label>
-                <label class="col-6">{{ticketData.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</label>
+                <label class="col-6">Modified Date :</label>
+                <label class="col-6">{{ticketData.lastModifiedDatetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
-                <label class="col-6">ModifiedSource :</label>
+                <label class="col-6">Modified Source :</label>
                 <label class="col-6">{{ticketData.modifiedSource}}</label>
             </div>
             <div>
-                <label class="col-6">ModifiedSourceType : </label>
+                <label class="col-6">Modified Source Type : </label>
                 <label class="col-6">{{ticketData.modifiedSourceType}}</label>
             </div>
         </div>
+
         <button type="button" class="btn btn-warning backButton" (click)="closeViewMode()">Back</button>
 
     </div>
 </div>
-
-
-
-
-

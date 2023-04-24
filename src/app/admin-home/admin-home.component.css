@@ -3,23 +3,19 @@ a {
     text-decoration: none;
     color: black;
 }
-.search {
-    margin-left: 1200px;
-    margin-bottom: 10px;
-}
-
 
 :host ::ng-deep .p-paginator {
     display: flex;
     justify-content: right;
     float: right;
     max-width: max-content;
-    margin: 10px 5px;
+    margin: 0px 5px;
     border: none;
-   
 }
 
-:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page , :host ::ng-deep .p-paginator-next, :host ::ng-deep .p-paginator-prev {
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page,
+:host ::ng-deep .p-paginator-next,
+:host ::ng-deep .p-paginator-prev {
     border-radius: 1px;
     height: 30px;
     width: 50px;
@@ -28,97 +24,107 @@ a {
     color: rgb(52, 145, 179);
     border: 1px solid black;
 }
-.search  input {
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+.statusButton {
+    text-align: left;
+    margin-left: 170px;
+    margin-top: 11px;
 }
+
 .tableTickets {
-    margin-top: -70px;
+    margin-top: -60px;
     width: 97%;
     height: 550px;
     margin-left: 20px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
+    box-shadow: 1px 1px 1px 1px rgb(230, 238, 240);
+    background-color: white;
+    border: 1px solid rgb(230, 238, 240);
 }
+
 .delete {
     margin-left: 10px;
 }
 
-.grid{
+.grid {
     margin-top: 20px;
 }
 
 .ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 56px;
+    box-shadow: 1px 1px 1px 1px rgb(230, 238, 240);
+    background-color: white;
+    border: 1px solid rgb(230, 238, 240);
+    margin-left: 17px;
     margin-right: 20px;
-    height: 560px;
-    margin-top: -100px;
-    background-color:white ;
-    width: 1400px;
-  
+    height: 540px;
+    margin-top: -65px;
+    width: 97%px;
 }
+
 hr {
-   margin-top: 30px;
+    margin-top: 30px;
 }
-.view > * {
-    display: block;
-}
-table {
-    position: absolute;
-    margin: auto;
-    margin-top: 10px;
-    margin-left: 50px;
-}
-table tr td {
-    padding: 15px;
-    margin-right: 200px;
-}
+
 .buttons {
-   display: flex;
+    display: flex;
     margin-left: 700px;
     margin-bottom: 20px;
-    
 }
-#priority {
-    background-color:  rgba(3, 77, 102, 0.945);
-    color: azure;
-}
+
 .grid {
     margin-left: 30px;
 }
+
 .col-12 {
     margin-top: 40px;
 }
+
 .buttons button {
     margin-top: 30px;
-   margin-left: 20px;
+    margin-left: 20px;
 }
 
-.statusButton {
-    margin: 30px;
-}
 .statusButton button {
     margin: 10px;
 }
 
+#label {
+    margin-right: 20px;
+}
+
+.searchTickets {
+    display: flex;
+    justify-content: right;
+    margin-right: 40px;
+}
+
+.p-input-icon-left {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .backButton {
-    margin-left: 850px;
+    float: right;
+    margin-right: 60px;
     margin-top: 50px;
 }
 
 .backButton button {
     margin-left: 30px;
 }
+
 .header {
     margin-top: 0px;
     background-color: rgb(16, 160, 208);
     height: 120px;
-} 
+}
 
-.header h2{
+.header h3 {
     color: aliceblue;
-    margin-left: 20px;
+    margin-left: 23px;
+    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
 }
 
 
@@ -126,214 +132,248 @@ table tr td {
     .search {
         margin-left: 30px;
     }
+
     .buttons {
         display: flex;
         margin-left: 0px;
+    }
 
-     }
-     .p-dialog {
+    .p-dialog {
         width: 15vw !important;
     }
-    .btn-warning {
-        margin-left: 40px;
-        margin-top: -35px;
-    }
-    .backButton {
-        margin-left: 200px;
-    }
-    
-.ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 912px;
-    margin-top: -80px;
-    background-color:white ;
-    width: 320px;
-    position: sticky;
 
+    .backButton {
+        margin-left: 0px;
+        display: flex;
+    }
+
+    .backButton button{
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .ticketDetails {
+        box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 1150px;
+        margin-top: -65px;
+        background-color: white;
+        width: 320px;
+        position: sticky;
+    }
+
+    .tableTickets {
+        margin-top: -70px;
+        width: 97%;
+        height: 360px;
+        margin-left: 4px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color: white;
+    }
 }
-.tableTickets {
-    margin-top: -88px;
-    width: 97%;
-    height: 360px;
-    margin-left: 4px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
-}
-}
+
 @media screen and (max-width: 376px) and (min-width: 327px) {
     .search {
         margin-left: 30px;
     }
+
     .buttons {
         display: flex;
         margin-left: 0px;
+    }
 
-     }
-     .p-dialog {
+    .p-dialog {
         width: 20vw !important;
     }
+
     .backButton {
-        margin-left: 200px;
+        margin-left: 0px;
+        display: flex;
     }
-    .btn-warning {
-        margin-left: 40px;
-        margin-top: -35px;
+
+    .backButton button{
+        margin-left: 10px;
+        margin-bottom: 10px;
     }
+
     .tableTickets {
-        margin-top: -88px;
+        margin-top: -70px;
         width: 97%;
         height: 360px;
         margin-left: 4px;
         box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-        background-color:white ;
+        background-color: white;
     }
-    
-.ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 906px;
-    margin-top: -80px;
-    background-color:white ;
-    width: 375px;
-    position: sticky;
-}
+
+    .ticketDetails {
+        box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 1150px;
+        margin-top: -65px;
+        background-color: white;
+        width: 375px;
+        position: sticky;
+    }
 
 }
+
 @media screen and (max-width: 426px) and (min-width: 377px) {
     .search {
         margin-left: 30px;
     }
+
     .buttons {
         display: flex;
         margin-left: 0px;
+    }
 
-     }
-     .p-dialog {
+    .p-dialog {
         width: 25vw !important;
     }
 
-    .btn-warning {
-        margin-left: 40px;
-        margin-top: -35px;
+    .backButton {
+        margin-left: 0px;
+        display: flex;
     }
+
+    .backButton button{
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
     .backButton {
         margin-left: 250px;
     }
 
-    
-.ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 911px;
-    margin-top: -80px;
-    background-color:white ;
-    width: 320px;
-    min-height: 100vh;
-    position: sticky;
+    .ticketDetails {
+        box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 1150px;
+        margin-top: -65px;
+        background-color: white;
+        width: 320px;
+        min-height: 100vh;
+        position: sticky;
+    }
 }
-}
+
 @media screen and (max-width: 426px) and (min-width: 377px) {
     .search {
         margin-left: 30px;
     }
+
     .buttons {
         display: flex;
         margin-left: 0px;
 
-     }
-     .tableTickets {
-        margin-top: -88px;
+    }
+
+    .tableTickets {
+        margin-top: -70px;
         width: 97%;
         height: 360px;
         margin-left: 4px;
         box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-        background-color:white ;
+        background-color: white;
     }
-     .p-dialog {
+
+    .p-dialog {
         width: 25vw !important;
     }
-    .btn-warning {
-        margin-left: 40px;
-        margin-top: -35px;
+
+    .backButton {
+        margin-left: 0px;
+        display: flex;
     }
-    
-    
-.ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 906px;
-    margin-top: -80px;
-    background-color:white ;
-    width: 420px;
-    position: sticky;
-}
+
+    .backButton button{
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .ticketDetails {
+        box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 1050px;
+        margin-top: -65px;
+        background-color: white;
+        width: 420px;
+        position: sticky;
+    }
 }
 
 @media screen and (max-width: 769px) and (min-width: 426px) {
     .search {
         margin-left: 30px;
     }
+
     .buttons {
         display: flex;
         margin-left: 0px;
 
-     }
-     .backButton{
+    }
+
+    .backButton {
         margin-left: 600px;
-     }
-     .p-dialog {
+    }
+
+    .p-dialog {
         width: 30vw !important;
     }
-    .btn-warning {
-        margin-left: 39px;
-        margin-top: -37px;
+
+    .ticketDetails {
+        box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 910px;
+        margin-top: -65px;
+        background-color: white;
+        width: 769px;
+        position: absolute;
+
     }
-    
-.ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 840px;
-    margin-top: -80px;
-    background-color:white ;
-    width: 769px;
-    position: absolute;
-  
-}
+    .backButton {
+        margin-left: 0px;
+        display: flex;
+    }
+
+    .backButton button{
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 1025px) and (min-width: 769px) {
     .search {
         margin-left: 300px;
     }
+
     .buttons {
         display: flex;
         margin-left: 200px;
+    }
 
-     }
-     .p-dialog {
+    .p-dialog {
         width: 35vw !important;
     }
-    
-.ticketDetails {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 0px;
-    margin-right: 0px;
-    height: 560px;
-    margin-top: -80px;
-    background-color:white ;
-    width: 1025px;
-    
-  
-}
-.btn-warning {
-    left:0px;
-    margin-top: 10px;
-    margin-left: -300px;
-}
+
+    .ticketDetails {
+        box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: 560px;
+        margin-top: -80px;
+        background-color: white;
+        width: 1025px;
+    }
+
+    .btn-warning {
+        left: 0px;
+        margin-top: 10px;
+        margin-left: -300px;
+    }
 }

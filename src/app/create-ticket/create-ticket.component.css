@@ -14,7 +14,7 @@ span {
     color: red;
 }
 
-.ticket-header h2 {
+.ticketHeader h2 {
     padding-top: 20px;
 }
 
@@ -22,9 +22,9 @@ span {
     text-align: right;
 }
 
-.buttons1 {
+.buttonsInDialogBox {
     text-align: left;
-    margin-left: 222px;
+    margin-left: 235px;
     margin-top: 11px;
 }
 
@@ -38,23 +38,28 @@ span {
     position: relative;
 }
 
-.header h2 {
-    color: azure;
-    margin-left: 30px;
+.header h3 {
+    color: aliceblue;
+    margin-left: 23px;
+    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
 }
 
 .conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(230, 238, 240);
-    margin-left: 40px;
+    box-shadow: 1px 1px 1px 1px rgb(230, 238, 240);
+    border: 2px solid rgb(230, 238, 240);
+    margin-left: 20px;
     margin-right: 20px;
     height: 540px;
     position: absolute;
-    top: 140px;
-    background-color:white ; 
+    top: 150px;
+    background-color: white;
 }
 
 hr {
-   margin-top: 30px;
+    margin-top: 30px;
 }
 
 .user-view {
@@ -66,7 +71,7 @@ hr {
     background-color: rgb(52, 145, 179);
 }
 
-.ticket-header {
+.ticketHeader {
     margin: 30px;
 }
 
@@ -82,11 +87,11 @@ hr {
 }
 
 .close-button {
-    margin-top: -62px;  
+    margin-top: -62px;
 }
 
 .disabled {
-    background-color:#e3e5e7;
+    background-color: #e3e5e7;
 }
 
 .addTicketButton {
@@ -94,19 +99,22 @@ hr {
     margin-left: 1300px;
 }
 
-.ptable1 {
+.userTicketTable {
     width: 97%;
     height: 540px;
-    margin-top: -70px;
+    margin-top: -60px;
     position: absolute;
     margin-left: 18px;
     margin-right: 10px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
+    box-shadow: 1px 1px 1px 1px rgb(230, 238, 240);
+    background-color: white;
+    border: 1px solid   rgb(230, 238, 240);
 }
+
 #label {
     margin-right: 20px;
 }
+
 #userLabel {
     margin-right: 20px;
 }
@@ -117,10 +125,12 @@ hr {
     float: right;
     max-width: max-content;
     margin: 10px 5px;
-    border: none; 
+    border: none;
 }
 
-:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page , :host ::ng-deep .p-paginator-next, :host ::ng-deep .p-paginator-prev {
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page,
+:host ::ng-deep .p-paginator-next,
+:host ::ng-deep .p-paginator-prev {
     border-radius: 1px;
     height: 30px;
     width: 50px;
@@ -142,176 +152,172 @@ hr {
 @media screen and (max-width: 374px) and (min-width: 200px) {
     .addTicketButton {
         padding: 10px;
-        margin-left: 200px;    
+        margin-left: 200px;
     }
-    
 
-.conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
-    margin: auto;
-    width: 320px;
-    height: 780px;
-    position: absolute;
-    top: 120px;
-    background-color:white ;
-  
-}
-.ptable1 {
-    width: 100%;
-    height: 540px;
-    margin-top: -70px;
-    position: absolute;
-    margin-left: 0px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
-}
-input {
-    margin-bottom: 10px;
-    width: 300px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-.btn {
-    margin-left: -40px;
-}
+    .conatainer {
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 320px;
+        height: 780px;
+        position: absolute;
+        top: 120px;
+        background-color: white;
+    }
+
+    .userTicketTable {
+        width: 100%;
+        height: 540px;
+        margin-top: -70px;
+        position: absolute;
+        margin-left: 0px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color: white;
+    }
+
+    input {
+        margin-bottom: 10px;
+        width: 300px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .btn {
+        margin-left: -40px;
+    }
 
 }
 
-@media screen and (max-width: 424px) and (min-width:  374px) {
+@media screen and (max-width: 424px) and (min-width: 374px) {
     .addTicketButton {
         padding: 10px;
-        margin-left: 200px;    
+        margin-left: 200px;
     }
-    
 
-.conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
-    
-    width: 375px;
-    height: 780px;
-    position: absolute;
-    top: 140px;
-    background-color:white ;
-  
-}
-.ptable1 {
-    width: 100%;
-    height: 540px;
-    margin-top: -70px;
-    position: absolute;
-    margin-left: 0px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
+    .conatainer {
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+
+        width: 375px;
+        height: 780px;
+        position: absolute;
+        top: 140px;
+        background-color: white;
+    }
+
+    .userTicketTable {
+        width: 100%;
+        height: 540px;
+        margin-top: -70px;
+        position: absolute;
+        margin-left: 0px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color: white;
+    }
+
+    .btn {
+        margin-left: -40px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        width: 300px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
 }
 
-.btn {
-    margin-left: -40px;
-}
-input {
-    margin-bottom: 10px;
-    width: 300px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-}
-
-@media screen and (max-width: 667px) and (min-width:  424px) {
+@media screen and (max-width: 667px) and (min-width: 424px) {
     .addTicketButton {
         padding: 10px;
-        margin-left: 250px;    
+        margin-left: 250px;
     }
-    
 
-.conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
-   
-    width: 425px;
-    height: 780px;
-    position: absolute;
-    top: 140px;
-    background-color:white ;
-  
-}
-.ptable1 {
-    width: 100%;
-    height: 540px;
-    margin-top: -70px;
-    position: absolute;
-    margin-left: 0px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
-}
-.btn {
-    margin-left: -40px;
-}
-input {
-    margin-bottom: 10px;
-    width: 300px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
+    .conatainer {
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        width: 425px;
+        height: 780px;
+        position: absolute;
+        top: 140px;
+        background-color: white;
+    }
+
+    .userTicketTable {
+        width: 100%;
+        height: 540px;
+        margin-top: -70px;
+        position: absolute;
+        margin-left: 0px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color: white;
+    }
+
+    .btn {
+        margin-left: -40px;
+    }
+
+    input {
+        margin-bottom: 10px;
+        width: 300px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
 
 }
 
-@media screen and (max-width: 1023px) and (min-width:  667px) {
+@media screen and (max-width: 1023px) and (min-width: 667px) {
     .addTicketButton {
         padding: 10px;
-        margin-left: 300px;    
+        margin-left: 300px;
     }
-    
 
-.conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
- 
-    width: 768px;
-    height: 780px;
-    position: absolute;
-    top: 140px;
-    background-color:white ;
-  
-}
-input {
-    margin-bottom: 10px;
-    width: 300px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-.ptable1 {
-    width: 100%;
-    height: 540px;
-    margin-top: -70px;
-    position: absolute;
-    margin-left: 0px;
-    box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
-    background-color:white ;
-}
+    .conatainer {
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        width: 768px;
+        height: 780px;
+        position: absolute;
+        top: 140px;
+        background-color: white;
+    }
+
+    input {
+        margin-bottom: 10px;
+        width: 300px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .userTicketTable {
+        width: 100%;
+        height: 540px;
+        margin-top: -70px;
+        position: absolute;
+        margin-left: 0px;
+        box-shadow: 2px 2px 0px 0px rgb(230, 238, 240);
+        background-color: white;
+    }
 
 }
 
-@media screen and (max-width: 1300px) and (min-width:  1023px) {
+@media screen and (max-width: 1300px) and (min-width: 1023px) {
     .addTicketButton {
         padding: 10px;
-        margin-left: 300px;    
+        margin-left: 300px;
     }
-    
 
-.conatainer {
-    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
-    margin: auto;
-    width: 1024px;
-    height: 600px;
-    position: absolute;
-    top: 140px;
-    background-color:white ;
-  
-}
-input {
-    margin-bottom: 10px;
-    width: 300px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
+    .conatainer {
+        box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
+        margin: auto;
+        width: 1024px;
+        height: 600px;
+        position: absolute;
+        top: 140px;
+        background-color: white;
+    }
 
+    input {
+        margin-bottom: 10px;
+        width: 300px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
 }
-

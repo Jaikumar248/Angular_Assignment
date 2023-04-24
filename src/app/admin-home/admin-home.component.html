@@ -1,77 +1,89 @@
-
 <div class="header" *ngIf="showTicketTable">
-    <h2>Ticket List</h2>
+    <h3>Ticket List</h3>
 </div>
 
 <div class="tableTickets" *ngIf="showTicketTable">
 
-    <div class="search"><input type="text" placeholder="search tickets" [(ngModel)]="ticket" (keyup)="ViewTicketById()"></div>
+    <div class="searchTickets">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input icon="pi pi-search" id="search" class="p-inputtext-sm" type="text" pInputText [(ngModel)]="ticket"
+                placeholder="Search Tickets" (keyup)="viewTicketById()" />
+        </span>
+    </div>
 
-        <p-table  [value]="viewAllTickets" [paginator]=true [rows]="5" [alwaysShowPaginator]="false"  styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand" [tableStyle]="{'min-width': '50rem'}"  >
-            <input type="text" placeholder="Search" [(ngModel)]="searchText">
-            <ng-template pTemplate="header" class="t-head thead-primary">
+    <p-table [value]="viewAllTickets" [paginator]=true [rows]="5" [alwaysShowPaginator]="false"
+        styleClass="p-datatable-striped" [resizableColumns]="true" columnResizeMode="expand"
+        [tableStyle]="{'min-width': '50rem'}">
+        <input type="text" placeholder="Search" [(ngModel)]="searchText">
 
-                <tr>
-                    <th>User Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
-                    <th>Ticket Id <p-sortIcon field="ticket_id"  pSortableColumn="ticket_id"></p-sortIcon></th>
-                    <th>Catagory <p-sortIcon field="category_desc"  pSortableColumn="category_desc"></p-sortIcon></th>
-                    <th>Sub Category <p-sortIcon field="sub_category_desc"  pSortableColumn="sub_category_desc"></p-sortIcon></th>
-                    <th>Description <p-sortIcon field="description"  pSortableColumn="description"></p-sortIcon></th>
-                    <th>Priority <p-sortIcon field="priority"  pSortableColumn="priority"></p-sortIcon></th>
-                    <th>Status <p-sortIcon field="status"  pSortableColumn="status"></p-sortIcon></th>
-                    <th>Reporter Id <p-sortIcon field="reporter_id"  pSortableColumn="reporter_id"></p-sortIcon></th>
-                    <th>Subject <p-sortIcon field="subject"  pSortableColumn="subject"></p-sortIcon></th>
-                    <th>Url Link <p-sortIcon field="url"  pSortableColumn="url"></p-sortIcon></th>
-                    <th>Create Source <p-sortIcon field="createdSource"  pSortableColumn="createdSource"></p-sortIcon></th>
-                    <th>Create Source Type<p-sortIcon field="createdSourceType"  pSortableColumn="createdSourceType"></p-sortIcon></th>
-                    <th>Modified Source <p-sortIcon field="modifiedSource"  pSortableColumn="modifiedSource"></p-sortIcon></th>
-                    <th>Modified Source Type<p-sortIcon field="modifiedSourceType"  pSortableColumn="modifiedSourceType"></p-sortIcon></th>
-                    <th>Create Datetime <p-sortIcon field="create_datetime"  pSortableColumn="create_datetime"></p-sortIcon></th>
-                    <th>Last Modified Datetime <p-sortIcon field="last_modified_datetime"  pSortableColumn="last_modified_datetime"></p-sortIcon></th>
-                    <th>Action</th>
-                </tr>
+        <ng-template pTemplate="header" class="t-head thead-primary">
 
-            </ng-template>
-            <ng-template pTemplate="body" let-item class="t-body tbody-dark">
-        
-            <tr (dblclick)="TicketviewMode(item)">
-                <td>{{item.reporter_id}}</td>
-                <td>{{item.ticket_id}}</td>
-                <td>{{item.category_desc}}</td>
-                <td>{{item.sub_category_desc}}</td>
+            <tr>
+                <th>User Id <p-sortIcon field="userId" pSortableColumn="userId"></p-sortIcon></th>
+                <th>Ticket Id <p-sortIcon field="ticketId" pSortableColumn="ticketId"></p-sortIcon></th>
+                <th>Catagory <p-sortIcon field="categoryDesc" pSortableColumn="categoryDesc"></p-sortIcon></th>
+                <th>Sub Category <p-sortIcon field="subCategoryDesc" pSortableColumn="subCategoryDesc"></p-sortIcon>
+                </th>
+                <th>Description <p-sortIcon field="description" pSortableColumn="description"></p-sortIcon></th>
+                <th>Priority <p-sortIcon field="priority" pSortableColumn="priority"></p-sortIcon></th>
+                <th>Status <p-sortIcon field="status" pSortableColumn="status"></p-sortIcon></th>
+                <th>Subject <p-sortIcon field="subject" pSortableColumn="subject"></p-sortIcon></th>
+                <th>Url Link <p-sortIcon field="url" pSortableColumn="url"></p-sortIcon></th>
+                <th>Create Source <p-sortIcon field="createdSource" pSortableColumn="createdSource"></p-sortIcon></th>
+                <th>Create Source Type<p-sortIcon field="createdSourceType"
+                        pSortableColumn="createdSourceType"></p-sortIcon></th>
+                <th>Modified Source <p-sortIcon field="modifiedSource" pSortableColumn="modifiedSource"></p-sortIcon>
+                </th>
+                <th>Modified Source Type<p-sortIcon field="modifiedSourceType"
+                        pSortableColumn="modifiedSourceType"></p-sortIcon></th>
+                <th>Create Datetime <p-sortIcon field="createDatetime" pSortableColumn="createDatetime"></p-sortIcon>
+                </th>
+                <th>Last Modified Datetime <p-sortIcon field="lastModifiedDatetime"
+                        pSortableColumn="lastModifiedDatetime"></p-sortIcon></th>
+                <th>Action</th>
+            </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-item class="t-body tbody-dark">
+
+            <tr (dblclick)="ticketviewMode(item)">
+                <td>{{item.userId}}</td>
+                <td>{{item.ticketId}}</td>
+                <td>{{item.categoryDesc}}</td>
+                <td>{{item.subCategoryDesc}}</td>
                 <td>{{item.description}}</td>
                 <td>{{item.priority}}</td>
                 <td>{{item.status}}</td>
-                <td>{{item.reporter_id}}</td>
                 <td>{{item.subject}}</td>
                 <td>{{item.url}}</td>
                 <td>{{item.createdSource}}</td>
                 <td>{{item.createdSourceType}}</td>
                 <td>{{item.modifiedSource}}</td>
                 <td>{{item.modifiedSourceType}}</td>
-                <td>{{item.create_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
-                <td>{{item.last_modified_datetime | date :" dd/MM/yyyy, h:mm a "}}</td>
+                <td>{{item.createDatetime | date :" dd/MM/yyyy, h:mm a "}}</td>
+                <td>{{item.lastModifiedDatetime | date :" dd/MM/yyyy, h:mm a "}}</td>
                 <td>
-                    <button class="btn btn-warning " (click)="DeleteTicket(item.ticket_id)">Delete</button>
+                    <button class="btn btn-warning " (click)="deleteTicket(item.ticketId)">Delete</button>
                 </td>
             </tr>
 
-            </ng-template>
+        </ng-template>
 
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="14" style="text-align: center;">No data Found</td>
-                </tr>
-            </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="14" style="text-align: center;">No data Found</td>
+            </tr>
+        </ng-template>
 
-        </p-table>
+    </p-table>
 
 </div>
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
-<div class="header"  *ngIf="ticketView">
-    <h2>Ticket Details</h2>
+<div class="header" *ngIf="ticketView">
+    <h3>Ticket Details</h3>
 </div>
 
 <div class="ticketDetails" *ngIf="ticketView">
@@ -81,32 +93,28 @@
         <div class="col-12 md:col-12 lg:col-6 field">
 
             <div>
-                <label class="col-6">Ticket_Id :</label>
-                <label class="col-6">{{ticketData.ticket_id}}</label>
+                <label class="col-6">Ticket Id :</label>
+                <label class="col-6">{{ticketData.ticketId}}</label>
             </div>
             <div>
-                <label class="col-6">User_Id :</label>
-                <label class="col-6">{{ticketData.user_id}}</label>
+                <label class="col-6">User Id :</label>
+                <label class="col-6">{{ticketData.userId}}</label>
             </div>
             <div>
                 <label class="col-6">Category :</label>
-                <label class="col-6">{{ticketData.category_desc}}</label>
+                <label class="col-6">{{ticketData.categoryDesc}}</label>
             </div>
             <div>
                 <label class="col-6">Sub Category :</label>
-                <label class="col-6">{{ticketData.sub_category_desc}}</label>
+                <label class="col-6">{{ticketData.subCategoryDesc}}</label>
             </div>
             <div>
-                <label class="col-6">Subject</label>
+                <label class="col-6">Subject :</label>
                 <label class="col-6">{{ticketData.subject}}</label>
             </div>
             <div>
                 <label class="col-6">Description :</label>
                 <label class="col-6">{{ticketData.description}}</label>
-            </div>
-            <div>
-                <label class="col-6">Reporter</label>
-                <label class="col-6">{{ticketData.reporter_id}}</label>
             </div>
             <div>
                 <label class="col-6">Priority :</label>
@@ -115,9 +123,9 @@
 
         </div>
         <div class="col-12 md:col-12 lg:col-6 field">
-           
+
             <div>
-                <label class="col-6">Url_Link :</label>
+                <label class="col-6">Url Link :</label>
                 <label class="col-6">{{ticketData.url}}</label>
             </div>
             <div>
@@ -126,7 +134,7 @@
             </div>
             <div>
                 <label class="col-6">Created Date :</label>
-                <label class="col-6">{{ticketData.create_datetime  | date :" dd/MM/yyyy, h:mm a "}}</label>
+                <label class="col-6">{{ticketData.createDatetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">Created Source :</label>
@@ -138,7 +146,7 @@
             </div>
             <div>
                 <label class="col-6">Modified Date :</label>
-                <label class="col-6">{{ticketData.last_modified_datetime  | date :" dd/MM/yyyy, h:mm a "}}</label>
+                <label class="col-6">{{ticketData.lastModifiedDatetime | date :" dd/MM/yyyy, h:mm a "}}</label>
             </div>
             <div>
                 <label class="col-6">ModifiedSource :</label>
@@ -148,35 +156,40 @@
                 <label class="col-6">ModifiedSourceType:</label>
                 <label class="col-6">{{ticketData.modifiedSourceType}}</label>
             </div>
-        </div >
+        </div>
 
     </div>
     <div class="backButton">
-        <button id="priority" type="button" (click)="ChangePriorityButton()">ChangePriority</button>
-        <button id="priority" type="button" (click)="ChangeStatusButton()">ChangeStatus</button>
-        <button type="button" class="btn btn-warning" (click)="CloseViewMode()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="changePriorityButton()">Change Priority</button>
+        <button type="button" class="btn btn-primary" (click)="changeStatusButton()">Change Status</button>
+        <button type="button" class="btn btn-warning" (click)="closeViewMode()">Cancel</button>
     </div>
 </div>
 
-<p-dialog  header="ChangePriority"[(visible)]="displayPopPriority" [modal]="true"  [closable]="false"  autoWidth="false">
+<p-dialog header="ChangePriority" [(visible)]="displayPopPriority" [modal]="true" [closable]="false" autoWidth="false">
 
     <form ngNativeValidate>
-        <label>Priority :</label>
-        <p-autoComplete [(ngModel)]="selectedPriorityValue" [ngModelOptions]="{'standalone':true}" (onClear)="selectedPriorityValue = '' " (onSelect)="displayPriorityValue($event)" [required]="true"  appendTo="body" [suggestions]="seletectPriorities1" (completeMethod)="completePriority($event.query)" [dropdown]="true"  ></p-autoComplete>
+        <label id="label">Priority :</label>
+        <p-autoComplete [(ngModel)]="selectedPriorityValue" [ngModelOptions]="{'standalone':true}"
+            (onClear)="selectedPriorityValue = '' " (onSelect)="displayPriorityValue($event)" [required]="true"
+            appendTo="body" [suggestions]="priorities" (completeMethod)="completePriority($event.query)"
+            [dropdown]="true"></p-autoComplete>
         <div class="statusButton">
             <button class="btn btn-warning" (click)="closePriority()">Cancel</button>
-            <button class="btn btn-primary" (click)="savePriority()" >Save</button>
+            <button class="btn btn-primary" (click)="savePriority()">Save</button>
         </div>
     </form>
 
 </p-dialog>
 
 
-<p-dialog header="ChangeStatus"[(visible)]="displayPopStatus" [modal]="true" [closable]="false" autoWidth="false">
+<p-dialog header="ChangeStatus" [(visible)]="displayPopStatus" [modal]="true" [closable]="false" autoWidth="false">
 
     <form ngNativeValidate>
-        <label for="">Status :</label>
-        <p-autoComplete [(ngModel)]="selectedStatusValue"  (onSelect)="displayStatusValue($event)" [required]="true" [ngModelOptions]="{'standalone':true}"   appendTo="body" [suggestions]="selectedStatus1" (completeMethod)="completeStatus($event.query)" [dropdown]="true" ></p-autoComplete>
+        <label id="label">Status :</label>
+        <p-autoComplete [(ngModel)]="selectedStatusValue" (onSelect)="displayStatusValue($event)" [required]="true"
+            [ngModelOptions]="{'standalone':true}" appendTo="body" [suggestions]="suggestionsStatus"
+            (completeMethod)="completeStatus($event.query)" [dropdown]="true"></p-autoComplete>
         <div class="statusButton">
             <button class="btn btn-warning" (click)="closeStatusPop()">Cancel</button>
             <button class="btn btn-primary" (click)="saveStatus()">Save</button>
@@ -187,9 +200,3 @@
 
 
 <p-toast></p-toast>
-
-
-
-
-
-

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { ConfirmationService, Message, MessageService } from 'primeng/api';
-import { TicketServiceService } from '../services/ticket-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
@@ -22,57 +21,52 @@ export class UserDetialsComponent implements OnInit {
   displayUserTable: boolean = true;
   displayEditUserForm: boolean = false;
   modifiedSource: any;
-  addUsersButton:any;
-  messages: Message[] = [];
-  messages1: Message[] = [];
-  username: any;
-  emailId: any;
+  addUsersButton: any;
+  userNameField: any;
+  emailIdField: any;
   addUsers: any;
   openUserForm: boolean = false;
   dialogValues: any;
   createdSourceType: any;
   createdModifiedValue: any;
-  modifiedSourceType:any;
-  createdSource:any;
-  adminUserType:any;
+  modifiedSourceType: any;
+  createdSource: any;
+  adminUserType: any;
+  @ViewChild('adduser') form: NgForm | undefined;
 
-  constructor(private userService: UserServiceService, private ticketService: TicketServiceService, private router: Router,
-    private confirmationService: ConfirmationService, private messageService: MessageService, private activeRoute: ActivatedRoute,
+  constructor(private userService: UserServiceService, private router: Router,
+    private confirmationService: ConfirmationService, private messageService: MessageService,
     private toastr: ToastrService, private location: Location) { }
 
 
   ngOnInit(): void {
-    this.ShowAllUsers();
-
+    this.showUsers();
     this.refresh();
-
-    if(localStorage.getItem('admin')){
+    if (localStorage.getItem('admin')) {
       this.createdModifiedValue = localStorage.getItem('admin');
-      this.createdModifiedValue = JSON.parse( this.createdModifiedValue);
-      // this.modifiedSource = this.createdModifiedValue.userName;
-      // this.modifiedSourceType = "admin";
+      this.createdModifiedValue = JSON.parse(this.createdModifiedValue);
+      this.createdSource = this.createdModifiedValue.userName;
+      this.createdSourceType = "admin";
     }
-
   }
-  
-  @ViewChild('adduser') form:NgForm | undefined;
+
   //Fetching all users 
-  ShowAllUsers() {
-    this.userService.GetAllUsers().subscribe((result) => {
+  showUsers() {
+    this.userService.getAllUsers().subscribe((result) => {
       this.showAllUsers = result;
     });
   }
 
   //Delete user here 
-  DeleteUser(id: any) {
+  deleteUser(id: any) {
     this.confirmationService.confirm({
       message: 'Are you sure To Delete Selected Object? Click Yes To Delete',
       accept: () => {
-        this.userService.DeleteUser(id).subscribe((result) => {
-          this.ShowAllUsers();
+        this.userService.deleteUser(id).subscribe((result) => {
+          this.showUsers();
         },
           error => {
-            this.ShowAllUsers();
+            this.showUsers();
             this.messageService.add({ severity: 'success', summary: 'success', detail: 'Deleted Successful' });
           }
         );
@@ -80,48 +74,42 @@ export class UserDetialsComponent implements OnInit {
     });
   }
 
-  // upDateUser() {
-  //   this.ticketService.UpdateUserForm();
-  // }
-
   // On double click on particular row in user table it will open view mode.
-  UserViewMode(item: any) {
+  userViewMode(item: any) {
     this.viewUser = item;
     this.displayUserDetails = true;
     this.displayUserTable = false;
   }
 
   //On click edit button it will open update user form.
-  EditUser() {
+  editUser() {
     this.displayEditUserForm = true;
     this.displayUserDetails = false;
   }
 
-  //On click cancel button it will close update user form
+  //On click cancel button it will close update user form.
   closeUpdateForm() {
     this.displayEditUserForm = false;
     this.displayUserTable = true;
     this.displayUserDetails = false;
   }
 
-  //updating the user
-  UpdateUserForm(data: any) {
-    // this.modifiedSource = this.createdModifiedValue.userName;
-    // this.modifiedSourceType = "admin";
+  //updating the user.
+  updateUserForm(data: any) {
     data.modifiedSource = this.createdModifiedValue.userName;
     data.modifiedSourceType = "admin";
-    this.userService.UpdateUser(data).subscribe((result) => {
+    this.userService.updateUser(data).subscribe((result) => {
       this.toastr.success(' User Updated  successfully');
     }, (error) => {
-      this.ShowAllUsers();
+      this.showUsers();
       this.messageService.add({ severity: 'success', summary: 'success', detail: 'user is update successfully' });
     });
     this.displayEditUserForm = false;
     this.displayUserTable = true;
   }
 
-  // Add user dialog box will open here
-  AddUsersPop() {
+  // Add user dialog box will open here.
+  addUsersPop() {
     this.addUsersButton = true;
     this.displayUserTable = true;
     this.displayUserDetails = false;
@@ -130,11 +118,12 @@ export class UserDetialsComponent implements OnInit {
 
   //After page refresh this method will reload the current route.
   refresh(): void {
-    this.router.navigateByUrl('/home/userDetails', { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl('/home/userdetails', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.location.path())]);
     });
   }
-  // Add user dialog box will close here
+
+  // Add user dialog box will close here.
   closeDialogPop() {
     this.addUsersButton = false;
     this.displayUserTable = true;
@@ -142,15 +131,16 @@ export class UserDetialsComponent implements OnInit {
     this.form?.reset();
   }
 
-  //Checking email id here for creating a user
+  //Checking email id here for creating a user.
   saveUsers(data: any) {
-    this.username = data.userName;
-    this.emailId = data.email_Id;
-    this.userService.GetAllUsers().subscribe((result) => {
+    this.userNameField = data.userName;
+    this.emailIdField = data.emailId;
+    this.userService.getAllUsers().subscribe((result) => {
       this.dialogValues = result;
       for (let item of this.dialogValues) {
-        if (data.email_Id === item.email_Id) {
-          this.messageService.add({ severity: 'error', summary: 'error', detail: ' email id is already exits'});
+        if (data.emailId === item.emailId) {
+          this.messageService.add({ severity: 'error', summary: 'error', detail: ' email id is already exits' });
+          this.userNameField = data.userName;
           this.openUserForm = false;
           this.addUsersButton = true;
           this.displayUserTable = true;
@@ -166,19 +156,18 @@ export class UserDetialsComponent implements OnInit {
     this.form?.reset();
   }
 
-  //Close User form
-  closeUserForm(){
+  //Close User form.
+  closeUserForm() {
     this.openUserForm = false;
     this.displayUserTable = true;
+    this.adminUserType = '';
   }
 
-  // For Creating a user
-  CreateUser(data: CreateUser) {
-    
-    this.userService.UserCreate(data).subscribe((result) => {
-      console.log(result);
+  // For Creating a user.
+  createUser(data: CreateUser) {
+    this.userService.userCreate(data).subscribe((result) => {
     }, (error) => {
-      this.ShowAllUsers();
+      this.showUsers();
       this.messageService.add({ severity: 'success', summary: 'success', detail: ' New user is created successfully' });
     });
     this.openUserForm = false;

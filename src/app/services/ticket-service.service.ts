@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -14,77 +13,68 @@ export class TicketServiceService implements OnInit {
   adminId: any;
   adminVariable: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
   ngOnInit(): void {
 
   }
 
-  CreateTicket(data: any, user_id: any) {
-    data['user_user_id'] = user_id;
-    return this.http.post(`http://localhost:8080/tickets?user_id=${user_id}`, data);
+  createTicket(data: any, userId: any) {
+    data['userId'] = userId;
+    return this.http.post(`http://localhost:8080/tickets?userId=${userId}`, data);
   }
 
-  ViewAllUserTicket(user_id: any) {
-    return this.http.get(`http://localhost:8080/viewAllUserTicket?user_id=${user_id}`);
+  viewAllUserTicket(userId: any) {
+    return this.http.get(`http://localhost:8080/viewAllUserTicket?userId=${userId}`);
   }
 
-  ViewAllTickets() {
+  viewAllTickets() {
     return this.http.get('http://localhost:8080/viewAll');
   }
 
-  ViewTicket(ticket_id: string) {
-    return this.http.get(`http://localhost:8080/viewTicket/${ticket_id}`);
+  viewTicket(ticketId: string) {
+    return this.http.get(`http://localhost:8080/viewTicket/${ticketId}`);
   }
 
-  UpdateUserForm() {
+  updateUserForm() {
     this.upDateUser.next(true);
     this.upDateTicket.next(false);
   }
 
-  ShowTicketForm() {
+  showTicketForm() {
     this.upDateTicket.next(true);
     this.upDateUser.next(false);
   }
 
-  ShowCategories() {
+  showCategories() {
     return this.http.get('http://localhost:8080/getCategory');
   }
 
-  ShowSubCategories(data: any) {
-    return this.http.get(`http://localhost:8080/getSubCategory?category_id=${data}`);
+  showSubCategories(data: any) {
+    return this.http.get(`http://localhost:8080/getSubCategory?categoryId=${data}`);
   }
 
-  ShowPriority() {
+  showPriority() {
     return this.http.get('http://localhost:8080/getPriority');
   }
 
-  ShowStatus() {
+  showStatus() {
     return this.http.get('http://localhost:8080/getStatus');
   }
 
-  ShowTicketsAdmin() {
-    this.router.navigate(['/home/admin-home']);
-    this.displayTicketTable.next(true);
-  }
-
-  GetAdminDetails() {
+  getAdminDetails() {
     return this.http.get('http://localhost:8080/getAdminList');
   }
 
-  DeleteTicket(ticketid: any, adminId: any) {
-    return this.http.delete(`http://localhost:8080/deleteTicket?ticket_id=${ticketid}&admin_id=${adminId}`);
+  deleteTicket(ticketid: any, adminId: any) {
+    return this.http.delete(`http://localhost:8080/deleteTicket?ticketId=${ticketid}&adminId=${adminId}`);
   }
 
-  ChangeTicketStatus(ticketId: any, adminId: any, status: any, ticketData: any) {
-    return this.http.put(`http://localhost:8080/changeStatus?ticket_id=${ticketId}&admin_id=${adminId}&status_id=${status}`, ticketData)
+  changeTicketStatus(ticketId: any, adminId: any, status: any, ticketData: any) {
+    return this.http.put(`http://localhost:8080/changeStatus?ticketId=${ticketId}&adminId=${adminId}&statusId=${status}`, ticketData)
   }
 
-  ChangeTicketPriority(ticketId: any, adminId: any, priority: any, ticketData: any) {
-    return this.http.put(`http://localhost:8080/changePriority?ticket_id=${ticketId}&admin_id=${adminId}&priority_id=${priority}`, ticketData);
-  }
-
-  SetAssignee(admin: any, ticketId: any, userId: any) {
-    return this.http.put(`http://localhost:8080/setAssignee?admin_id=${admin}&ticket_id=${ticketId}&user_id=${userId}`, null);
+  changeTicketPriority(ticketId: any, adminId: any, priority: any, ticketData: any) {
+    return this.http.put(`http://localhost:8080/changePriority?ticketId=${ticketId}&adminId=${adminId}&priorityId=${priority}`, ticketData);
   }
 
 }

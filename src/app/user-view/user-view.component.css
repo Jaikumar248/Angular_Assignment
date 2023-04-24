@@ -9,30 +9,39 @@
     position: relative;
 }
 
-.ticketDetailsBody {
-    box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
-     margin-left: 70px;
-    width: 1400px;
-    height: 560px;
+.header h3 {
+    color: aliceblue;
+    margin-left: 23px;
     position: absolute;
-    top: 140px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.ticketDetailsBody {
+    box-shadow: 2px 2px 2px 2px rgb(234, 237, 238);
+    margin-left: 20px;
+    width: 97%;
+    height: 530px;
+    position: absolute;
+    top: 150px;
     background-color:white ;
 }
 
 .backButton {
-    margin-top: 30px;
-    margin-left: 1300px;
+    margin-left: 1350px;
+    margin-top: 50px;
 }
 
 .header h2 {
     color:rgb(234, 237, 238);
     margin-left: 20px;
 }
+
 .grid {
     margin-top: 30px;
     margin-left: 30px;
 }
-
 
 @media screen and (max-width: 321px) and (min-width: 200px) {
 
@@ -44,14 +53,14 @@
         position: absolute;
         top: 140px;
         background-color:white ;
-      
     }
+
     .backButton{
         margin-top: -11px;
         margin-left: 264px;
     }
-    
 }
+
 @media screen and (max-width: 376px) and (min-width: 321px) {
     .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
@@ -61,15 +70,14 @@
         position: absolute;
         top: 140px;
         background-color:white ;
-      
     }
+
     .backButton{
         margin-top: 30px;
         margin-left: 300px;
     }
-    
-
 }
+
 @media screen and (max-width: 426px) and (min-width: 377px) {
     .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
@@ -79,14 +87,14 @@
         position: absolute;
         top: 140px;
         background-color:white ;
-      
     }
+
     .backButton{
         margin-top: 30px;
         margin-left: 370px;
     }
-
 }
+
 @media screen and (max-width: 769px) and (min-width: 426px) {
     .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
@@ -96,13 +104,14 @@
         position: absolute;
         top: 140px;
         background-color:white ;
-      
     }
+
     .backButton{
         margin-top: 30px;
         margin-left: 700px;
     }
 }
+
 @media screen and (max-width: 1025px) and (min-width:770px) {
     .ticketDetailsBody {
         box-shadow: 2px 2px 3px 3px rgb(234, 237, 238);
@@ -112,8 +121,8 @@
         position: absolute;
         top: 140px;
         background-color:white ;
-      
     }
+
     .backButton{
         margin-top: 30px;
         margin-left: 930px;
